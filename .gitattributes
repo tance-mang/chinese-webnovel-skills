@@ -1,0 +1,8 @@
+# 统一行尾，跨平台协作不产生噪音 diff
+* text=auto eol=lf
+
+# 明确二进制类型（如后续加图片/字体）
+*.png binary
+*.jpg binary
+*.ico binary
+*.docx binary

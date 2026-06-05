@@ -1,0 +1,44 @@
+# ───────────── 写作产出（用户的书稿，不入库）─────────────
+# 用户用插件生成的小说内容默认放这些目录，不应被提交到插件仓库
+/output/
+/作品/
+/书稿/
+**/正文/
+**/草稿/
+*.draft.md
+
+# ───────────── 密钥与本地配置 ─────────────
+.env
+.env.*
+*.key
+config.local.json
+config.json
+**/secrets*
+
+# ───────────── 操作系统 ─────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# ───────────── 编辑器 / IDE ─────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ───────────── Python（如果后续加脚本）─────────────
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# ───────────── 临时 / 缓存 ─────────────
+*.tmp
+*.log
+*.bak
+~$*.docx
+.cache/
+node_modules/
