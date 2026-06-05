@@ -42,3 +42,5 @@ venv/
 ~$*.docx
 .cache/
 node_modules/
+#上架建议
+PUBLISHING.md
