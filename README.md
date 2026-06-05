@@ -59,11 +59,6 @@
 
 装好后重启会话。验证：输入 `/webnovel:idea` 看到技能即成功。
 
-**本地试用**（不用先上传 GitHub）：
-```text
-/plugin marketplace add D:\小说生成器\chinese-webnovel-skills
-/plugin install webnovel@webnovel-studio
-```
 
 ## 📖 17 个技能
 
@@ -224,7 +219,6 @@ chinese-webnovel-skills/
 
 改技能：编辑 `skills/<名字>/SKILL.md`，frontmatter 的 `description` 决定 Claude 何时自动触发。
 本地校验：仓库根目录运行 `claude plugin validate .`。
-上架细节见 [PUBLISHING.md](PUBLISHING.md)。
 
 ## 📜 许可证
 
