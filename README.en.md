@@ -8,8 +8,8 @@ Idea → Spark → Outline → Killer opening → Golden-finger → Characters �
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-blueviolet)](https://code.claude.com)
-[![Skills](https://img.shields.io/badge/skills-18-brightgreen)](#-18-skills)
-[![Version](https://img.shields.io/badge/version-0.6.0-blue)](CHANGELOG.md)
+[![Skills](https://img.shields.io/badge/skills-19-brightgreen)](#-19-skills)
+[![Version](https://img.shields.io/badge/version-0.7.0-blue)](CHANGELOG.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-success)](#-contributing)
 
 [简体中文](README.md) | **English**
@@ -27,7 +27,7 @@ Idea → Spark → Outline → Killer opening → Golden-finger → Characters �
 
 - [Why use it](#-why-use-it)
 - [Install](#-install)
-- [18 Skills](#-18-skills)
+- [19 Skills](#-19-skills)
 - [Typical workflows](#-typical-workflows)
 - [Knowledge base](#-knowledge-base)
 - [Project structure](#-project-structure)
@@ -67,7 +67,7 @@ Restart the session. Verify by typing `/webnovel:idea`.
 /plugin install webnovel@webnovel-studio
 ```
 
-## 📖 18 Skills
+## 📖 19 Skills
 
 > Most skills accept a "**platform + channel + genre**" argument, e.g. `/webnovel:outline 番茄 男频 都市战神`, auto-adapting pacing and tropes.
 
@@ -80,6 +80,7 @@ Restart the session. Verify by typing `/webnovel:idea`.
 | 🪝 Hooks | `/webnovel:hook` | Opening hooks, chapter-end cliffhangers, paywall hooks |
 | ⚙️ Golden-finger | `/webnovel:goldfinger` | System/sign-in/space/simulator cheats with thresholds & costs |
 | 👤 Characters | `/webnovel:character` | Protagonist/villain/CP sheets with growth arcs |
+| 🪪 Char names | `/webnovel:name` | Name/rename characters: era-fit, memorable; kills generic AI names |
 | ✍️ Prose | `/webnovel:expand` | Turn chapter outlines into publishable prose, controlled pace & length |
 | 🔥 Payoff & face-slap | `/webnovel:shuangdian` | Three-stage payoff loop + four-beat face-slap + escalation |
 | 🏷️ Annotate | `/webnovel:annotate` | Mark hooks/payoffs/climax/modifiers + a rhythm data table |
@@ -141,6 +142,7 @@ Restart the session. Verify by typing `/webnovel:idea`.
 | `trope-library.md` | 23 payoff tropes + trigger mechanics + deployment |
 | `goldfinger-types.md` | 10 golden-finger schools + four elements + anti-flop |
 | `title-library.md` | Title craft: male/female naming formulas + keyword pools + anti-AI checklist |
+| `name-library.md` | Character naming: surname pools + naming by genre/role + villain/sect names + pitfalls |
 | `genre-library.md` | Full genre taxonomy: 9 blocks (mystery/psych/urban/system/xianxia/female/history-ancient-althist/horror/niche) |
 | `fanfic-guide.md` | Fan-fiction compliance: per-platform policy + copyright lines + public-domain IP |
 | `xiushi-ci.md` | Modifier-word library for punchy fast-paced prose |
@@ -157,8 +159,8 @@ chinese-webnovel-skills/
 ├── .claude-plugin/
 │   ├── plugin.json          # plugin manifest
 │   └── marketplace.json     # marketplace manifest
-├── skills/                  # 18 skills (one SKILL.md each)
-├── references/              # 12 knowledge libraries
+├── skills/                  # 19 skills (one SKILL.md each)
+├── references/              # 13 knowledge libraries
 ├── templates/               # book bible / submission log / progress
 │   ├── book-bible-template.md
 │   ├── submission-log-template.md
@@ -199,6 +201,7 @@ Thanks to these open-source projects for advancing the AI web-fiction ecosystem.
 
 See [CHANGELOG.md](CHANGELOG.md).
 
+- **v0.7.0** — character naming (name): era-fit & memorable, fixes generic AI character names
 - **v0.6.0** — title naming (title): keyword + payoff + hook, fixes "too AI / too literary / generic" book titles
 - **v0.5.0** — project memory system (memory): store outline/characters/foreshadowing/progress, resume across sessions, git snapshots, submission-rejection log
 - **v0.4.0** — fan-fiction compliance (fanfic), deconstruct, full genre library, 5-platform detailed profiles (fixed Mango → UC/Zhihu), platform/genre parameters

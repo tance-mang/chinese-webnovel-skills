@@ -8,8 +8,8 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-blueviolet)](https://code.claude.com)
-[![Skills](https://img.shields.io/badge/skills-18-brightgreen)](#-18-个技能)
-[![Version](https://img.shields.io/badge/version-0.6.0-blue)](CHANGELOG.md)
+[![Skills](https://img.shields.io/badge/skills-19-brightgreen)](#-19-个技能)
+[![Version](https://img.shields.io/badge/version-0.7.0-blue)](CHANGELOG.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-success)](#-参与贡献)
 
 **简体中文** | [English](README.en.md)
@@ -25,7 +25,7 @@
 
 - [为什么用它](#-为什么用它)
 - [安装](#-安装)
-- [18 个技能](#-18-个技能)
+- [19 个技能](#-19-个技能)
 - [典型流程](#-典型流程)
 - [知识库](#-知识库)
 - [项目结构](#-项目结构)
@@ -60,7 +60,7 @@
 装好后重启会话。验证：输入 `/webnovel:idea` 看到技能即成功。
 
 
-## 📖 18 个技能
+## 📖 19 个技能
 
 > 多数技能支持"**平台 + 频道 + 题材**"参数，如 `/webnovel:outline 番茄 男频 都市战神`、`/webnovel:idea 晋江 女频 古言宅斗`，自动适配平台节奏和题材套路。
 
@@ -73,6 +73,7 @@
 | 🪝 钩子设计 | `/webnovel:hook` | 开篇钩、章尾断章、付费节点钩 |
 | ⚙️ 金手指 | `/webnovel:goldfinger` | 系统/签到/空间/模拟器…有门槛有代价的外挂 |
 | 👤 人物设定 | `/webnovel:character` | 主角/反派/CP 人设卡，含成长弧光 |
+| 🪪 角色起名 | `/webnovel:name` | 给角色起名/改名：贴时代有记忆点，专治"叶辰苏念"烂大街 |
 | ✍️ 正文扩写 | `/webnovel:expand` | 把章纲写成可发布正文，控节奏控字数 |
 | 🔥 爽点打脸 | `/webnovel:shuangdian` | 三段式爽感闭环 + 打脸四拍 + 爽点升级 |
 | 🏷️ 正文标注 | `/webnovel:annotate` | 标出钩子/爽点/高潮/修饰词 + 出节奏数据表 |
@@ -143,6 +144,7 @@
 | `trope-library.md` | 23 个爽点套路元素 + 触发机制 + 部署 |
 | `goldfinger-types.md` | 金手指 10 大流派 + 四要素 + 防烂尾 |
 | `title-library.md` | 网文起名库：男女频起名套路 + 关键词池 + 反AI起名清单 |
+| `name-library.md` | 角色起名库：姓氏池 + 按题材/身份起名 + 反派宗门命名 + 避坑 |
 | `genre-library.md` | 全品类题材库：九大板块（悬疑/心理/都市/系统流/玄幻/女频/历史古代架空/灵异/小众）|
 | `fanfic-guide.md` | 同人合规：各平台政策 + 版权红线 + 公版 IP + 安全改写 |
 | `xiushi-ci.md` | 修饰词库：短平快爽文的"味儿"词 |
@@ -159,8 +161,8 @@ chinese-webnovel-skills/
 ├── .claude-plugin/
 │   ├── plugin.json          # 插件清单
 │   └── marketplace.json     # 插件市场清单
-├── skills/                  # 18 个技能（每个一个 SKILL.md）
-├── references/              # 12 个知识库
+├── skills/                  # 19 个技能（每个一个 SKILL.md）
+├── references/              # 13 个知识库
 ├── templates/               # 设定总纲 / 投稿记录 / 进度 模板
 │   ├── book-bible-template.md
 │   ├── submission-log-template.md
@@ -205,6 +207,7 @@ chinese-webnovel-skills/
 
 完整记录见 [CHANGELOG.md](CHANGELOG.md)。
 
+- **v0.7.0** — 角色起名(name)：贴时代有记忆点，专治角色名太AI/烂大街(叶辰苏念林婉儿)
 - **v0.6.0** — 网文起名(title)：带关键词+爽点+钩子，专治书名太AI/太文艺/烂大街
 - **v0.5.0** — 创作档案记忆系统(memory)：存大纲/人设/伏笔/进度、跨会话续写、git 快照、投稿拒因记录
 - **v0.4.0** — 同人创作合规(fanfic)、拆书对标(deconstruct)、全品类题材库、五平台详版(修正芒果→UC/知乎)、平台题材参数化
