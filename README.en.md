@@ -8,8 +8,8 @@ Idea → Spark → Outline → Killer opening → Golden-finger → Characters �
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-blueviolet)](https://code.claude.com)
-[![Skills](https://img.shields.io/badge/skills-19-brightgreen)](#-19-skills)
-[![Version](https://img.shields.io/badge/version-0.7.0-blue)](CHANGELOG.md)
+[![Skills](https://img.shields.io/badge/skills-20-brightgreen)](#-20-skills)
+[![Version](https://img.shields.io/badge/version-0.8.0-blue)](CHANGELOG.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-success)](#-contributing)
 
 [简体中文](README.md) | **English**
@@ -27,7 +27,7 @@ Idea → Spark → Outline → Killer opening → Golden-finger → Characters �
 
 - [Why use it](#-why-use-it)
 - [Install](#-install)
-- [19 Skills](#-19-skills)
+- [20 Skills](#-20-skills)
 - [Typical workflows](#-typical-workflows)
 - [Knowledge base](#-knowledge-base)
 - [Project structure](#-project-structure)
@@ -67,7 +67,7 @@ Restart the session. Verify by typing `/webnovel:idea`.
 /plugin install webnovel@webnovel-studio
 ```
 
-## 📖 19 Skills
+## 📖 20 Skills
 
 > Most skills accept a "**platform + channel + genre**" argument, e.g. `/webnovel:outline 番茄 男频 都市战神`, auto-adapting pacing and tropes.
 
@@ -83,6 +83,7 @@ Restart the session. Verify by typing `/webnovel:idea`.
 | 🪪 Char names | `/webnovel:name` | Name/rename characters: era-fit, memorable; kills generic AI names |
 | ✍️ Prose | `/webnovel:expand` | Turn chapter outlines into publishable prose, controlled pace & length |
 | 🔥 Payoff & face-slap | `/webnovel:shuangdian` | Three-stage payoff loop + four-beat face-slap + escalation |
+| 💬 Dialogue | `/webnovel:dialogue` | Write/fix dialogue, punchlines, face-slap lines; de-AI dialogue; distinct character voices |
 | 🏷️ Annotate | `/webnovel:annotate` | Mark hooks/payoffs/climax/modifiers + a rhythm data table |
 | 🩺 Diagnose | `/webnovel:review` | Five-axis checkup: hooks/payoffs/foreshadowing/characters/pacing |
 | 🧹 De-slop | `/webnovel:deslop` | Turn "AI/translation-ese" into real web-novel feel |
@@ -146,6 +147,7 @@ Restart the session. Verify by typing `/webnovel:idea`.
 | `genre-library.md` | Full genre taxonomy: 9 blocks (mystery/psych/urban/system/xianxia/female/history-ancient-althist/horror/niche) |
 | `fanfic-guide.md` | Fan-fiction compliance: per-platform policy + copyright lines + public-domain IP |
 | `xiushi-ci.md` | Modifier-word library for punchy fast-paced prose |
+| `dialogue-library.md` | Dialogue: de-AI speech + face-slap/flex/villain/angst-sweet lines + punchlines + character voices |
 | `submission-guide.md` | Submission/signing standards per platform |
 | `platform-profiles.md` | Fanqie/Jinjiang/Qidian/UC/Zhihu/Webnovel profiles + channel prefs + fanfic policy |
 | `channel-guide.md` | Male- vs female-channel split |
@@ -159,8 +161,8 @@ chinese-webnovel-skills/
 ├── .claude-plugin/
 │   ├── plugin.json          # plugin manifest
 │   └── marketplace.json     # marketplace manifest
-├── skills/                  # 19 skills (one SKILL.md each)
-├── references/              # 13 knowledge libraries
+├── skills/                  # 20 skills (one SKILL.md each)
+├── references/              # 14 knowledge libraries
 ├── templates/               # book bible / submission log / progress
 │   ├── book-bible-template.md
 │   ├── submission-log-template.md
@@ -201,6 +203,7 @@ Thanks to these open-source projects for advancing the AI web-fiction ecosystem.
 
 See [CHANGELOG.md](CHANGELOG.md).
 
+- **v0.8.0** — dialogue (dialogue): de-AI speech, punchlines, face-slap/flex lines, distinct character voices
 - **v0.7.0** — character naming (name): era-fit & memorable, fixes generic AI character names
 - **v0.6.0** — title naming (title): keyword + payoff + hook, fixes "too AI / too literary / generic" book titles
 - **v0.5.0** — project memory system (memory): store outline/characters/foreshadowing/progress, resume across sessions, git snapshots, submission-rejection log

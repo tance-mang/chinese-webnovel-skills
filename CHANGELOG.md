@@ -5,6 +5,18 @@ All notable changes are documented here. This project adheres to [Semantic Versi
 
 ---
 
+## [0.8.0] - 2026-06-05
+
+### 新增 Added
+- 💬 **dialogue（对话台词）**：写/改对话、设计金句和名场面台词、打脸/装13/反派/虐甜专项台词、人物声音区分、去 AI 对话腔。
+- 📚 **dialogue-library.md**：台词库——AI 对话腔通病、好台词 5 原则、各类型台词、金句设计、人物声音区分、去 AI 对话腔技巧。
+
+### 变更 Changed
+- `expand` 对话环节接入台词库。
+- 技能总数 19 → 20，知识库 13 → 14。
+
+---
+
 ## [0.7.0] - 2026-06-05
 
 ### 新增 Added
