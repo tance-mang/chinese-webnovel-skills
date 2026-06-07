@@ -8,8 +8,8 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-blueviolet)](https://code.claude.com)
-[![Skills](https://img.shields.io/badge/skills-17-brightgreen)](#-17-个技能)
-[![Version](https://img.shields.io/badge/version-0.5.0-blue)](CHANGELOG.md)
+[![Skills](https://img.shields.io/badge/skills-18-brightgreen)](#-18-个技能)
+[![Version](https://img.shields.io/badge/version-0.6.0-blue)](CHANGELOG.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-success)](#-参与贡献)
 
 **简体中文** | [English](README.en.md)
@@ -25,7 +25,7 @@
 
 - [为什么用它](#-为什么用它)
 - [安装](#-安装)
-- [17 个技能](#-17-个技能)
+- [18 个技能](#-18-个技能)
 - [典型流程](#-典型流程)
 - [知识库](#-知识库)
 - [项目结构](#-项目结构)
@@ -60,7 +60,7 @@
 装好后重启会话。验证：输入 `/webnovel:idea` 看到技能即成功。
 
 
-## 📖 17 个技能
+## 📖 18 个技能
 
 > 多数技能支持"**平台 + 频道 + 题材**"参数，如 `/webnovel:outline 番茄 男频 都市战神`、`/webnovel:idea 晋江 女频 古言宅斗`，自动适配平台节奏和题材套路。
 
@@ -68,6 +68,7 @@
 |---|---|---|
 | 💡 灵感成稿 | `/webnovel:spark` | 随手记灵感；一个灵感→大纲→初稿，可设字数和章节数 |
 | 🎯 选题立意 | `/webnovel:idea` | 定频道/题材，给爆款选题 + 一句话卖点 + 黄金三章 |
+| 🏷️ 网文起名 | `/webnovel:title` | 起书名/改名：带关键词+爽点+钩子，专治"太AI/太文艺/烂大街" |
 | 🗺️ 大纲设计 | `/webnovel:outline` | 全书主线 / 卷纲 / 章纲，含伏笔总表 |
 | 🪝 钩子设计 | `/webnovel:hook` | 开篇钩、章尾断章、付费节点钩 |
 | ⚙️ 金手指 | `/webnovel:goldfinger` | 系统/签到/空间/模拟器…有门槛有代价的外挂 |
@@ -141,6 +142,7 @@
 | `hook-library.md` | 钩子库：开篇/章尾/付费节点，男女频各 6 例实战 |
 | `trope-library.md` | 23 个爽点套路元素 + 触发机制 + 部署 |
 | `goldfinger-types.md` | 金手指 10 大流派 + 四要素 + 防烂尾 |
+| `title-library.md` | 网文起名库：男女频起名套路 + 关键词池 + 反AI起名清单 |
 | `genre-library.md` | 全品类题材库：九大板块（悬疑/心理/都市/系统流/玄幻/女频/历史古代架空/灵异/小众）|
 | `fanfic-guide.md` | 同人合规：各平台政策 + 版权红线 + 公版 IP + 安全改写 |
 | `xiushi-ci.md` | 修饰词库：短平快爽文的"味儿"词 |
@@ -157,8 +159,8 @@ chinese-webnovel-skills/
 ├── .claude-plugin/
 │   ├── plugin.json          # 插件清单
 │   └── marketplace.json     # 插件市场清单
-├── skills/                  # 17 个技能（每个一个 SKILL.md）
-├── references/              # 11 个知识库
+├── skills/                  # 18 个技能（每个一个 SKILL.md）
+├── references/              # 12 个知识库
 ├── templates/               # 设定总纲 / 投稿记录 / 进度 模板
 │   ├── book-bible-template.md
 │   ├── submission-log-template.md
@@ -203,6 +205,7 @@ chinese-webnovel-skills/
 
 完整记录见 [CHANGELOG.md](CHANGELOG.md)。
 
+- **v0.6.0** — 网文起名(title)：带关键词+爽点+钩子，专治书名太AI/太文艺/烂大街
 - **v0.5.0** — 创作档案记忆系统(memory)：存大纲/人设/伏笔/进度、跨会话续写、git 快照、投稿拒因记录
 - **v0.4.0** — 同人创作合规(fanfic)、拆书对标(deconstruct)、全品类题材库、五平台详版(修正芒果→UC/知乎)、平台题材参数化
 - **v0.3.0** — 灵感成稿(spark)、写作教学(coach)、双语文档、致谢

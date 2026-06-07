@@ -8,8 +8,8 @@ Idea → Spark → Outline → Killer opening → Golden-finger → Characters �
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-blueviolet)](https://code.claude.com)
-[![Skills](https://img.shields.io/badge/skills-17-brightgreen)](#-17-skills)
-[![Version](https://img.shields.io/badge/version-0.5.0-blue)](CHANGELOG.md)
+[![Skills](https://img.shields.io/badge/skills-18-brightgreen)](#-18-skills)
+[![Version](https://img.shields.io/badge/version-0.6.0-blue)](CHANGELOG.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-success)](#-contributing)
 
 [简体中文](README.md) | **English**
@@ -27,7 +27,7 @@ Idea → Spark → Outline → Killer opening → Golden-finger → Characters �
 
 - [Why use it](#-why-use-it)
 - [Install](#-install)
-- [17 Skills](#-17-skills)
+- [18 Skills](#-18-skills)
 - [Typical workflows](#-typical-workflows)
 - [Knowledge base](#-knowledge-base)
 - [Project structure](#-project-structure)
@@ -67,7 +67,7 @@ Restart the session. Verify by typing `/webnovel:idea`.
 /plugin install webnovel@webnovel-studio
 ```
 
-## 📖 17 Skills
+## 📖 18 Skills
 
 > Most skills accept a "**platform + channel + genre**" argument, e.g. `/webnovel:outline 番茄 男频 都市战神`, auto-adapting pacing and tropes.
 
@@ -75,6 +75,7 @@ Restart the session. Verify by typing `/webnovel:idea`.
 |---|---|---|
 | 💡 Spark → Draft | `/webnovel:spark` | Jot down inspirations; grow one spark into outline → draft with target word count & chapter split |
 | 🎯 Premise | `/webnovel:idea` | Pick channel/genre, hit premises + one-line selling point + golden three chapters |
+| 🏷️ Title | `/webnovel:title` | Book titles with keyword + payoff + hook; kills "too AI / too literary / generic" names |
 | 🗺️ Outline | `/webnovel:outline` | Whole-book / volume / chapter outlines with a foreshadowing tracker |
 | 🪝 Hooks | `/webnovel:hook` | Opening hooks, chapter-end cliffhangers, paywall hooks |
 | ⚙️ Golden-finger | `/webnovel:goldfinger` | System/sign-in/space/simulator cheats with thresholds & costs |
@@ -139,6 +140,7 @@ Restart the session. Verify by typing `/webnovel:idea`.
 | `hook-library.md` | Hooks: opening/chapter-end/paywall, 6 real examples each for 男频/女频 |
 | `trope-library.md` | 23 payoff tropes + trigger mechanics + deployment |
 | `goldfinger-types.md` | 10 golden-finger schools + four elements + anti-flop |
+| `title-library.md` | Title craft: male/female naming formulas + keyword pools + anti-AI checklist |
 | `genre-library.md` | Full genre taxonomy: 9 blocks (mystery/psych/urban/system/xianxia/female/history-ancient-althist/horror/niche) |
 | `fanfic-guide.md` | Fan-fiction compliance: per-platform policy + copyright lines + public-domain IP |
 | `xiushi-ci.md` | Modifier-word library for punchy fast-paced prose |
@@ -155,8 +157,8 @@ chinese-webnovel-skills/
 ├── .claude-plugin/
 │   ├── plugin.json          # plugin manifest
 │   └── marketplace.json     # marketplace manifest
-├── skills/                  # 17 skills (one SKILL.md each)
-├── references/              # 11 knowledge libraries
+├── skills/                  # 18 skills (one SKILL.md each)
+├── references/              # 12 knowledge libraries
 ├── templates/               # book bible / submission log / progress
 │   ├── book-bible-template.md
 │   ├── submission-log-template.md
@@ -197,6 +199,7 @@ Thanks to these open-source projects for advancing the AI web-fiction ecosystem.
 
 See [CHANGELOG.md](CHANGELOG.md).
 
+- **v0.6.0** — title naming (title): keyword + payoff + hook, fixes "too AI / too literary / generic" book titles
 - **v0.5.0** — project memory system (memory): store outline/characters/foreshadowing/progress, resume across sessions, git snapshots, submission-rejection log
 - **v0.4.0** — fan-fiction compliance (fanfic), deconstruct, full genre library, 5-platform detailed profiles (fixed Mango → UC/Zhihu), platform/genre parameters
 - **v0.3.0** — spark-to-draft, writing coach, bilingual docs, credits
