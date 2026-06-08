@@ -1,7 +1,7 @@
 {
   "name": "webnovel",
   "displayName": "网文工坊 WebNovel Studio",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "description": "中文网络小说全流程写作工具：灵感成稿、选题、大纲、黄金开篇钩子、金手指、人设、正文扩写、爽点打脸、正文标注(钩子/高潮/修饰词)、追读诊断、去AI味、投稿过稿、平台趋势调研、写作教学。男频女频双线全覆盖，适配起点/番茄/晋江/UC/知乎/Webnovel 调性，含同人合规与全品类题材。",
   "author": {
     "name": "tance-mang"

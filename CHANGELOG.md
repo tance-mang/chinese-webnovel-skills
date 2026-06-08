@@ -5,6 +5,18 @@ All notable changes are documented here. This project adheres to [Semantic Versi
 
 ---
 
+## [0.12.0] - 2026-06-08
+
+### 新增 Added
+- 📚 **pov-guide.md**：人称/视角指南。**默认第一人称「我」**（更沉浸、像写亲身经历，知乎盐选命脉）；第三人称可切；含两种人称的写好要点与平台倾向。
+
+### 变更 Changed
+- `expand` / `spark` 动笔前确认人称，**默认第一人称并明确告知用户**，可切第三人称，全书统一。
+- `platform-profiles.md` 强化知乎盐选"第一人称像亲身经历"的沉浸特点。
+- 知识库 17 → 18。
+
+---
+
 ## [0.11.0] - 2026-06-08
 
 ### 新增 Added

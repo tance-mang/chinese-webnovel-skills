@@ -9,7 +9,7 @@ Idea → Spark → Outline → Killer opening → Golden-finger → Characters �
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-blueviolet)](https://code.claude.com)
 [![Skills](https://img.shields.io/badge/skills-21-brightgreen)](#-21-skills)
-[![Version](https://img.shields.io/badge/version-0.11.0-blue)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.12.0-blue)](CHANGELOG.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-success)](#-contributing)
 
 [简体中文](README.md) | **English**
@@ -160,6 +160,7 @@ See **[exports/SETUP.md](exports/SETUP.md)**. One methodology, works across Clau
 | `dialogue-library.md` | Dialogue: de-AI speech + face-slap/flex/villain/angst-sweet lines + punchlines + character voices |
 | `anti-ai-checklist.md` | Deep de-AI checklist: gratuitous rhetoric + incongruous allusions + register consistency + show-don't-tell |
 | `show-emotion.md` | Show-emotion library: 11 emotions → expression/action/physiology/subtext, show don't tell |
+| `pov-guide.md` | POV: defaults to first person (immersive, like a personal account); switchable to third person |
 | `case-studies.md` | Hit-novel breakdowns: structure/hooks/angst/payoff/technique (learn structure, don't copy) |
 | `submission-guide.md` | Submission/signing standards per platform |
 | `platform-profiles.md` | Fanqie/Jinjiang/Qidian/UC/Zhihu/Webnovel profiles + channel prefs + fanfic policy |
@@ -175,7 +176,7 @@ chinese-webnovel-skills/
 │   ├── plugin.json          # plugin manifest
 │   └── marketplace.json     # marketplace manifest
 ├── skills/                  # 21 skills (one SKILL.md each)
-├── references/              # 17 knowledge libraries
+├── references/              # 18 knowledge libraries
 ├── templates/               # book bible / submission log / progress
 │   ├── book-bible-template.md
 │   ├── submission-log-template.md
@@ -200,6 +201,7 @@ chinese-webnovel-skills/
 
 See [CHANGELOG.md](CHANGELOG.md).
 
+- **v0.12.0** — POV: defaults to first person (immersive, reads like a personal account), switchable to third, stated upfront; Zhihu immersion strengthened
 - **v0.11.0** — emotion (show, don't tell): turn "I'm so heartbroken" into felt description + show-emotion library
 - **v0.10.0** — deeper de-AI (gratuitous rhetoric / incongruous allusions / register consistency) + Fanqie golden-300-words & 5 hook types + angst design + hit-novel case studies
 - **v0.9.0** — cross-model export: ChatGPT Custom GPT (instructions + knowledge files) + universal system prompt, via `tools/build_exports.py`
