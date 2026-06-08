@@ -9,7 +9,7 @@ Idea → Spark → Outline → Killer opening → Golden-finger → Characters �
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-blueviolet)](https://code.claude.com)
 [![Skills](https://img.shields.io/badge/skills-20-brightgreen)](#-20-skills)
-[![Version](https://img.shields.io/badge/version-0.8.0-blue)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.9.0-blue)](CHANGELOG.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-success)](#-contributing)
 
 [简体中文](README.md) | **English**
@@ -45,6 +45,7 @@ Idea → Spark → Outline → Killer opening → Golden-finger → Characters �
 - **Data-minded**: visual annotation of hooks/payoffs/modifiers, retention diagnosis, live platform trends — see the data, not just type.
 - **Beginner-friendly**: an optional writing coach you can switch on to learn, off to just write.
 - **Bilingual docs**: Chinese for non-English speakers, English for international users.
+- **Not Claude-only**: export to ChatGPT (Custom GPT) and other LLMs (Gemini/DeepSeek/Kimi…) — see [exports/SETUP.md](exports/SETUP.md).
 
 > For: overseas Chinese web-novel authors, mainland authors publishing abroad, anyone writing in Claude Code / VSCode, and newcomers learning the craft.
 
@@ -66,6 +67,15 @@ Restart the session. Verify by typing `/webnovel:idea`.
 /plugin marketplace add ./chinese-webnovel-skills
 /plugin install webnovel@webnovel-studio
 ```
+
+## 🌐 Use it in ChatGPT / other LLMs
+
+The Claude plugin format can't be installed in ChatGPT, but the methodology is universal. This repo ships exports:
+- **ChatGPT**: build a Custom GPT (paste `exports/chatgpt/instructions.md` + upload the two `knowledge-*.md` files)
+- **Other LLMs** (Gemini/DeepSeek/Kimi/etc.): use the instructions as a system prompt
+- **Stay in sync**: after adding skills, run `python tools/build_exports.py` to regenerate
+
+See **[exports/SETUP.md](exports/SETUP.md)**. One methodology, works across Claude / ChatGPT / Chinese models.
 
 ## 📖 20 Skills
 
@@ -203,6 +213,7 @@ Thanks to these open-source projects for advancing the AI web-fiction ecosystem.
 
 See [CHANGELOG.md](CHANGELOG.md).
 
+- **v0.9.0** — cross-model export: ChatGPT Custom GPT (instructions + knowledge files) + universal system prompt, via `tools/build_exports.py`
 - **v0.8.0** — dialogue (dialogue): de-AI speech, punchlines, face-slap/flex lines, distinct character voices
 - **v0.7.0** — character naming (name): era-fit & memorable, fixes generic AI character names
 - **v0.6.0** — title naming (title): keyword + payoff + hook, fixes "too AI / too literary / generic" book titles

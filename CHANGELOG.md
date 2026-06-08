@@ -5,6 +5,18 @@ All notable changes are documented here. This project adheres to [Semantic Versi
 
 ---
 
+## [0.9.0] - 2026-06-05
+
+### 新增 Added
+- 🌐 **跨模型导出**：`tools/build_exports.py` 把全部技能+知识库编译成 ChatGPT 可用格式。
+- 📦 **exports/chatgpt/**：`instructions.md`（Custom GPT 指令）+ `knowledge-skills.md`（20 技能）+ `knowledge-references.md`（14 知识库）。
+- 📄 **exports/SETUP.md**：在 ChatGPT(Custom GPT/Projects) 及 Gemini/DeepSeek/Kimi 等模型使用的分步教程。
+
+### 说明
+- Claude 插件格式无法直接装入 ChatGPT；本导出让同一套方法论跨模型复用，源不变、改后重跑同步。
+
+---
+
 ## [0.8.0] - 2026-06-05
 
 ### 新增 Added

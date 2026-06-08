@@ -9,7 +9,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-blueviolet)](https://code.claude.com)
 [![Skills](https://img.shields.io/badge/skills-20-brightgreen)](#-20-个技能)
-[![Version](https://img.shields.io/badge/version-0.8.0-blue)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.9.0-blue)](CHANGELOG.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-success)](#-参与贡献)
 
 **简体中文** | [English](README.en.md)
@@ -43,6 +43,7 @@
 - **数据化思维**：钩子/爽点/修饰词可视化标注、追读诊断、平台趋势——帮作者看见数据，不只是码字。
 - **新手友好**：内置可选的写作教学陪练，想学就开，专心写就关。
 - **中英双语文档**：英文不好的看中文，海外用户看英文。
+- **不止 Claude**：可一键导出到 ChatGPT(Custom GPT) 和其他大模型（Gemini/DeepSeek/Kimi…），见 [exports/SETUP.md](exports/SETUP.md)。
 
 > 适合：海外华人网文作者、国内出海作者、用 Claude Code / VSCode 码字的写手、想学写网文的新人。
 
@@ -59,6 +60,15 @@
 
 装好后重启会话。验证：输入 `/webnovel:idea` 看到技能即成功。
 
+
+## 🌐 在 ChatGPT / 其他模型里用
+
+Claude 插件格式装不进 ChatGPT，但方法论通用。本仓库自带导出，可把全部技能搬到别的模型：
+- **ChatGPT**：做成 Custom GPT（粘 `exports/chatgpt/instructions.md` + 上传两个 `knowledge-*.md` 知识库文件）
+- **其他模型**（Gemini/DeepSeek/Kimi/文心/通义）：把指令设为系统提示词
+- **保持同步**：加了新技能后跑 `python tools/build_exports.py` 重新生成导出
+
+详细步骤见 **[exports/SETUP.md](exports/SETUP.md)**。一套方法论，Claude / ChatGPT / 国产模型通用。
 
 ## 📖 20 个技能
 
@@ -169,6 +179,10 @@ chinese-webnovel-skills/
 │   ├── book-bible-template.md
 │   ├── submission-log-template.md
 │   └── progress-template.md
+├── exports/                 # 跨模型导出（ChatGPT 等）
+│   ├── SETUP.md             # 怎么搬到 ChatGPT/其他模型
+│   └── chatgpt/             # instructions + 知识库文件
+├── tools/build_exports.py   # 一键重新生成导出
 ├── README.md                # 中文（本文件）
 ├── README.en.md             # English
 ├── CHANGELOG.md             # 更新日志
@@ -209,6 +223,7 @@ chinese-webnovel-skills/
 
 完整记录见 [CHANGELOG.md](CHANGELOG.md)。
 
+- **v0.9.0** — 跨模型导出：ChatGPT Custom GPT(指令+知识库) + 通用系统提示词，`tools/build_exports.py` 一键生成
 - **v0.8.0** — 对话台词(dialogue)：去AI对话腔、金句、打脸装13台词、人物声音区分
 - **v0.7.0** — 角色起名(name)：贴时代有记忆点，专治角色名太AI/烂大街(叶辰苏念林婉儿)
 - **v0.6.0** — 网文起名(title)：带关键词+爽点+钩子，专治书名太AI/太文艺/烂大街
