@@ -5,6 +5,18 @@ All notable changes are documented here. This project adheres to [Semantic Versi
 
 ---
 
+## [0.13.0] - 2026-06-08
+
+### 新增 Added
+- 🌐 **多模型定位**：导出目录通用化 `exports/chatgpt/` → `exports/`，`instructions.md` 改为通用指令（任意大模型）。
+- 📄 **exports/SETUP.md** 重写：新增 **DeepSeek / Gemini / Kimi / 豆包 / 通义 / 智谱 / 文心** 的分步配置，以及"哪个 AI 写网文更合适"对照。
+
+### 变更 Changed
+- README（中英）改为**多模型定位**：标题不再只写 Claude，新增 AI 徽章与"支持哪些 AI"对照表。
+- `instructions.md` 技能表补全 emotion，铁律补全"情绪演出来/不要无缘无故修辞/默认第一人称"。
+
+---
+
 ## [0.12.0] - 2026-06-08
 
 ### 新增 Added

@@ -2,14 +2,16 @@
 
 # 网文工坊 · WebNovel Studio
 
-**中文网络小说全流程写作 Claude Code 插件**
+**中文网络小说全流程写作工具**
+Claude Code 插件 · 也可用于 ChatGPT / DeepSeek / Gemini / Kimi 等任意大模型
 
 选题 → 灵感 → 大纲 → 黄金开篇 → 金手指 → 人设 → 正文扩写 → 爽点打脸 → 节奏标注 → 追读诊断 → 去AI味 → 投稿过稿 → 平台趋势
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-blueviolet)](https://code.claude.com)
 [![Skills](https://img.shields.io/badge/skills-21-brightgreen)](#-21-个技能)
-[![Version](https://img.shields.io/badge/version-0.12.0-blue)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.13.0-blue)](CHANGELOG.md)
+[![Models](https://img.shields.io/badge/AI-Claude·ChatGPT·DeepSeek·Gemini·Kimi-orange)](#-支持哪些-ai不止-claude)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-success)](#-参与贡献)
 
 **简体中文** | [English](README.en.md)
@@ -42,7 +44,7 @@
 - **数据化思维**：钩子/爽点/修饰词可视化标注、追读诊断、平台趋势——帮作者看见数据，不只是码字。
 - **新手友好**：内置可选的写作教学陪练，想学就开，专心写就关。
 - **中英双语文档**：英文不好的看中文，海外用户看英文。
-- **不止 Claude**：可一键导出到 ChatGPT(Custom GPT) 和其他大模型（Gemini/DeepSeek/Kimi…），见 [exports/SETUP.md](exports/SETUP.md)。
+- **不止 Claude**：一套方法论，可用于 ChatGPT / DeepSeek / Gemini / Kimi / 豆包 / 通义 / 智谱 / 文心 等任意大模型，见 [exports/SETUP.md](exports/SETUP.md)。
 
 > 适合：海外华人网文作者、国内出海作者、用 Claude Code / VSCode 码字的写手、想学写网文的新人。
 
@@ -60,14 +62,21 @@
 装好后重启会话。验证：输入 `/webnovel:idea` 看到技能即成功。
 
 
-## 🌐 在 ChatGPT / 其他模型里用
+## 🌐 支持哪些 AI（不止 Claude）
 
-Claude 插件格式装不进 ChatGPT，但方法论通用。本仓库自带导出，可把全部技能搬到别的模型：
-- **ChatGPT**：做成 Custom GPT（粘 `exports/chatgpt/instructions.md` + 上传两个 `knowledge-*.md` 知识库文件）
-- **其他模型**（Gemini/DeepSeek/Kimi/文心/通义）：把指令设为系统提示词
-- **保持同步**：加了新技能后跑 `python tools/build_exports.py` 重新生成导出
+方法论与模型无关——**任何能设系统提示词或建自定义智能体的 AI 都能用**。本仓库自带导出（`exports/`：`instructions.md` + 两个 `knowledge-*.md`）：
 
-详细步骤见 **[exports/SETUP.md](exports/SETUP.md)**。一套方法论，Claude / ChatGPT / 国产模型通用。
+| AI | 怎么用 | 适合 |
+|---|---|---|
+| **Claude**（原生最佳） | Claude Code 插件，`/webnovel:xxx` | 海外、长篇、全流程 |
+| **DeepSeek** | 网页传知识库+粘指令 / API 设 system | 国内主力码字，中文质量高 |
+| **Gemini** | 建 Gem / AI Studio 设 system instructions | 海外、整本设定 |
+| **Kimi** | 传文件+粘指令 / Kimi+ 智能体 | 喂整本参考 |
+| **ChatGPT** | Custom GPT（粘指令+传知识库文件）| 习惯 ChatGPT 的 |
+| **豆包/通义/智谱/文心** | 各家"创建智能体"，指令+知识库 | 国内日常、免梯子 |
+
+详细分步（每家怎么配）见 **[exports/SETUP.md](exports/SETUP.md)**。
+> 海外用 Claude/ChatGPT/Gemini，国内用 DeepSeek/Kimi/豆包——**一套方法论，哪个顺手用哪个**。加了新技能后跑 `python tools/build_exports.py` 重新生成导出即可同步。
 
 ## 📖 21 个技能
 
@@ -184,9 +193,10 @@ chinese-webnovel-skills/
 │   ├── book-bible-template.md
 │   ├── submission-log-template.md
 │   └── progress-template.md
-├── exports/                 # 跨模型导出（ChatGPT 等）
-│   ├── SETUP.md             # 怎么搬到 ChatGPT/其他模型
-│   └── chatgpt/             # instructions + 知识库文件
+├── exports/                 # 跨模型导出（通用）
+│   ├── SETUP.md             # 各家 AI 怎么配（Claude/ChatGPT/DeepSeek/Gemini…）
+│   ├── instructions.md      # 通用指令（智能体/系统提示词）
+│   └── knowledge-*.md       # 技能+知识库文件（上传为知识库）
 ├── tools/build_exports.py   # 一键重新生成导出
 ├── README.md                # 中文（本文件）
 ├── README.en.md             # English
@@ -208,6 +218,7 @@ chinese-webnovel-skills/
 
 完整记录见 [CHANGELOG.md](CHANGELOG.md)。
 
+- **v0.13.0** — 多模型定位：导出通用化(exports/)，新增 DeepSeek/Gemini/Kimi/豆包/通义/智谱/文心 分步教程，不只 Claude
 - **v0.12.0** — 人称视角：默认第一人称(更沉浸、像写亲身经历)，可切第三人称，动笔前表明；知乎盐选沉浸式强化
 - **v0.11.0** — 情绪描写(emotion)：把"我很心疼"演出来，让读者自己感受（show don't tell）+ 情绪外显对照库
 - **v0.10.0** — 去AI味升级(无缘无故修辞/跨度大引用/语域一致) + 番茄黄金300字与5类钩子 + 虐点设计 + 爆款拆解案例

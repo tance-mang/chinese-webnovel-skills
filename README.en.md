@@ -2,14 +2,15 @@
 
 # WebNovel Studio · 网文工坊
 
-**A Claude Code plugin for the full Chinese web-novel writing workflow**
+**A full-workflow toolkit for writing Chinese web fiction**
+Claude Code plugin · also works with ChatGPT / DeepSeek / Gemini / Kimi and any LLM
 
 Idea → Spark → Outline → Killer opening → Golden-finger → Characters → Prose → Face-slap beats → Rhythm annotation → Retention diagnosis → De-slop → Submission → Platform trends
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-blueviolet)](https://code.claude.com)
 [![Skills](https://img.shields.io/badge/skills-21-brightgreen)](#-21-skills)
-[![Version](https://img.shields.io/badge/version-0.12.0-blue)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.13.0-blue)](CHANGELOG.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-success)](#-contributing)
 
 [简体中文](README.md) | **English**
@@ -67,11 +68,11 @@ Restart the session. Verify by typing `/webnovel:idea`.
 /plugin install webnovel@webnovel-studio
 ```
 
-## 🌐 Use it in ChatGPT / other LLMs
+## 🌐 Supported AIs (not Claude-only)
 
-The Claude plugin format can't be installed in ChatGPT, but the methodology is universal. This repo ships exports:
-- **ChatGPT**: build a Custom GPT (paste `exports/chatgpt/instructions.md` + upload the two `knowledge-*.md` files)
-- **Other LLMs** (Gemini/DeepSeek/Kimi/etc.): use the instructions as a system prompt
+The methodology is model-agnostic — any AI with a system prompt or custom-agent feature works. This repo ships exports (`exports/`):
+- **Claude** (native): the Claude Code plugin, `/webnovel:xxx`
+- **DeepSeek / Gemini / Kimi / ChatGPT / Doubao / Qwen / GLM / ERNIE**: paste `exports/instructions.md` as the system prompt or custom-agent instructions, and upload the two `knowledge-*.md` files as knowledge
 - **Stay in sync**: after adding skills, run `python tools/build_exports.py` to regenerate
 
 See **[exports/SETUP.md](exports/SETUP.md)**. One methodology, works across Claude / ChatGPT / Chinese models.
@@ -201,6 +202,7 @@ chinese-webnovel-skills/
 
 See [CHANGELOG.md](CHANGELOG.md).
 
+- **v0.13.0** — multi-model positioning: universal exports (`exports/`) + step-by-step setup for DeepSeek/Gemini/Kimi/Doubao/Qwen/GLM/ERNIE, not Claude-only
 - **v0.12.0** — POV: defaults to first person (immersive, reads like a personal account), switchable to third, stated upfront; Zhihu immersion strengthened
 - **v0.11.0** — emotion (show, don't tell): turn "I'm so heartbroken" into felt description + show-emotion library
 - **v0.10.0** — deeper de-AI (gratuitous rhetoric / incongruous allusions / register consistency) + Fanqie golden-300-words & 5 hook types + angst design + hit-novel case studies

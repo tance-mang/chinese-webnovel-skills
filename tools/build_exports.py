@@ -2,11 +2,11 @@
 """
 把 skills/ + references/ 编译成跨模型可用的导出文件。
 用法：python tools/build_exports.py
-产出（exports/chatgpt/）：
-  - knowledge-skills.md       所有技能工作流（上传为 Custom GPT 知识库）
-  - knowledge-references.md   所有知识库（上传为 Custom GPT 知识库）
-  - instructions.md           Custom GPT 指令（已存在则不覆盖，见说明）
-源不变，导出随时重建，保证 ChatGPT 版和 Claude 版同步。
+产出（exports/）：
+  - knowledge-skills.md       所有技能工作流（上传为各家 AI 的知识库文件）
+  - knowledge-references.md   所有知识库（上传为各家 AI 的知识库文件）
+  - instructions.md           通用指令（手写，已存在则不覆盖，见 SETUP.md）
+源不变，导出随时重建，保证各模型版本与 Claude 版同步。
 """
 import os, re, glob, json
 
@@ -48,7 +48,7 @@ def build_references():
 def main():
     skills_md, nskills = build_skills()
     refs_md, nrefs = build_references()
-    outdir = os.path.join(ROOT, 'exports', 'chatgpt')
+    outdir = os.path.join(ROOT, 'exports')
     os.makedirs(outdir, exist_ok=True)
     with open(os.path.join(outdir, 'knowledge-skills.md'), 'w', encoding='utf-8') as f:
         f.write(skills_md)
@@ -60,9 +60,9 @@ def main():
     except Exception:
         ver = '?'
     print(f"[OK] 导出完成 v{ver}: {nskills} 技能 + {nrefs} 知识库")
-    print(f"  -> exports/chatgpt/knowledge-skills.md")
-    print(f"  -> exports/chatgpt/knowledge-references.md")
-    print("  指令文件 exports/chatgpt/instructions.md 为手写，未覆盖。")
+    print(f"  -> exports/knowledge-skills.md")
+    print(f"  -> exports/knowledge-references.md")
+    print("  指令文件 exports/instructions.md 为手写，未覆盖。")
 
 if __name__ == '__main__':
     main()

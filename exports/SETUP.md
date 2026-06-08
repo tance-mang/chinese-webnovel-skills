@@ -1,64 +1,71 @@
-# 在 ChatGPT / 其他大模型里用「网文工坊」
+# 在各家 AI 里用「网文工坊」
 
-> Claude 插件格式装不进 ChatGPT，但方法论是通用的。下面教你把它搬到 ChatGPT 和别的模型。
-> 所有文件由 `python tools/build_exports.py` 从 skills+references 自动生成，**改了插件重跑一次就同步**。
-
----
-
-## 方式一：ChatGPT 做成 Custom GPT（推荐，需 ChatGPT Plus）
-
-一次设置，以后像用一个"网文助手 App"。
-
-1. ChatGPT 左下角 → **Explore GPTs** → 右上 **+ Create** → 切到 **Configure** 标签
-2. **Name**：网文工坊　**Description**：中文网文写作助手
-3. **Instructions**：把 [`chatgpt/instructions.md`](chatgpt/instructions.md) 全文**复制粘贴**进去
-4. **Knowledge** → **Upload files**，上传这两个文件：
-   - [`chatgpt/knowledge-skills.md`](chatgpt/knowledge-skills.md)（20 个技能工作流）
-   - [`chatgpt/knowledge-references.md`](chatgpt/knowledge-references.md)（14 个知识库）
-5. 保存（Create）。完成。
-
-**怎么用**：进这个 GPT，直接说人话或点名技能：
-- "用 title 帮我起书名，番茄女频系统流推理"
-- "用 name 起个冷静侧写师女主的名字"
-- "把这句对话改得不那么 AI：……"
-- "帮我从这个灵感写个大纲：……"
+> 这套方法论**和模型无关**——任何能"设系统提示词"或"建自定义智能体"的 AI 都能用。
+> Claude 是原生插件形态；其它模型用本目录的 3 个文件：
+> - `instructions.md` —— 指令（智能体的"大脑" / 系统提示词）
+> - `knowledge-skills.md` —— 21 个技能工作流（知识库）
+> - `knowledge-references.md` —— 18 个知识库（知识库）
+>
+> 所有文件由 `python tools/build_exports.py` 自动生成，**改了插件重跑一次就同步**。
 
 ---
 
-## 方式二：ChatGPT 不开 Plus（用 Projects 或直接粘）
+## 通用规律（看这一条基本就够）
 
-- **Projects**：建一个 Project → 在 Project 的"指令/Instructions"里粘 `instructions.md` → 把两个 knowledge 文件作为 Project 文件上传。
-- **临时用**：新开对话，第一条消息粘 `instructions.md`，需要某个技能时再把 `knowledge-skills.md` 里那段贴进去。
-
----
-
-## 方式三：延伸到其他模型（Gemini / DeepSeek / Kimi / 文心 / 通义）
-
-方法论与模型无关，通吃：
-
-- **能设系统提示词的**（API、DeepSeek/Kimi 网页的"系统设定"）：把 `instructions.md` 设为 system prompt。
-- **支持传文件的**（Gemini、Kimi）：把两个 knowledge 文件作为附件/资料上传，再贴 `instructions.md`。
-- **啥都不支持的**：新对话第一条贴 `instructions.md`，用到哪个技能就把对应段落贴进去。
-
-> 国产模型在国内访问稳定，适合你在国内写；ChatGPT/Claude 适合海外。一套方法论，哪个顺手用哪个。
+| 你的 AI 支持… | 怎么用 |
+|---|---|
+| **建自定义智能体**（Custom GPT / Gemini Gem / 豆包/通义/智谱/文心 智能体） | 指令框粘 `instructions.md`，知识库上传两个 `knowledge-*.md`。一次配置，长期用。 |
+| **只能设系统提示词**（API、部分网页的"系统设定"） | 系统提示词放 `instructions.md`；要用到的知识库段落按需贴。 |
+| **啥都不支持，只能聊天** | 新对话第一条粘 `instructions.md`；支持传文件就把两个 `knowledge-*.md` 传上去，否则用到哪段贴哪段。 |
 
 ---
 
-## 保持同步（重要）
+## 分平台具体步骤
 
-你以后给 Claude 插件加了技能，**导出文件不会自动变**。重新生成一次：
-```bash
-python tools/build_exports.py
-```
-然后把新的 `knowledge-skills.md` / `knowledge-references.md` 重新上传到 Custom GPT（覆盖旧的）。指令 `instructions.md` 一般不用改，除非技能清单变了。
+### 🟣 Claude（原生，最佳）
+Claude Code 里 `/plugin marketplace add tance-mang/chinese-webnovel-skills` + `/plugin install webnovel@webnovel-studio`。直接 `/webnovel:xxx`。
+
+### 🟢 ChatGPT
+- **Plus**：Explore GPTs → Create → Configure，指令粘 `instructions.md`，Knowledge 上传两个 `knowledge-*.md`。
+- **免费**：用 Projects 或新对话粘指令。
+
+### 🔵 DeepSeek（中文写作强，推荐）
+- **网页 chat.deepseek.com**：新建对话，**上传**两个 `knowledge-*.md`，再把 `instructions.md` 作为第一条消息发出去。
+- **API**：`system` 角色放 `instructions.md`，知识库随消息带上或检索。
+- 国内访问稳定，写中文网文质量高。
+
+### 🟡 Gemini（Google）
+- **Gemini 网页 → Gems（自定义 Gem）**：新建 Gem，指令粘 `instructions.md`，上传两个 `knowledge-*.md`。用法同 Custom GPT。
+- **Google AI Studio**：System instructions 字段放 `instructions.md`，可上传文件；免费额度大，适合长文。
+- 需要梯子。
+
+### 🟠 Kimi（月之暗面，长上下文）
+- 网页传两个 `knowledge-*.md` 文件 + 粘 `instructions.md`；或用"Kimi+"建智能体。
+- 超长上下文，适合整本大纲/全书设定常驻。
+
+### 🔴 国产智能体（豆包 / 通义千问 / 智谱清言 / 文心一言）
+这几家都有"创建 AI 智能体/智能体中心"：
+- **人设/指令**：粘 `instructions.md`
+- **知识库**：上传两个 `knowledge-*.md`
+- 没有智能体功能的，就新对话粘指令 + 传文件。
+- 优点：国内免实名梯子、访问稳。
 
 ---
 
-## 各方案对比
+## 哪个 AI 写网文更合适？
 
-| | Claude Code 插件 | ChatGPT Custom GPT | 通用系统提示词 |
-|---|---|---|---|
-| 调用方式 | `/webnovel:xxx` 斜杠 | 说人话 / 点名技能 | 说人话 / 点名技能 |
-| 自动读知识库 | ✅ 原生 | ✅ 上传后检索 | ⚠️ 需手动贴 |
-| 跨会话记忆 | ✅ memory 技能 | ⚠️ 靠 GPT 记忆/手动 | ⚠️ 手动 |
-| 适合 | Claude Code/VSCode | ChatGPT 用户 | 任何模型 |
+| AI | 特点 | 适合 |
+|---|---|---|
+| Claude | 超长上下文、长文连贯最稳、原生插件 | 海外、长篇、全流程 |
+| DeepSeek | 中文网文质量高、便宜、国内稳 | 国内主力码字 |
+| Gemini | 免费额度大、长上下文 | 海外、整本设定 |
+| Kimi | 长上下文、传文件方便 | 喂整本参考 |
+| 豆包/通义/智谱/文心 | 国内稳、有智能体 | 国内日常 |
+| ChatGPT | 生态成熟、Custom GPT 好用 | 习惯 ChatGPT 的 |
+
+> 海外用 Claude/ChatGPT/Gemini，国内用 DeepSeek/Kimi/豆包——**一套方法论，哪个顺手用哪个**。
+
+---
+
+## 保持同步
+加了新技能后，跑 `python tools/build_exports.py` 重新生成，把新的两个 `knowledge-*.md` 重新上传到你的智能体即可。指令 `instructions.md` 一般不用动。
