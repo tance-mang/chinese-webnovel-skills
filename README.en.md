@@ -9,8 +9,8 @@ Idea → Spark → Outline → Killer opening → Golden-finger → Characters �
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-blueviolet)](https://code.claude.com)
-[![Skills](https://img.shields.io/badge/skills-21-brightgreen)](#-21-skills)
-[![Version](https://img.shields.io/badge/version-0.13.0-blue)](CHANGELOG.md)
+[![Skills](https://img.shields.io/badge/skills-22-brightgreen)](#-22-skills)
+[![Version](https://img.shields.io/badge/version-0.14.0-blue)](CHANGELOG.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-success)](#-contributing)
 
 [简体中文](README.md) | **English**
@@ -28,7 +28,7 @@ Idea → Spark → Outline → Killer opening → Golden-finger → Characters �
 
 - [Why use it](#-why-use-it)
 - [Install](#-install)
-- [21 Skills](#-21-skills)
+- [22 Skills](#-22-skills)
 - [Typical workflows](#-typical-workflows)
 - [Knowledge base](#-knowledge-base)
 - [Project structure](#-project-structure)
@@ -77,7 +77,7 @@ The methodology is model-agnostic — any AI with a system prompt or custom-agen
 
 See **[exports/SETUP.md](exports/SETUP.md)**. One methodology, works across Claude / ChatGPT / Chinese models.
 
-## 📖 21 Skills
+## 📖 22 Skills
 
 > Most skills accept a "**platform + channel + genre**" argument, e.g. `/webnovel:outline 番茄 男频 都市战神`, auto-adapting pacing and tropes.
 
@@ -104,6 +104,7 @@ See **[exports/SETUP.md](exports/SETUP.md)**. One methodology, works across Clau
 | 🎭 Fan-fiction | `/webnovel:fanfic` | Fanfic writing + copyright compliance check (character count / quote ratio / platform policy) |
 | 🔬 Deconstruct | `/webnovel:deconstruct` | Reverse-engineer hit novels' structure into reusable templates (learn structure, don't copy text) |
 | 🗄️ Memory | `/webnovel:memory` | Persistent project memory: outline/characters/foreshadowing/progress/submission log, resume across sessions, git-like snapshots |
+| 📄 Draft | `/webnovel:draft` | Export a "draft for revision" .docx: TOC + left-aligned chapter titles + 【修改】 red edit notes; names 《book》修改N, never overwrites original |
 
 > Claude can also trigger skills by context — just say "write me a cultivation-novel opening" and it calls `hook`.
 > The coach only appears when you invoke it; it won't interrupt normal writing.
@@ -162,6 +163,7 @@ See **[exports/SETUP.md](exports/SETUP.md)**. One methodology, works across Clau
 | `anti-ai-checklist.md` | Deep de-AI checklist: gratuitous rhetoric + incongruous allusions + register consistency + show-don't-tell |
 | `show-emotion.md` | Show-emotion library: 11 emotions → expression/action/physiology/subtext, show don't tell |
 | `pov-guide.md` | POV: defaults to first person (immersive, like a personal account); switchable to third person |
+| `manuscript-format.md` | Manuscript/revision format: Word output / non-overwriting naming / TOC / left-aligned chapters / 【修改】 marks / word counts |
 | `case-studies.md` | Hit-novel breakdowns: structure/hooks/angst/payoff/technique (learn structure, don't copy) |
 | `submission-guide.md` | Submission/signing standards per platform |
 | `platform-profiles.md` | Fanqie/Jinjiang/Qidian/UC/Zhihu/Webnovel profiles + channel prefs + fanfic policy |
@@ -176,8 +178,8 @@ chinese-webnovel-skills/
 ├── .claude-plugin/
 │   ├── plugin.json          # plugin manifest
 │   └── marketplace.json     # marketplace manifest
-├── skills/                  # 21 skills (one SKILL.md each)
-├── references/              # 18 knowledge libraries
+├── skills/                  # 22 skills (draft bundles build_docx.py for Word)
+├── references/              # 19 knowledge libraries
 ├── templates/               # book bible / submission log / progress
 │   ├── book-bible-template.md
 │   ├── submission-log-template.md
@@ -202,6 +204,7 @@ chinese-webnovel-skills/
 
 See [CHANGELOG.md](CHANGELOG.md).
 
+- **v0.14.0** — draft: export a "draft-for-revision" .docx (TOC + left-aligned chapters + 【修改】 red notes + 《book》修改N non-overwriting naming + short-piece word ranges)
 - **v0.13.0** — multi-model positioning: universal exports (`exports/`) + step-by-step setup for DeepSeek/Gemini/Kimi/Doubao/Qwen/GLM/ERNIE, not Claude-only
 - **v0.12.0** — POV: defaults to first person (immersive, reads like a personal account), switchable to third, stated upfront; Zhihu immersion strengthened
 - **v0.11.0** — emotion (show, don't tell): turn "I'm so heartbroken" into felt description + show-emotion library

@@ -5,14 +5,14 @@
   },
   "metadata": {
     "description": "中文网文写作 Claude Code 插件市场",
-    "version": "0.13.0"
+    "version": "0.14.0"
   },
   "plugins": [
     {
       "name": "webnovel",
       "source": "./",
       "description": "中文网络小说全流程写作：灵感成稿/选题/大纲/钩子/金手指/人设/扩写/爽点/标注/审稿诊断/去AI味/投稿过稿/平台趋势/写作教学",
-      "version": "0.13.0",
+      "version": "0.14.0",
       "author": {
         "name": "tance-mang"
       },

@@ -5,6 +5,22 @@ All notable changes are documented here. This project adheres to [Semantic Versi
 
 ---
 
+## [0.14.0] - 2026-06-08
+
+### 新增 Added
+- 📄 **draft（修改草稿）**：把小说导出成"供修改的 Word 草稿"。定位是 AI 写大概、人来筛选修改。
+  - **不覆盖原文**，命名 `《书名》修改N.docx`（自增）；
+  - 自动**目录**、**第X章左对齐**（Heading 1）、首行缩进；
+  - 可改处用 `【修改：建议】` 标记 → **红色高亮**，便于作者定位；
+  - 短篇总量 8000–30000，草稿目标 10000–20000，留删/扩余地。
+- 🐍 **skills/draft/build_docx.py**：Markdown → 格式化 Word 的生成脚本（python-docx）。
+- 📚 **manuscript-format.md**：稿件排版与改稿规范。
+
+### 变更 Changed
+- 技能 21 → 22，知识库 18 → 19。
+
+---
+
 ## [0.13.0] - 2026-06-08
 
 ### 新增 Added
