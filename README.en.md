@@ -8,8 +8,8 @@ Idea → Spark → Outline → Killer opening → Golden-finger → Characters �
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-blueviolet)](https://code.claude.com)
-[![Skills](https://img.shields.io/badge/skills-20-brightgreen)](#-20-skills)
-[![Version](https://img.shields.io/badge/version-0.10.0-blue)](CHANGELOG.md)
+[![Skills](https://img.shields.io/badge/skills-21-brightgreen)](#-21-skills)
+[![Version](https://img.shields.io/badge/version-0.11.0-blue)](CHANGELOG.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-success)](#-contributing)
 
 [简体中文](README.md) | **English**
@@ -27,7 +27,7 @@ Idea → Spark → Outline → Killer opening → Golden-finger → Characters �
 
 - [Why use it](#-why-use-it)
 - [Install](#-install)
-- [20 Skills](#-20-skills)
+- [21 Skills](#-21-skills)
 - [Typical workflows](#-typical-workflows)
 - [Knowledge base](#-knowledge-base)
 - [Project structure](#-project-structure)
@@ -76,7 +76,7 @@ The Claude plugin format can't be installed in ChatGPT, but the methodology is u
 
 See **[exports/SETUP.md](exports/SETUP.md)**. One methodology, works across Claude / ChatGPT / Chinese models.
 
-## 📖 20 Skills
+## 📖 21 Skills
 
 > Most skills accept a "**platform + channel + genre**" argument, e.g. `/webnovel:outline 番茄 男频 都市战神`, auto-adapting pacing and tropes.
 
@@ -95,7 +95,8 @@ See **[exports/SETUP.md](exports/SETUP.md)**. One methodology, works across Clau
 | 💬 Dialogue | `/webnovel:dialogue` | Write/fix dialogue, punchlines, face-slap lines; de-AI dialogue; distinct character voices |
 | 🏷️ Annotate | `/webnovel:annotate` | Mark hooks/payoffs/climax/modifiers + a rhythm data table |
 | 🩺 Diagnose | `/webnovel:review` | Five-axis checkup: hooks/payoffs/foreshadowing/characters/pacing |
-| 🧹 De-slop | `/webnovel:deslop` | Turn "AI/translation-ese" into real web-novel feel |
+| 🧹 De-slop | `/webnovel:deslop` | Remove AI-ese, gratuitous rhetoric, incongruous allusions → real feel |
+| 😢 Emotion | `/webnovel:emotion` | Show emotion via action/detail instead of "I'm so heartbroken" (show don't tell) |
 | 📮 Submission | `/webnovel:submission` | Checks against platform signing standards + title/blurb/tags |
 | 📈 Trends | `/webnovel:trends` | Live web research of trending genres/tags/rankings per platform |
 | 🎓 Coach | `/webnovel:coach` | Learn to write (opt-in, beginner-friendly, explains the "why") |
@@ -158,6 +159,7 @@ See **[exports/SETUP.md](exports/SETUP.md)**. One methodology, works across Clau
 | `xiushi-ci.md` | Modifier-word library for punchy fast-paced prose |
 | `dialogue-library.md` | Dialogue: de-AI speech + face-slap/flex/villain/angst-sweet lines + punchlines + character voices |
 | `anti-ai-checklist.md` | Deep de-AI checklist: gratuitous rhetoric + incongruous allusions + register consistency + show-don't-tell |
+| `show-emotion.md` | Show-emotion library: 11 emotions → expression/action/physiology/subtext, show don't tell |
 | `case-studies.md` | Hit-novel breakdowns: structure/hooks/angst/payoff/technique (learn structure, don't copy) |
 | `submission-guide.md` | Submission/signing standards per platform |
 | `platform-profiles.md` | Fanqie/Jinjiang/Qidian/UC/Zhihu/Webnovel profiles + channel prefs + fanfic policy |
@@ -172,8 +174,8 @@ chinese-webnovel-skills/
 ├── .claude-plugin/
 │   ├── plugin.json          # plugin manifest
 │   └── marketplace.json     # marketplace manifest
-├── skills/                  # 20 skills (one SKILL.md each)
-├── references/              # 16 knowledge libraries
+├── skills/                  # 21 skills (one SKILL.md each)
+├── references/              # 17 knowledge libraries
 ├── templates/               # book bible / submission log / progress
 │   ├── book-bible-template.md
 │   ├── submission-log-template.md
@@ -198,6 +200,7 @@ chinese-webnovel-skills/
 
 See [CHANGELOG.md](CHANGELOG.md).
 
+- **v0.11.0** — emotion (show, don't tell): turn "I'm so heartbroken" into felt description + show-emotion library
 - **v0.10.0** — deeper de-AI (gratuitous rhetoric / incongruous allusions / register consistency) + Fanqie golden-300-words & 5 hook types + angst design + hit-novel case studies
 - **v0.9.0** — cross-model export: ChatGPT Custom GPT (instructions + knowledge files) + universal system prompt, via `tools/build_exports.py`
 - **v0.8.0** — dialogue (dialogue): de-AI speech, punchlines, face-slap/flex lines, distinct character voices

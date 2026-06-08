@@ -5,6 +5,18 @@ All notable changes are documented here. This project adheres to [Semantic Versi
 
 ---
 
+## [0.11.0] - 2026-06-08
+
+### 新增 Added
+- 😢 **emotion（情绪描写 / show don't tell）**：把"我很心疼/我好痛苦/他很愤怒"这类直白喊情绪，改成用神态/动作/生理反应/潜台词演出来，让读者自己感受。
+- 📚 **show-emotion.md**：情绪外显库，11 种常见情绪（心疼/痛苦/愤怒/委屈/失望/喜悦/紧张/震惊/尴尬/思念/嫉妒）的 ❌别写→✅这样演 对照表 + 6 条展示通道 + 改稿三步。
+
+### 变更 Changed
+- `deslop` 症状表"空洞形容"升级为"喊情绪（不演）"，接入 show-emotion；`expand` 写作要领加"情绪演出来别喊"。
+- 技能总数 20 → 21，知识库 16 → 17。
+
+---
+
 ## [0.10.0] - 2026-06-08
 
 ### 新增 Added
