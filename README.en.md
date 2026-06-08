@@ -102,6 +102,7 @@ See **[exports/SETUP.md](exports/SETUP.md)**. One methodology, works across Clau
 | 📮 Submission | `/webnovel:submission` | Checks against platform signing standards + title/blurb/tags |
 | 📈 Trends | `/webnovel:trends` | Live web research of trending genres/tags/rankings per platform |
 | 🔥 Slang | `/webnovel:slang` | Live-search current Douyin/RedNote/Weibo memes + rules to use them without feeling forced/dated |
+| 🫀 Human texture | `/webnovel:human` | Deep de-AI: add irrational acts / unfinished emotion / loose ends so it reads like an "emotion log", not a "manual" |
 | 🎓 Coach | `/webnovel:coach` | Learn to write (opt-in, beginner-friendly, explains the "why") |
 | 🎭 Fan-fiction | `/webnovel:fanfic` | Fanfic writing + copyright compliance check (character count / quote ratio / platform policy) |
 | 🔬 Deconstruct | `/webnovel:deconstruct` | Reverse-engineer hit novels' structure into reusable templates (learn structure, don't copy text) |
