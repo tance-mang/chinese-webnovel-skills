@@ -209,6 +209,8 @@ chinese-webnovel-skills/
 
 See [CHANGELOG.md](CHANGELOG.md).
 
+- **v0.20.0** — sentence rhythm (uneven length / pause punctuation / unfinished lines, fixes "too smooth") + dark style & dual "shuangwen / dark" version output
+- **v0.19.0** — human texture (deep de-AI): irrational acts / unfinished emotion / loose ends / bias — reads like an "emotion log" not a "manual"; review now 6-axis
 - **v0.18.0** — slang: live-search current Douyin/RedNote/Weibo memes + 6 rules to use them without feeling forced or dated
 - **v0.17.0** — no decorative symbols (✦✨◆★); draft's Word chapter titles set to plain black (no default blue)
 - **v0.16.0** — deeper de-AI: repeated rhetoric/sentence patterns, redundant synonyms, intensifier overuse, random declarative filler, period-as-comma, over-parallel paragraphs

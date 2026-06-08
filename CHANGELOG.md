@@ -5,6 +5,18 @@ All notable changes are documented here. This project adheres to [Semantic Versi
 
 ---
 
+## [0.20.0] - 2026-06-08
+
+### 新增 Added
+- 📚 **sentence-rhythm.md**：句式节奏库，治"句子太顺/整齐划一"。人写 vs AI 写句式对照 + 5 条改写法（句长不均、长短交错、偶尔 50+ 字长句、省略号/破折号/换行做呼吸、情绪话说一半）+ 通用改写指令。
+- 📚 **dark-style.md**：暗黑/灰度风格 + **爽文版 vs 高级暗黑版双版本**输出规范（情绪极端/人物灰度/逻辑留空/黑暗结局，守审核红线）。
+
+### 变更 Changed
+- `deslop`"过度工整"升级为"句子太顺"并接 sentence-rhythm；`human` 的"句子太顺"维接 sentence-rhythm；`expand` 加"句式有呼吸"与"可出双版本"。
+- 知识库 22 → 24。
+
+---
+
 ## [0.19.0] - 2026-06-08
 
 ### 新增 Added
