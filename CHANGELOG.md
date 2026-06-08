@@ -5,6 +5,14 @@ All notable changes are documented here. This project adheres to [Semantic Versi
 
 ---
 
+## [0.17.0] - 2026-06-08
+
+### 变更 Changed
+- 🚫 **不用装饰符号**：正文/标题一律不撒 `✦ ✨ ◆ ● ★` 等符号；分隔用空行或"——"。写进 `anti-ai-checklist`、`deslop`、`expand`、通用指令 `instructions.md`。
+- 🎨 **draft 的 Word 章节标题改纯黑**：`build_docx.py` 去掉 Word 默认 Heading 蓝色（书名与第X章均为黑色）；`【修改】` 仍保留红色高亮。
+
+---
+
 ## [0.16.0] - 2026-06-08
 
 ### 变更 Changed（去 AI 味深化）

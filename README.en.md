@@ -10,7 +10,7 @@ Idea → Spark → Outline → Killer opening → Golden-finger → Characters �
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-blueviolet)](https://code.claude.com)
 [![Skills](https://img.shields.io/badge/skills-23-brightgreen)](#-23-skills)
-[![Version](https://img.shields.io/badge/version-0.16.0-blue)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.17.0-blue)](CHANGELOG.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-success)](#-contributing)
 
 [简体中文](README.md) | **English**
@@ -206,6 +206,7 @@ chinese-webnovel-skills/
 
 See [CHANGELOG.md](CHANGELOG.md).
 
+- **v0.17.0** — no decorative symbols (✦✨◆★); draft's Word chapter titles set to plain black (no default blue)
 - **v0.16.0** — deeper de-AI: repeated rhetoric/sentence patterns, redundant synonyms, intensifier overuse, random declarative filler, period-as-comma, over-parallel paragraphs
 - **v0.15.0** — warmth: warm realistic short fiction (no melodrama/preaching/clichés; warmth in restraint, cold-then-warm, aftertaste)
 - **v0.14.0** — draft: export a "draft-for-revision" .docx (TOC + left-aligned chapters + 【修改】 red notes + 《book》修改N non-overwriting naming + short-piece word ranges)

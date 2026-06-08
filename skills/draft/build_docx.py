@@ -35,6 +35,7 @@ def add_title(doc, title):
     r = p.add_run(title)
     r.bold = True
     r.font.size = Pt(22)
+    r.font.color.rgb = RGBColor(0, 0, 0)  # 纯黑，不要默认颜色
     set_cjk(r, 'SimHei')
 
 
@@ -58,6 +59,7 @@ def add_chapter(doc, text):
     p = doc.add_heading(level=1)
     p.alignment = WD_ALIGN_PARAGRAPH.LEFT  # 第X章 左对齐
     r = p.add_run(text)
+    r.font.color.rgb = RGBColor(0, 0, 0)  # 章标题纯黑，不要 Word 默认的蓝色
     set_cjk(r, 'SimHei')
 
 
