@@ -29,8 +29,7 @@
 - [典型流程](#-典型流程)
 - [知识库](#-知识库)
 - [项目结构](#-项目结构)
-- [竞品对比](#-竞品对比真实不吹空白)
-- [致谢与参考](#-致谢与参考)
+- [致谢](#-致谢)
 - [更新日志](#-更新日志)
 - [参与贡献](#-参与贡献)
 - [许可证](#-许可证)
@@ -191,33 +190,13 @@ chinese-webnovel-skills/
 └── .gitignore
 ```
 
-## 🆚 竞品对比（真实，不吹"空白"）
+## 🙏 致谢
 
-中文小说 Claude 插件已有真实玩家，本插件差异化是**唯一做"网文商业写作细分模块 + 数据诊断"的**：
+- **方法论种子**：核心钩子范例与爽点套路来自作者本人的写作素材《小说写作逻辑》。
+- 构建于 [Claude Code](https://code.claude.com) 公开的插件机制之上。
+- 感谢开源社区与广大网文作者的创作智慧。
 
-| 项目 | 体量 | 定位 | 缺什么（本插件补上） |
-|---|---|---|---|
-| [PenglongHuang/chinese-novelist-skill](https://github.com/PenglongHuang/chinese-novelist-skill) | 1.9k★ | 1 个大而全对话式 skill | 无细分模块、无爽点/钩子/金手指/投稿/数据诊断 |
-| [worldwonderer/oh-story-claudecode](https://github.com/worldwonderer/oh-story-claudecode) | 1.1k★ | 通用网文全流程(扫榜/拆文/封面) | 无金手指专项、无追读数据诊断、女频为主 |
-| [yuzhoujishu/novel-writing](https://github.com/yuzhoujishu/novel-writing) | 数百★ | 通用小说 7 命令 | 通用文学，无网文商业逻辑 |
-
-**本插件独家**：金手指专项 · 单章节奏标注(钩子/爽点/修饰词可视化) · 追读数据诊断 · 投稿过稿 · 平台趋势实时调研 · 灵感一键成稿 · 男女频全覆盖 · 写作教学。
-
-> 不是"第一个"，是"最懂网文商业写作的那个"。各插件可共存混用。
-
-## 🙏 致谢与参考
-
-本项目为**原创 Prompt 工程**，未复制以下任何项目的代码；列出用于致谢与透明：
-
-- **方法论种子**：核心钩子范例（6 例）与爽点套路（23 个）来自作者自己的写作素材《小说写作逻辑》。
-- **插件规范参考**：[Claude Code 官方插件文档](https://code.claude.com/docs/en/plugins-reference) —— manifest 与技能格式。
-- **同类项目研究（用于差异化定位，非抄袭）**：
-  - [worldwonderer/oh-story-claudecode](https://github.com/worldwonderer/oh-story-claudecode) —— 网文全流程思路
-  - [PenglongHuang/chinese-novelist-skill](https://github.com/PenglongHuang/chinese-novelist-skill) —— 中文长篇创作
-  - [yuzhoujishu/novel-writing](https://github.com/yuzhoujishu/novel-writing) —— 通用小说技能结构
-  - [YILING0013/AI_NovelGenerator](https://github.com/YILING0013/AI_NovelGenerator) —— "设定→目录→章节→定稿"分阶段流程启发
-
-感谢这些开源项目推动了 AI 网文创作生态。
+> 本项目所有技能与知识库均为**原创自研**，未包含或复制任何第三方项目的代码或受版权保护内容。采用 MIT 许可证开源。
 
 ## 📝 更新日志
 

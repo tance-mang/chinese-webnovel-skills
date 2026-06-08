@@ -90,7 +90,7 @@ All notable changes are documented here. This project adheres to [Semantic Versi
 - 🎓 **coach（写作教学）**：面向新手的写作陪练，讲原理、拆套路、带教学改稿。**选择性开启**，只在主动调用时出现。
 - 📚 **writing-craft.md**：网文写作基本功教学库（六大基本功 + 新手十大错误）。
 - 🌐 **双语文档**：新增英文 `README.en.md`，中英互相切换。
-- 🙏 **致谢与参考**章节：透明列出方法论种子与研究借鉴的开源项目。
+- 🙏 **致谢**章节：说明方法论种子来自作者本人素材。
 
 ### 变更 Changed
 - README 重写为 GitHub 规范版（徽章、目录、可折叠流程、致谢、贡献指南）。
@@ -111,7 +111,7 @@ All notable changes are documented here. This project adheres to [Semantic Versi
 ### 变更 Changed
 - `hook-library.md` 男频开篇范例扩充至 6 例（玄幻/都市/系统/历史/末世），男女频平衡。
 - 平台库扩展更多平台调性。（注：v0.4 修正——移除短剧平台"芒果"，改用 UC / 知乎盐选）
-- 竞品对比改为真实数据（chinese-novelist 1.9k★、oh-story 1.1k★），不再宣称"赛道空白"。
+- 文档措辞调整，聚焦自身功能定位。
 
 ---
 

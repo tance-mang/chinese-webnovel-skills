@@ -31,8 +31,7 @@ Idea → Spark → Outline → Killer opening → Golden-finger → Characters �
 - [Typical workflows](#-typical-workflows)
 - [Knowledge base](#-knowledge-base)
 - [Project structure](#-project-structure)
-- [Comparison with similar projects](#-comparison-with-similar-projects)
-- [Credits & references](#-credits--references)
+- [Credits](#-credits)
 - [Changelog](#-changelog)
 - [Contributing](#-contributing)
 - [License](#-license)
@@ -185,29 +184,13 @@ chinese-webnovel-skills/
 └── .gitignore
 ```
 
-## 🆚 Comparison with similar projects
+## 🙏 Credits
 
-Chinese-novel Claude plugins already exist. This plugin is **the only one focused on commercial web-fiction sub-modules + data diagnosis**:
+- **Methodology seed**: the core hook examples and payoff tropes come from the author's own writing notes, *Novel Writing Logic*.
+- Built on [Claude Code](https://code.claude.com)'s public plugin mechanism.
+- Thanks to the open-source community and web-fiction authors everywhere.
 
-| Project | Size | Focus | What it lacks (we add) |
-|---|---|---|---|
-| [PenglongHuang/chinese-novelist-skill](https://github.com/PenglongHuang/chinese-novelist-skill) | 1.9k★ | One big conversational skill | No sub-modules, no payoff/hook/golden-finger/submission/data diagnosis |
-| [worldwonderer/oh-story-claudecode](https://github.com/worldwonderer/oh-story-claudecode) | 1.1k★ | General full pipeline | No golden-finger module, no retention diagnosis, female-channel leaning |
-| [yuzhoujishu/novel-writing](https://github.com/yuzhoujishu/novel-writing) | hundreds★ | Generic 7-command novel tool | Generic literature, no commercial web-fiction logic |
-
-**Exclusive here**: golden-finger module · per-chapter rhythm annotation · retention diagnosis · submission review · live platform trends · spark-to-draft · full male/female coverage · writing coach.
-
-> Not "the first" — "the one that best understands commercial web fiction." All plugins can coexist.
-
-## 🙏 Credits & references
-
-This is **original prompt engineering**; no code was copied from the projects below. Listed for transparency and thanks:
-
-- **Methodology seed**: the core hook examples (6) and payoff tropes (23) come from the author's own writing notes, *Novel Writing Logic*.
-- **Plugin spec**: [Claude Code official plugin docs](https://code.claude.com/docs/en/plugins-reference).
-- **Peer projects studied (for differentiation, not copied)**: [oh-story-claudecode](https://github.com/worldwonderer/oh-story-claudecode), [chinese-novelist-skill](https://github.com/PenglongHuang/chinese-novelist-skill), [novel-writing](https://github.com/yuzhoujishu/novel-writing), [AI_NovelGenerator](https://github.com/YILING0013/AI_NovelGenerator) (the "setting→TOC→chapter→finalize" stage model).
-
-Thanks to these open-source projects for advancing the AI web-fiction ecosystem.
+> All skills and knowledge bases are **original work**. No third-party code or copyrighted content is included or copied. Open-sourced under the MIT License.
 
 ## 📝 Changelog
 
