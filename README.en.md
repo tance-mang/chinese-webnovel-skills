@@ -9,8 +9,8 @@ Idea → Spark → Outline → Killer opening → Golden-finger → Characters �
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-blueviolet)](https://code.claude.com)
-[![Skills](https://img.shields.io/badge/skills-23-brightgreen)](#-23-skills)
-[![Version](https://img.shields.io/badge/version-0.17.0-blue)](CHANGELOG.md)
+[![Skills](https://img.shields.io/badge/skills-24-brightgreen)](#-24-skills)
+[![Version](https://img.shields.io/badge/version-0.18.0-blue)](CHANGELOG.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-success)](#-contributing)
 
 [简体中文](README.md) | **English**
@@ -28,7 +28,7 @@ Idea → Spark → Outline → Killer opening → Golden-finger → Characters �
 
 - [Why use it](#-why-use-it)
 - [Install](#-install)
-- [23 Skills](#-23-skills)
+- [24 Skills](#-24-skills)
 - [Typical workflows](#-typical-workflows)
 - [Knowledge base](#-knowledge-base)
 - [Project structure](#-project-structure)
@@ -77,7 +77,7 @@ The methodology is model-agnostic — any AI with a system prompt or custom-agen
 
 See **[exports/SETUP.md](exports/SETUP.md)**. One methodology, works across Claude / ChatGPT / Chinese models.
 
-## 📖 23 Skills
+## 📖 24 Skills
 
 > Most skills accept a "**platform + channel + genre**" argument, e.g. `/webnovel:outline 番茄 男频 都市战神`, auto-adapting pacing and tropes.
 
@@ -101,6 +101,7 @@ See **[exports/SETUP.md](exports/SETUP.md)**. One methodology, works across Clau
 | 😢 Emotion | `/webnovel:emotion` | Show emotion via action/detail instead of "I'm so heartbroken" (show don't tell) |
 | 📮 Submission | `/webnovel:submission` | Checks against platform signing standards + title/blurb/tags |
 | 📈 Trends | `/webnovel:trends` | Live web research of trending genres/tags/rankings per platform |
+| 🔥 Slang | `/webnovel:slang` | Live-search current Douyin/RedNote/Weibo memes + rules to use them without feeling forced/dated |
 | 🎓 Coach | `/webnovel:coach` | Learn to write (opt-in, beginner-friendly, explains the "why") |
 | 🎭 Fan-fiction | `/webnovel:fanfic` | Fanfic writing + copyright compliance check (character count / quote ratio / platform policy) |
 | 🔬 Deconstruct | `/webnovel:deconstruct` | Reverse-engineer hit novels' structure into reusable templates (learn structure, don't copy text) |
@@ -166,6 +167,7 @@ See **[exports/SETUP.md](exports/SETUP.md)**. One methodology, works across Clau
 | `pov-guide.md` | POV: defaults to first person (immersive, like a personal account); switchable to third person |
 | `manuscript-format.md` | Manuscript/revision format: Word output / non-overwriting naming / TOC / left-aligned chapters / 【修改】 marks / word counts |
 | `warm-realism.md` | Warm realism: warmth in restraint / cold-then-warm / aftertaste / anti-cliché + character/plot/ending templates |
+| `slang-guide.md` | Internet slang usage: 6 rules to avoid feeling forced + evergreen vs short-lived + by platform/genre (memes fetched live) |
 | `case-studies.md` | Hit-novel breakdowns: structure/hooks/angst/payoff/technique (learn structure, don't copy) |
 | `submission-guide.md` | Submission/signing standards per platform |
 | `platform-profiles.md` | Fanqie/Jinjiang/Qidian/UC/Zhihu/Webnovel profiles + channel prefs + fanfic policy |
@@ -180,8 +182,8 @@ chinese-webnovel-skills/
 ├── .claude-plugin/
 │   ├── plugin.json          # plugin manifest
 │   └── marketplace.json     # marketplace manifest
-├── skills/                  # 23 skills (draft bundles build_docx.py for Word)
-├── references/              # 20 knowledge libraries
+├── skills/                  # 24 skills (draft bundles build_docx.py for Word)
+├── references/              # 21 knowledge libraries
 ├── templates/               # book bible / submission log / progress
 │   ├── book-bible-template.md
 │   ├── submission-log-template.md
@@ -206,6 +208,7 @@ chinese-webnovel-skills/
 
 See [CHANGELOG.md](CHANGELOG.md).
 
+- **v0.18.0** — slang: live-search current Douyin/RedNote/Weibo memes + 6 rules to use them without feeling forced or dated
 - **v0.17.0** — no decorative symbols (✦✨◆★); draft's Word chapter titles set to plain black (no default blue)
 - **v0.16.0** — deeper de-AI: repeated rhetoric/sentence patterns, redundant synonyms, intensifier overuse, random declarative filler, period-as-comma, over-parallel paragraphs
 - **v0.15.0** — warmth: warm realistic short fiction (no melodrama/preaching/clichés; warmth in restraint, cold-then-warm, aftertaste)
