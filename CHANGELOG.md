@@ -5,6 +5,21 @@ All notable changes are documented here. This project adheres to [Semantic Versi
 
 ---
 
+## [0.10.0] - 2026-06-08
+
+### 新增 Added
+- 📚 **anti-ai-checklist.md**：去 AI 味深度清单，重点治两个高频病——**无缘无故的修辞**、**跨度大/不搭的引用（语域不一致）**；含 show-don't-tell、大白话短句。
+- 📚 **case-studies.md**：爆款拆解案例库（首例《追妻火葬场·信息差打脸》），含结构/钩子/虐点/爽点/手法/真人质感与模仿范式。
+- `hook-library.md` 新增 **番茄黄金 300 字开头公式 + 6 万能开头模板 + 五类追读钩子**（信息差/悬念/情绪/对比/倒计时）。
+- `trope-library.md` 新增 **虐点设计**（女频追妻火葬场 6 虐点 + 虐→爽闭环）。
+
+### 变更 Changed
+- `deslop` 接入 anti-ai-checklist，症状表新增"无缘无故的修辞""跨度大/不搭引用"，强调**语域全文一致**。
+- `deconstruct` 接入 case-studies。
+- 知识库 14 → 16。
+
+---
+
 ## [0.9.0] - 2026-06-05
 
 ### 新增 Added

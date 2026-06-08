@@ -9,7 +9,7 @@ Idea → Spark → Outline → Killer opening → Golden-finger → Characters �
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-blueviolet)](https://code.claude.com)
 [![Skills](https://img.shields.io/badge/skills-20-brightgreen)](#-20-skills)
-[![Version](https://img.shields.io/badge/version-0.9.0-blue)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.10.0-blue)](CHANGELOG.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-success)](#-contributing)
 
 [简体中文](README.md) | **English**
@@ -157,6 +157,8 @@ See **[exports/SETUP.md](exports/SETUP.md)**. One methodology, works across Clau
 | `fanfic-guide.md` | Fan-fiction compliance: per-platform policy + copyright lines + public-domain IP |
 | `xiushi-ci.md` | Modifier-word library for punchy fast-paced prose |
 | `dialogue-library.md` | Dialogue: de-AI speech + face-slap/flex/villain/angst-sweet lines + punchlines + character voices |
+| `anti-ai-checklist.md` | Deep de-AI checklist: gratuitous rhetoric + incongruous allusions + register consistency + show-don't-tell |
+| `case-studies.md` | Hit-novel breakdowns: structure/hooks/angst/payoff/technique (learn structure, don't copy) |
 | `submission-guide.md` | Submission/signing standards per platform |
 | `platform-profiles.md` | Fanqie/Jinjiang/Qidian/UC/Zhihu/Webnovel profiles + channel prefs + fanfic policy |
 | `channel-guide.md` | Male- vs female-channel split |
@@ -171,7 +173,7 @@ chinese-webnovel-skills/
 │   ├── plugin.json          # plugin manifest
 │   └── marketplace.json     # marketplace manifest
 ├── skills/                  # 20 skills (one SKILL.md each)
-├── references/              # 14 knowledge libraries
+├── references/              # 16 knowledge libraries
 ├── templates/               # book bible / submission log / progress
 │   ├── book-bible-template.md
 │   ├── submission-log-template.md
@@ -196,6 +198,7 @@ chinese-webnovel-skills/
 
 See [CHANGELOG.md](CHANGELOG.md).
 
+- **v0.10.0** — deeper de-AI (gratuitous rhetoric / incongruous allusions / register consistency) + Fanqie golden-300-words & 5 hook types + angst design + hit-novel case studies
 - **v0.9.0** — cross-model export: ChatGPT Custom GPT (instructions + knowledge files) + universal system prompt, via `tools/build_exports.py`
 - **v0.8.0** — dialogue (dialogue): de-AI speech, punchlines, face-slap/flex lines, distinct character voices
 - **v0.7.0** — character naming (name): era-fit & memorable, fixes generic AI character names
