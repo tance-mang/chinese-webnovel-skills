@@ -29,6 +29,18 @@ def set_cjk(run, font='SimSun'):
     rpr.rFonts.set(qn('w:eastAsia'), font)
 
 
+def set_first_line_indent_2chars(paragraph):
+    """首行缩进 2 字符（Word 标准中文排版）。
+    用 firstLineChars=200（按字符，跟字号走），并给 firstLine 兜底。"""
+    pPr = paragraph._p.get_or_add_pPr()
+    ind = pPr.find(qn('w:ind'))
+    if ind is None:
+        ind = OxmlElement('w:ind')
+        pPr.append(ind)
+    ind.set(qn('w:firstLineChars'), '200')  # 200 = 2 字符
+    ind.set(qn('w:firstLine'), '480')        # 兜底：480 twips ≈ 2 字(12pt)
+
+
 def add_title(doc, title):
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -66,7 +78,7 @@ def add_chapter(doc, text):
 def add_body(doc, line):
     """正文段落；其中【修改：…】渲染成红色高亮。"""
     p = doc.add_paragraph()
-    p.paragraph_format.first_line_indent = Pt(24)  # 首行缩进
+    set_first_line_indent_2chars(p)  # 每段首行缩进 2 字符
     pos = 0
     for m in SUGGEST_RE.finditer(line):
         if m.start() > pos:

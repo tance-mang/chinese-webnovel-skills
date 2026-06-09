@@ -5,6 +5,13 @@ All notable changes are documented here. This project adheres to [Semantic Versi
 
 ---
 
+## [0.21.0] - 2026-06-08
+
+### 变更 Changed
+- 📐 **Word 正文每段首行缩进 2 字符**：`draft` 的 `build_docx.py` 改用 Word 标准 `firstLineChars=200`（按字符、跟字号走），取代原来的绝对值 `Pt(24)`；章标题/书名不缩进。`manuscript-format.md` 同步说明。
+
+---
+
 ## [0.20.0] - 2026-06-08
 
 ### 新增 Added
