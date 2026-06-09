@@ -5,6 +5,18 @@ All notable changes are documented here. This project adheres to [Semantic Versi
 
 ---
 
+## [0.22.0] - 2026-06-09
+
+### 新增 Added（英文出海，不再局限中文）
+- 🌍 **english（英文网文出海）**：写/改 Wattpad / Royal Road / Webnovel / Radish / KDP 的英文，像本地作者不像翻译腔。四种用法：写英文原生稿、中转英改写、去英文 AI 腔/翻译腔、选平台。
+- 📚 **english-webfic.md**：英文网文库。平台速览 + **英文 vs 中文底层逻辑（中文卖剧情爽点，英文卖情绪钩子）** + 英文读者讨厌的（长段落/解释/堆形容词）+ 英文排版（Chapter X/对话换行/短段落）+ 英文节奏（前 100 词有事）+ 英文钩子 + 身体反应写情绪 + 英文 AI 破绽（too formal/too symmetric/over-literary）。
+
+### 变更 Changed
+- README 定位扩为**中英双区**：新增"不止中文"与 english 技能。
+- 技能 25 → 26，知识库 24 → 25。
+
+---
+
 ## [0.21.0] - 2026-06-08
 
 ### 变更 Changed

@@ -9,8 +9,8 @@ Idea → Spark → Outline → Killer opening → Golden-finger → Characters �
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-blueviolet)](https://code.claude.com)
-[![Skills](https://img.shields.io/badge/skills-24-brightgreen)](#-24-skills)
-[![Version](https://img.shields.io/badge/version-0.18.0-blue)](CHANGELOG.md)
+[![Skills](https://img.shields.io/badge/skills-26-brightgreen)](#-26-skills)
+[![Version](https://img.shields.io/badge/version-0.22.0-blue)](CHANGELOG.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-success)](#-contributing)
 
 [简体中文](README.md) | **English**
@@ -103,6 +103,7 @@ See **[exports/SETUP.md](exports/SETUP.md)**. One methodology, works across Clau
 | 📈 Trends | `/webnovel:trends` | Live web research of trending genres/tags/rankings per platform |
 | 🔥 Slang | `/webnovel:slang` | Live-search current Douyin/RedNote/Weibo memes + rules to use them without feeling forced/dated |
 | 🫀 Human texture | `/webnovel:human` | Deep de-AI: add irrational acts / unfinished emotion / loose ends so it reads like an "emotion log", not a "manual" |
+| 🌍 English | `/webnovel:english` | Write/adapt for English platforms (Wattpad/Royal Road/Webnovel) — reads like a local author, not translationese |
 | 🎓 Coach | `/webnovel:coach` | Learn to write (opt-in, beginner-friendly, explains the "why") |
 | 🎭 Fan-fiction | `/webnovel:fanfic` | Fanfic writing + copyright compliance check (character count / quote ratio / platform policy) |
 | 🔬 Deconstruct | `/webnovel:deconstruct` | Reverse-engineer hit novels' structure into reusable templates (learn structure, don't copy text) |
@@ -183,8 +184,8 @@ chinese-webnovel-skills/
 ├── .claude-plugin/
 │   ├── plugin.json          # plugin manifest
 │   └── marketplace.json     # marketplace manifest
-├── skills/                  # 24 skills (draft bundles build_docx.py for Word)
-├── references/              # 21 knowledge libraries
+├── skills/                  # 26 skills (draft bundles build_docx.py for Word)
+├── references/              # 25 knowledge libraries
 ├── templates/               # book bible / submission log / progress
 │   ├── book-bible-template.md
 │   ├── submission-log-template.md
@@ -209,6 +210,8 @@ chinese-webnovel-skills/
 
 See [CHANGELOG.md](CHANGELOG.md).
 
+- **v0.22.0** — English export (english): write/adapt for Wattpad/Royal Road/Webnovel like a local author, not translationese
+- **v0.21.0** — Word body paragraphs: 2-character first-line indent (firstLineChars=200)
 - **v0.20.0** — sentence rhythm (uneven length / pause punctuation / unfinished lines, fixes "too smooth") + dark style & dual "shuangwen / dark" version output
 - **v0.19.0** — human texture (deep de-AI): irrational acts / unfinished emotion / loose ends / bias — reads like an "emotion log" not a "manual"; review now 6-axis
 - **v0.18.0** — slang: live-search current Douyin/RedNote/Weibo memes + 6 rules to use them without feeling forced or dated
