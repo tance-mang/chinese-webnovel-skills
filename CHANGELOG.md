@@ -5,6 +5,17 @@ All notable changes are documented here. This project adheres to [Semantic Versi
 
 ---
 
+## [0.23.0] - 2026-06-09
+
+### 新增 Added
+- 💻 **终端版 CLI（`cli/webnovel.py`）**：独立于 Claude 运行，接任意 OpenAI 兼容 API（DeepSeek / Kimi / 硅基流动 / OpenRouter / 通义 / OpenAI / 本地 Ollama）。对话模式 + 一次性模式 + `--full`（完整知识库）+ `--list`。配 `config.example.json`（含各家 base_url/model）+ `cli/README.md`。同源于 `exports/`，改插件重跑 build_exports 即同步。
+- `cli/config.json` 已加入 `.gitignore`（含 key 不上传）。
+
+### 变更 Changed（中文标点规范）
+- 省略号用「……」（不要 `...` / `。。。`）；**破折号「——」少用别滥用**；主引号用双引号""、单引号''只用于嵌套；**正文不用「【】」**（仅系统流弹窗例外）。写进 `anti-ai-checklist`、`deslop`、通用指令 `instructions.md`。
+
+---
+
 ## [0.22.0] - 2026-06-09
 
 ### 新增 Added（英文出海，不再局限中文）

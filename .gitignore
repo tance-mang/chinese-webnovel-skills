@@ -44,3 +44,6 @@ venv/
 node_modules/
 #上架建议
 PUBLISHING.md
+
+# 终端版 CLI 的本地配置(含API key)
+cli/config.json

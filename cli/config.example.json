@@ -1,0 +1,17 @@
+{
+  "_说明": "复制本文件为 config.json 并填入你自己的 key。下面给了几家常用的 base_url 和 model，选一家填到顶部三个字段即可。",
+
+  "base_url": "https://api.deepseek.com/v1",
+  "api_key": "在这里填你的_API_KEY",
+  "model": "deepseek-chat",
+
+  "_可选服务商参考": {
+    "DeepSeek（中文网文推荐，便宜）": { "base_url": "https://api.deepseek.com/v1", "model": "deepseek-chat" },
+    "Kimi 月之暗面（长上下文）": { "base_url": "https://api.moonshot.cn/v1", "model": "kimi-k2-0905-preview" },
+    "硅基流动（多模型，注册送额度）": { "base_url": "https://api.siliconflow.cn/v1", "model": "deepseek-ai/DeepSeek-V3" },
+    "OpenRouter（聚合，含免费档）": { "base_url": "https://openrouter.ai/api/v1", "model": "deepseek/deepseek-chat-v3.1:free" },
+    "通义百炼": { "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1", "model": "qwen-plus" },
+    "OpenAI": { "base_url": "https://api.openai.com/v1", "model": "gpt-4o-mini" },
+    "本地 Ollama（断网可用）": { "base_url": "http://localhost:11434/v1", "model": "qwen2.5:14b" }
+  }
+}
