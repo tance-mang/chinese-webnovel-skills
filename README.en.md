@@ -210,6 +210,7 @@ chinese-webnovel-skills/
 
 See [CHANGELOG.md](CHANGELOG.md).
 
+- **v0.24.0** — script (script): vertical short-drama / film scripts & novel-to-script, proper screenplay format, only what the camera can capture, hard cliffhanger per episode
 - **v0.23.0** — standalone terminal CLI (any OpenAI-compatible API: DeepSeek/Kimi/Ollama…) + Chinese punctuation rules (…… ellipsis, fewer em-dashes, no 【】 in prose)
 - **v0.22.0** — English export (english): write/adapt for Wattpad/Royal Road/Webnovel like a local author, not translationese
 - **v0.21.0** — Word body paragraphs: 2-character first-line indent (firstLineChars=200)
