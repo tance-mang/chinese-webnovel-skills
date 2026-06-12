@@ -9,8 +9,8 @@ Idea → Spark → Outline → Killer opening → Golden-finger → Characters �
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-blueviolet)](https://code.claude.com)
-[![Skills](https://img.shields.io/badge/skills-30-brightgreen)](#-30-skills)
-[![Version](https://img.shields.io/badge/version-0.26.1-blue)](CHANGELOG.md)
+[![Skills](https://img.shields.io/badge/skills-31-brightgreen)](#-31-skills)
+[![Version](https://img.shields.io/badge/version-0.27.0-blue)](CHANGELOG.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-success)](#-contributing)
 
 [简体中文](README.md) | **English**
@@ -77,7 +77,7 @@ The methodology is model-agnostic — any AI with a system prompt or custom-agen
 
 See **[exports/SETUP.md](exports/SETUP.md)**. One methodology, works across Claude / ChatGPT / Chinese models.
 
-## 📖 30 Skills
+## 📖 31 Skills
 
 > Most skills accept a "**platform + channel + genre**" argument, e.g. `/webnovel:outline 番茄 男频 都市战神`, auto-adapting pacing and tropes.
 
@@ -89,6 +89,7 @@ See **[exports/SETUP.md](exports/SETUP.md)**. One methodology, works across Clau
 | 🗺️ Outline | `/webnovel:outline` | Whole-book / volume / chapter outlines with a foreshadowing tracker |
 | 🪝 Hooks | `/webnovel:hook` | Opening hooks, chapter-end cliffhangers, paywall hooks |
 | ⚙️ Golden-finger | `/webnovel:goldfinger` | System/sign-in/space/simulator cheats with thresholds & costs |
+| 🌍 Worldbuilding | `/webnovel:world` | World-first for strong-setting genres: power/factions/politics/economy/geography/history + world-state that changes by chapter, prevents setting drift |
 | 👤 Characters | `/webnovel:character` | Protagonist/villain/CP sheets with growth arcs |
 | 🪪 Char names | `/webnovel:name` | Name/rename characters: era-fit, memorable; kills generic AI names |
 | ✍️ Prose | `/webnovel:expand` | Turn chapter outlines into publishable prose, controlled pace & length |
@@ -155,7 +156,7 @@ See **[exports/SETUP.md](exports/SETUP.md)**. One methodology, works across Clau
 
 ## 📚 Knowledge base
 
-30 shared reference libraries (`references/`) — the web-novel know-how:
+31 shared reference libraries (`references/`) — the web-novel know-how:
 
 | File | Content |
 |---|---|
@@ -170,7 +171,7 @@ See **[exports/SETUP.md](exports/SETUP.md)**. One methodology, works across Clau
 | `dialogue-library.md` | Dialogue: de-AI speech + face-slap/flex/villain/angst-sweet lines + punchlines + character voices |
 | `anti-ai-checklist.md` | Deep de-AI checklist: gratuitous rhetoric + incongruous allusions + register consistency + show-don't-tell |
 | `human-texture.md` | Human texture (deep): 5 "feels like AI" symptoms + irrational acts / unfinished emotion / loose ends + manual vs emotion-log |
-| `ai-detector.md` | Quantified AI-slop: 8 metrics (metaphor density / repeated sentence patterns / length variance / paragraph spread / emotion-word repetition …) + thresholds + scoring formula + located output |
+| `ai-detector.md` | Quantified AI-slop: 12 metrics (metaphor density / repeated sentence patterns / length variance / paragraph spread / emotion-word repetition / summary-sentence (show-tell) / action-dialogue-thought ratio / scenery audit / reading friction …) + thresholds + scoring + located output |
 | `sentence-rhythm.md` | Sentence rhythm: mix short/long, occasional long sentence, ellipsis/dash/line-breaks for breathing, unfinished emotion (cures "too smooth") |
 | `dark-style.md` | Dark/grayscale style + dual output (crowd-pleaser vs elevated-dark) |
 | `english-webfic.md` | English web-fic: Wattpad/RoyalRoad/Webnovel + EN-vs-CN logic + English hooks/formatting/emotion/AI tells |
@@ -188,7 +189,8 @@ See **[exports/SETUP.md](exports/SETUP.md)**. One methodology, works across Clau
 | `channel-guide.md` | Male- vs female-channel split |
 | `writing-craft.md` | Web-novel fundamentals (for teaching) |
 | `project-memory.md` | Project memory spec: file layout + foreshadowing/progress/timeline/power-level/speech-fingerprint formats + git snapshots |
-| `continuity-check.md` | Continuity/logic: 6 logic chains (behavior/causality/resources/identity/injury/power) + timeline check + 3 long-form amnesia thresholds |
+| `continuity-check.md` | Continuity/logic: 7 logic chains (behavior/causality/resources/identity/injury/power/emotion) + timeline & world-state check + 3 long-form amnesia thresholds |
+| `worldbuilding.md` | World-first (World Engine): world modules (power/factions/politics/economy/geography/history) + per-chapter world-state + character-world coupling + pre-chapter "four world questions" |
 
 ## 📂 Project structure
 
@@ -197,8 +199,8 @@ chinese-webnovel-skills/
 ├── .claude-plugin/
 │   ├── plugin.json          # plugin manifest
 │   └── marketplace.json     # marketplace manifest
-├── skills/                  # 30 skills (draft bundles build_docx.py for Word)
-├── references/              # 30 knowledge libraries
+├── skills/                  # 31 skills (draft bundles build_docx.py for Word)
+├── references/              # 31 knowledge libraries
 ├── templates/               # book bible / submission log / progress
 │   ├── book-bible-template.md
 │   ├── submission-log-template.md
@@ -223,6 +225,7 @@ chinese-webnovel-skills/
 
 See [CHANGELOG.md](CHANGELOG.md).
 
+- **v0.27.0** — novel QA-system upgrade: new **worldbuilding** (world: power/factions/politics/economy/geography/history + per-chapter world-state, prevents setting drift) + AI-slop detector expanded to **12 metrics** (added summary-sentence/show-tell, action-dialogue-thought ratio, scenery audit, reading friction) + **emotion continuity** tracking (no "just broke up, laughing next chapter"; stored in memory, checked by continuity) + chapter-outline "goal/obstacle/result/cost" (anti-treading-water) + review "continue-rate" prediction
 - **v0.26.1** — zero-setup terminal deploy: one-click launchers (Windows: double-click `cli/启动.bat`; Mac: `cli/start.sh`, auto-installs deps) + a 4-step deploy guide in `cli/README.md` (install Python → download → launch → connect your AI) + friendly first-run when no key is set
 - **v0.26.0** — proofread: Chinese typo check + sensitive/banned-content scan with "original → suggested" one-click-style replacements (like Fanqie's editor); wired into submission (sensitive scan is a heuristic safety net, not a platform's exact wordlist). **CLI upgrades**: auto-save so nothing is lost (default .txt, optional .md/.docx, no-overwrite naming, shows path), git-like creation log (/history), learning-mode toggle (/coach), proofread in CLI (/proofread); save prefs are configurable via /set, not hardcoded
 - **v0.25.0** — long-form four-engine boost: continuity (logic + timeline: behavior/causality/resources/identity/injury/power) + aidetect (quantified AI-slop score 0–10 with located deductions) + length-standards library + memory upgrade (factions/power-levels/timeline/speech-fingerprint)
