@@ -5,6 +5,16 @@ All notable changes are documented here. This project adheres to [Semantic Versi
 
 ---
 
+## [0.26.1] - 2026-06-12
+
+### 终端版零基础部署（让不会写代码 / 没用过 Claude 的用户也能跑）
+- 🟢 **一键启动脚本**：`cli/启动.bat`（Windows 双击）、`cli/start.sh`（Mac/Linux）。自动检查 Python、首次自动 `pip install openai`、再启动。
+- 📖 **四步部署指南**（`cli/README.md` 顶部「零基础部署」）：装 Python（勾 Add to PATH）→ 下载（git clone 或 Download ZIP）→ 双击启动 → 接你的 AI（哪里弄免费 key 一张表）。
+- 🙂 **友好首次运行**：没填 API Key 时不再报错，而是提示"终端版是个壳、需接一个 AI、去哪弄 key、两种填法"，可先跳过等接好 AI 再来。
+- 主 README 的 CLI 入口指向零基础指南。
+
+---
+
 ## [0.26.0] - 2026-06-12
 
 ### 新增 Added

@@ -10,7 +10,7 @@ Idea → Spark → Outline → Killer opening → Golden-finger → Characters �
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-blueviolet)](https://code.claude.com)
 [![Skills](https://img.shields.io/badge/skills-30-brightgreen)](#-30-skills)
-[![Version](https://img.shields.io/badge/version-0.26.0-blue)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.26.1-blue)](CHANGELOG.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-success)](#-contributing)
 
 [简体中文](README.md) | **English**
@@ -223,6 +223,7 @@ chinese-webnovel-skills/
 
 See [CHANGELOG.md](CHANGELOG.md).
 
+- **v0.26.1** — zero-setup terminal deploy: one-click launchers (Windows: double-click `cli/启动.bat`; Mac: `cli/start.sh`, auto-installs deps) + a 4-step deploy guide in `cli/README.md` (install Python → download → launch → connect your AI) + friendly first-run when no key is set
 - **v0.26.0** — proofread: Chinese typo check + sensitive/banned-content scan with "original → suggested" one-click-style replacements (like Fanqie's editor); wired into submission (sensitive scan is a heuristic safety net, not a platform's exact wordlist). **CLI upgrades**: auto-save so nothing is lost (default .txt, optional .md/.docx, no-overwrite naming, shows path), git-like creation log (/history), learning-mode toggle (/coach), proofread in CLI (/proofread); save prefs are configurable via /set, not hardcoded
 - **v0.25.0** — long-form four-engine boost: continuity (logic + timeline: behavior/causality/resources/identity/injury/power) + aidetect (quantified AI-slop score 0–10 with located deductions) + length-standards library + memory upgrade (factions/power-levels/timeline/speech-fingerprint)
 - **v0.24.0** — script (script): vertical short-drama / film scripts & novel-to-script, proper screenplay format, only what the camera can capture, hard cliffhanger per episode

@@ -2,7 +2,42 @@
 
 不依赖 Claude，在你电脑终端直接跑，接**你自己的 API key**（DeepSeek / Kimi / 硅基流动 / OpenRouter / 通义 / OpenAI / 本地 Ollama，任意 OpenAI 兼容接口）。
 
-## 一、装（一次）
+> 一句话：**终端版是个"壳"，你给它接一个 AI（填个 key），它就用本工坊的全套网文方法帮你写。** 不会写代码也能用，照下面四步走。
+
+---
+
+## 🟢 零基础部署（不会写代码 / 没用过 Claude 也能跑）
+
+### 第一步：装 Python（只需一次）
+到 <https://www.python.org/downloads/> 下载安装。**Windows 安装第一屏务必勾选「Add Python to PATH」**，否则后面找不到。（Mac 一般自带 python3，可跳过。）
+
+### 第二步：下载本工具
+- 会用 git：`git clone https://github.com/tance-mang/chinese-webnovel-skills.git`
+- 不会 git：打开仓库页 → 绿色 **Code** 按钮 → **Download ZIP** → 解压到一个你找得到的文件夹。
+
+### 第三步：启动（自动装依赖）
+- **Windows**：进 `cli` 文件夹，**双击 `启动.bat`**。第一次会自动装依赖 `openai`，然后打开工坊。
+- **Mac / Linux**：终端里 `cd` 到 `cli` 文件夹，运行 `bash start.sh`。
+- （不想用脚本也行：终端里跑 `pip install openai` 再 `python webnovel.py`。）
+
+### 第四步：接你的 AI（填一个 key）
+第一次启动会问你要 **API Key**——这就是"接你用的 AI"。没有就先回车跳过，**有了再来**。哪里弄 key（都有免费额度，选一家）：
+| 服务商 | 怎么拿 | 适合 |
+|---|---|---|
+| **硅基流动** | 注册送额度，控制台建 key | 新手白嫖，多模型 |
+| **DeepSeek** | platform.deepseek.com 充一点点 | 中文网文质量高、便宜 |
+| **OpenRouter** | 有 `:free` 免费模型 | 免费试 |
+| **Kimi** | platform.moonshot.cn | 长上下文、喂整本 |
+
+拿到 key 后，**两种填法二选一**：
+1. 把 `cli/config.example.json` 复制成 `cli/config.json`，把 key 填进 `api_key`（一劳永逸，下次不再问）；
+2. 直接在启动时**粘贴** key（临时用）。
+
+搞定。以后写作就是：**双击 `启动.bat` → 说人话写**。
+
+---
+
+## 一、装（给会命令行的人，一次）
 
 需要 Python 3.9+，然后装一个依赖：
 ```bash

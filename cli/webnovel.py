@@ -57,7 +57,13 @@ def load_config():
     cfg["save_format"] = fmt if fmt in SAVE_FORMATS else "txt"
     cfg["auto_log"] = cfg.get("auto_log", True)
     if not cfg["api_key"]:
-        cfg["api_key"] = input("请输入 API Key（DeepSeek/Kimi/OpenAI 等）：").strip()
+        print("\n还没配 API Key。终端版是个壳，需要接一个 AI 才能写作")
+        print("（DeepSeek / Kimi / 硅基流动 / OpenRouter 等任意一家，有免费额度，去哪弄见 cli/README.md「第四步」）。")
+        print("拿到后两种填法：① 把 config.example.json 复制成 config.json 填进去（一劳永逸）；② 现在直接粘贴下面：")
+        cfg["api_key"] = input("  粘贴 API Key（还没有就直接回车，等接好 AI 再来）：").strip()
+        if not cfg["api_key"]:
+            print("（已跳过。配好 key 再运行 python webnovel.py 即可。）")
+            sys.exit(0)
     return cfg
 
 
