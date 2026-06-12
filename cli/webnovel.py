@@ -219,8 +219,53 @@ def show_history(cfg):
             print(f"  {ts} | {act} | {wc}字 | {os.path.basename(path)}")
 
 
+def _ask(client, cfg, messages, state, prompt):
+    """发一条 user 消息、流式取回复、记进历史与 last_reply。"""
+    messages.append({"role": "user", "content": prompt})
+    print("工坊 > ", end="", flush=True)
+    try:
+        reply = chat_stream(client, cfg["model"], messages)
+        messages.append({"role": "assistant", "content": reply})
+        state["last_reply"] = reply
+        append_session_log(cfg, "工坊", reply)
+        return reply
+    except Exception as e:
+        print("\n[错误]", e)
+        messages.pop()
+        return None
+
+
+COWRITE_FMT = ("给：推荐版本★(评分0-100 + 推荐原因 + 风险)，再给 备选A、备选B(各带评分+一句特点)。"
+               "正文和分析分区，每版用 ━━━ 分隔，正文放【正文】下。守网文手感：短句、show不tell、"
+               "对话用弯双引号\"\"不用「」、破折号极少。末尾列：1用推荐 / 2用A / 3用B / r重写。")
+
+
+def cowrite_pick(cfg, client, messages, state, depth=0):
+    """多版本生成后，让作者选 1/2/3 采用并存档，r 重写。"""
+    if depth > 3:
+        return
+    try:
+        choice = input("选 1/2/3 采用并存档 ｜ r 重写 ｜ 回车跳过：").strip().lower()
+    except (EOFError, KeyboardInterrupt):
+        return
+    if choice in ("1", "2", "3"):
+        label = {"1": "推荐版本", "2": "备选A", "3": "备选B"}[choice]
+        reply = _ask(client, cfg, messages, state,
+                     f"只输出刚才那个【{label}】的正文本身，不要标题/评分/分析/分隔线/任何其它字。")
+        if reply:
+            path = save_chapter(cfg, reply, None)
+            log_history(cfg, "共写采用", path, len(reply))
+            print(f"✅ 已采用并存：{path}")
+    elif choice == "r":
+        _ask(client, cfg, messages, state, "这几版不满意，换个思路重写这几个版本（同样给推荐+备选两个）。")
+        cowrite_pick(cfg, client, messages, state, depth + 1)
+
+
 HELP = """命令一览（直接输文字=继续写；命令以 / 开头）：
   /help              本帮助
+  /co [我写的一段]    共写·辅助：续写下一段，给 推荐+备选 选数字采用（卡在“下一句写啥”用这个）
+  /director          共写·导演：填 目标/冲突/情绪/节奏，AI 出多版正文
+  /write [需求]       自动写：按章纲/需求直接出整段正文
   /save [章名]        把【上一条回复】存成正文文件（不覆盖、存完显示路径）
   /book <书名>        设置当前书名（决定存到哪个书文件夹）
   /set format txt|md|docx   选存稿格式（默认 txt）
@@ -281,6 +326,32 @@ def handle_command(line, cfg, client, messages, state):
             print(f"✅ 已存：{path}")
     elif cmd == "/history":
         show_history(cfg)
+    elif cmd == "/co":
+        ctx = arg or state.get("last_reply", "")
+        base = ("【共写·辅助模式】接着前文续写下一段（约 200–400 字）。" + COWRITE_FMT +
+                "\n\n前文 / 我刚写的：\n" + (ctx if ctx else "(还没正文，请基于本书设定开个头)"))
+        if _ask(client, cfg, messages, state, base):
+            cowrite_pick(cfg, client, messages, state)
+    elif cmd == "/director":
+        print("导演模式：你定方向，AI 出多版正文。回车跳过某项。")
+        try:
+            goal = input("  目标（这段要达成什么）：").strip()
+            conflict = input("  冲突 / 阻碍：").strip()
+            emotion = input("  情绪基调：").strip()
+            pace = input("  节奏（快 / 缓）：").strip()
+        except (EOFError, KeyboardInterrupt):
+            print(); return True
+        spec = f"目标:{goal or '不限'}；冲突:{conflict or '不限'}；情绪:{emotion or '不限'}；节奏:{pace or '不限'}"
+        base = ("【共写·导演模式】作者只给方向，你写正文。按下面方向写本段（约 300–500 字），" +
+                COWRITE_FMT + "\n\n方向：" + spec)
+        if _ask(client, cfg, messages, state, base):
+            cowrite_pick(cfg, client, messages, state)
+    elif cmd == "/write":
+        base = ("【自动写】按本书章纲 / 进度直接写下一段可发布正文。" +
+                ("需求：" + arg if arg else "没给具体需求就按大纲推进下一章。") +
+                " 守网文手感：短句、show不tell、对话用弯双引号\"\"不用「」、章尾留钩。")
+        _ask(client, cfg, messages, state, base)
+        print("(满意就 /save 存档)")
     elif cmd == "/proofread":
         if not state.get("last_reply"):
             print("(没有可校对的内容。先写一段)")

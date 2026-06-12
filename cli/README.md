@@ -97,6 +97,9 @@ python webnovel.py --full
 
 ```
 /help                  看全部命令
+/co [我写的一段]        共写·辅助：续写下一段，给 推荐+备选，选数字采用（卡在"下一句写啥"用它）
+/director              共写·导演：填 目标/冲突/情绪/节奏，AI 出多版正文挑一个
+/write [需求]           自动写：按章纲/需求直接出整段正文
 /save 第1章             把上一条回复存成正文（不覆盖，显示路径）
 /book 我的修真路        设当前书名（决定存哪个书文件夹）
 /set format txt|md|docx 选存稿格式（默认 txt，word 需 pip install python-docx）
