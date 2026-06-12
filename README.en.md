@@ -9,8 +9,8 @@ Idea → Spark → Outline → Killer opening → Golden-finger → Characters �
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-blueviolet)](https://code.claude.com)
-[![Skills](https://img.shields.io/badge/skills-29-brightgreen)](#-29-skills)
-[![Version](https://img.shields.io/badge/version-0.25.0-blue)](CHANGELOG.md)
+[![Skills](https://img.shields.io/badge/skills-30-brightgreen)](#-30-skills)
+[![Version](https://img.shields.io/badge/version-0.26.0-blue)](CHANGELOG.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-success)](#-contributing)
 
 [简体中文](README.md) | **English**
@@ -77,7 +77,7 @@ The methodology is model-agnostic — any AI with a system prompt or custom-agen
 
 See **[exports/SETUP.md](exports/SETUP.md)**. One methodology, works across Claude / ChatGPT / Chinese models.
 
-## 📖 29 Skills
+## 📖 30 Skills
 
 > Most skills accept a "**platform + channel + genre**" argument, e.g. `/webnovel:outline 番茄 男频 都市战神`, auto-adapting pacing and tropes.
 
@@ -101,6 +101,7 @@ See **[exports/SETUP.md](exports/SETUP.md)**. One methodology, works across Clau
 | 🧹 De-slop | `/webnovel:deslop` | Remove AI-ese, gratuitous rhetoric, incongruous allusions → real feel |
 | 📊 AI-score | `/webnovel:aidetect` | Quantified AI-slop scan: metaphor density / repeated sentence patterns / length variance / paragraph spread / emotion-word repetition → index (0–10) + located deductions |
 | 😢 Emotion | `/webnovel:emotion` | Show emotion via action/detail instead of "I'm so heartbroken" (show don't tell) |
+| ✅ Proofread | `/webnovel:proofread` | Typo check (Chinese homophone/near-shape errors) + sensitive/banned-content scan → "original → suggested" one-click-style replacements (heuristic, not a platform's exact wordlist) |
 | 📮 Submission | `/webnovel:submission` | Checks against platform signing standards + title/blurb/tags |
 | 📈 Trends | `/webnovel:trends` | Live web research of trending genres/tags/rankings per platform |
 | 🔥 Slang | `/webnovel:slang` | Live-search current Douyin/RedNote/Weibo memes + rules to use them without feeling forced/dated |
@@ -154,7 +155,7 @@ See **[exports/SETUP.md](exports/SETUP.md)**. One methodology, works across Clau
 
 ## 📚 Knowledge base
 
-29 shared reference libraries (`references/`) — the web-novel know-how:
+30 shared reference libraries (`references/`) — the web-novel know-how:
 
 | File | Content |
 |---|---|
@@ -181,6 +182,7 @@ See **[exports/SETUP.md](exports/SETUP.md)**. One methodology, works across Clau
 | `slang-guide.md` | Internet slang usage: 6 rules to avoid feeling forced + evergreen vs short-lived + by platform/genre (memes fetched live) |
 | `case-studies.md` | Hit-novel breakdowns: structure/hooks/angst/payoff/technique (learn structure, don't copy) |
 | `submission-guide.md` | Submission/signing standards per platform |
+| `sensitive-words.md` | Proofread/censor: common Chinese typo pairs + 9 sensitive/banned categories + replacement strategy (heuristic, not a platform wordlist) |
 | `platform-profiles.md` | Fanqie/Jinjiang/Qidian/UC/Zhihu/Webnovel profiles + channel prefs + fanfic policy |
 | `length-standards.md` | Length standards: Fanqie-official / industry-wide / literary, signing & distribution thresholds + how to pick a length |
 | `channel-guide.md` | Male- vs female-channel split |
@@ -195,8 +197,8 @@ chinese-webnovel-skills/
 ├── .claude-plugin/
 │   ├── plugin.json          # plugin manifest
 │   └── marketplace.json     # marketplace manifest
-├── skills/                  # 29 skills (draft bundles build_docx.py for Word)
-├── references/              # 29 knowledge libraries
+├── skills/                  # 30 skills (draft bundles build_docx.py for Word)
+├── references/              # 30 knowledge libraries
 ├── templates/               # book bible / submission log / progress
 │   ├── book-bible-template.md
 │   ├── submission-log-template.md
@@ -221,6 +223,7 @@ chinese-webnovel-skills/
 
 See [CHANGELOG.md](CHANGELOG.md).
 
+- **v0.26.0** — proofread: Chinese typo check + sensitive/banned-content scan with "original → suggested" one-click-style replacements (like Fanqie's editor); wired into submission (sensitive scan is a heuristic safety net, not a platform's exact wordlist). **CLI upgrades**: auto-save so nothing is lost (default .txt, optional .md/.docx, no-overwrite naming, shows path), git-like creation log (/history), learning-mode toggle (/coach), proofread in CLI (/proofread); save prefs are configurable via /set, not hardcoded
 - **v0.25.0** — long-form four-engine boost: continuity (logic + timeline: behavior/causality/resources/identity/injury/power) + aidetect (quantified AI-slop score 0–10 with located deductions) + length-standards library + memory upgrade (factions/power-levels/timeline/speech-fingerprint)
 - **v0.24.0** — script (script): vertical short-drama / film scripts & novel-to-script, proper screenplay format, only what the camera can capture, hard cliffhanger per episode
 - **v0.23.0** — standalone terminal CLI (any OpenAI-compatible API: DeepSeek/Kimi/Ollama…) + Chinese punctuation rules (…… ellipsis, fewer em-dashes, no 【】 in prose)

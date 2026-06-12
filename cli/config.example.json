@@ -5,6 +5,18 @@
   "api_key": "在这里填你的_API_KEY",
   "model": "deepseek-chat",
 
+  "_存稿说明": "下面是存稿偏好，都能在对话里用 /set 改、自动写回这里，不写死。",
+  "book": "未命名",
+  "output_dir": "",
+  "save_format": "txt",
+  "auto_log": true,
+  "_存稿字段": {
+    "book": "当前书名，决定存到哪个书文件夹（也可对话里 /book 书名）",
+    "output_dir": "存稿根目录，留空=运行目录下的 output/（也可 /set dir 路径）",
+    "save_format": "正文存成什么：txt(默认，记事本就能开) / md / docx(需 pip install python-docx)",
+    "auto_log": "true=每轮对话自动记到 书/创作记录/对话记录.txt，永不丢"
+  },
+
   "_可选服务商参考": {
     "DeepSeek（中文网文推荐，便宜）": { "base_url": "https://api.deepseek.com/v1", "model": "deepseek-chat" },
     "Kimi 月之暗面（长上下文）": { "base_url": "https://api.moonshot.cn/v1", "model": "kimi-k2-0905-preview" },
