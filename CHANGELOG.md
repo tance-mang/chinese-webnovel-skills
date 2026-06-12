@@ -5,6 +5,28 @@ All notable changes are documented here. This project adheres to [Semantic Versi
 
 ---
 
+## [0.25.0] - 2026-06-11
+
+> 主题：补强**长篇四引擎**——Memory（记忆）/ Logic（逻辑）/ Style（文风）/ Anti-AI（去AI味）。
+> 原则：定性内容已覆盖的不重写，只补"系统化/量化/可执行"那一层；原来没有的新建，已有的加强。
+
+### 新增 Added
+- 🧭 **continuity（连贯性与逻辑检查）**：长篇的"逻辑后台"，与 `memory` 配套（记忆负责记，continuity 负责核对）。逐章过**六条逻辑链**（人物行为合理性 / 剧情因果链 / 资源变化 / 身份暴露 / 伤势状态 / 战力等级）+ **时间线核对**，揪出和前文/档案的矛盾并定位到段、给改法。针对 AI 长篇"50章正常、100章崩、300章失忆"。
+- 📊 **aidetect（AI味量化检测器）**：把"有点 AI 味"量化成 **AI味指数(0–10) + 八项指标实测 + 扣分定位清单**。八项：比喻密度 / 排比三段式 / 连续同句式 / 句长波动 / 段落分布 / 高频情绪词重复 / 极端词 / 转折升华标点。只诊断不改稿，改交给 deslop/human/emotion。
+- 📚 **length-standards.md（篇幅字数标准库）**：番茄官方（短故事 6000–8万 / 连载 8万–200万+，含 2万首签、8万分发坎）+ 全网通用 + 文学出版三套标准 + 怎么选篇幅。
+- 📚 **continuity-check.md**：六条逻辑链 + 时间线核对 + 长篇失忆三临界点 + 检查报告格式（continuity 的知识库）。
+- 📚 **ai-detector.md**：八项量化指标 + 阈值 + AI味指数评分公式 + 定位输出格式（aidetect 的知识库）。
+
+### 变更 Changed（已有的加强）
+- 🗄️ **记忆系统增强**：档案结构新增 `07_时间线.md`（主时间线 + 知情人名单）；`00_设定` 增**势力库 + 战力对照表**；`01_人物` 增**语言指纹(speech_profile)**；伏笔表加**编号 + 重要度**。`memory` / `project-memory.md` / `book-bible-template` 同步。
+- 👤 **character**：人设卡新增【语言指纹】字段（风格/口癖/句长/常用词/不会说什么），治长篇"一人一腔"。**dialogue** 写对话前对照注入 speech_profile。
+- ✍️ **expand**：写前确认接入篇幅门槛(length-standards)、语言指纹注入、时间线/资源/战力衔接；连贯性提示拆为 review(留存) + continuity(逻辑)。
+- 🎯 **idea**：定位三连问 → **四连问**（加篇幅档位+目标字数）；开书卡加篇幅。**outline** 全书层加篇幅规划/战力刻度；**submission** 体检加签约/分发字数门槛核对；**draft** 字数规则链接 length-standards。
+- 🩺 **review**：第6维(人味)可转 aidetect 量化；明确 review=读者留存视角、continuity=作者后台逻辑视角。**deslop / annotate** 指向 aidetect 做量化定位。
+- 技能 27 → 29，知识库 26 → 29。
+
+---
+
 ## [0.24.0] - 2026-06-09
 
 ### 新增 Added

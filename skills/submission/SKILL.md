@@ -17,8 +17,9 @@ description: 中文网文投稿与过稿诊断。当用户要投稿/签约、想
 
 ### A. 过稿体检（最常用）
 1. 确认目标平台（番茄/晋江/起点/UC/知乎盐选/Webnovel）→ 调 `references/submission-guide.md` + `references/platform-profiles.md`
-2. 按"黄金三章过稿标准"逐条核对前三章（调 submission-guide 的自检清单）
-3. 输出**签约可能性评估 + 致命劝退点 + 逐条改法**：
+2. **核对篇幅/字数门槛**（调 `references/length-standards.md`）：番茄短故事 ≥6000 才能签、长篇首签 ≥2万、全平台分发 ≥8万；字数没到门槛先提示作者补够再投。
+3. 按"黄金三章过稿标准"逐条核对前三章（调 submission-guide 的自检清单）
+4. 输出**签约可能性评估 + 致命劝退点 + 逐条改法**：
 ```
 【目标平台】
 【签约可能性】高/中/低 + 一句话结论

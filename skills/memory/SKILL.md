@@ -18,18 +18,20 @@ description: 中文网文创作档案与记忆系统。当用户要记录/保存
 在书的文件夹里维护这套文件（没有就用本技能初始化）：
 ```
 《书名》/
-├── 00_设定.md        立项卡 + 金手指 + 世界观（book-bible）
-├── 01_人物.md        人设卡 + 角色当前状态
+├── 00_设定.md        立项卡 + 金手指 + 世界观 + 势力库 + 战力体系（book-bible）
+├── 01_人物.md        人设卡 + 角色当前状态 + 语言指纹(speech_profile)
 ├── 02_大纲.md        卷纲 / 章纲
-├── 03_伏笔追踪.md     埋点 → 回收 表（防烂尾命脉）
+├── 03_伏笔追踪.md     埋点 → 回收 表（编号/重要度，防烂尾命脉）
 ├── 04_灵感本.md       spark 速记的灵感
 ├── 05_进度.md        写到第几章 / 累计字数 / 下一步
 ├── 06_投稿记录.md     每次投稿：平台/日期/结果/拒因/改动
+├── 07_时间线.md       主时间线 + 知情人名单（长篇防失忆）
 └── 正文/
     ├── 第001章.md
     └── ……
 ```
-> 模板见 `templates/book-bible-template.md`、`templates/submission-log-template.md`、`templates/progress-template.md`。
+> 短篇可只用 00/01/02；**长篇务必加 07_时间线 与 战力体系**，配合 `continuity` 防写到上百章崩设定。
+> 模板见 `templates/book-bible-template.md`、`templates/submission-log-template.md`、`templates/progress-template.md`；格式详见 `references/project-memory.md`。
 
 ## 四个功能
 
@@ -51,8 +53,11 @@ description: 中文网文创作档案与记忆系统。当用户要记录/保存
 写完/改完后同步档案：
 - 写完一章 → 更新 `05_进度.md`（章号/字数/下一步）
 - 出现新伏笔/回收伏笔 → 更新 `03_伏笔追踪.md`
-- 人物状态变化（升级/关系/获得物） → 更新 `01_人物.md`
+- 人物状态变化（升级/关系/获得物/伤势） → 更新 `01_人物.md`
+- 时间推进 / 谁知道了什么秘密 → 更新 `07_时间线.md`（时间线 + 知情人名单）
+- 战力变化（境界突破/新强敌登场） → 更新 `00_设定.md` 战力对照
 - 新灵感 → 追加 `04_灵感本.md`
+> 不回写就会"下一章继续漂"——这是防失忆的闭环。要主动核对前后矛盾用 `continuity`。
 
 ### 4. 版本快照（像 git）
 两种方式，按用户情况推荐：
@@ -66,4 +71,6 @@ description: 中文网文创作档案与记忆系统。当用户要记录/保存
 - 涉及隐私/未发布稿件，提醒已在 `.gitignore` 排除，不会误传公开仓库。
 
 ## 配合
-- `spark` 写灵感本、`outline` 写大纲、`character` 写人物、`submission` 写投稿记录 —— 本技能统管这些档案的回顾与版本。
+- `spark` 写灵感本、`outline` 写大纲、`character` 写人物（含语言指纹）、`submission` 写投稿记录 —— 本技能统管这些档案的回顾与版本。
+- `continuity` 读本档案核对逻辑/时间线/战力一致性 —— 记忆负责"记"，continuity 负责"核对"。
+- 全书篇幅/字数规划 → `references/length-standards.md`。

@@ -9,8 +9,8 @@ Idea → Spark → Outline → Killer opening → Golden-finger → Characters �
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-blueviolet)](https://code.claude.com)
-[![Skills](https://img.shields.io/badge/skills-26-brightgreen)](#-26-skills)
-[![Version](https://img.shields.io/badge/version-0.22.0-blue)](CHANGELOG.md)
+[![Skills](https://img.shields.io/badge/skills-29-brightgreen)](#-29-skills)
+[![Version](https://img.shields.io/badge/version-0.25.0-blue)](CHANGELOG.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-success)](#-contributing)
 
 [简体中文](README.md) | **English**
@@ -77,7 +77,7 @@ The methodology is model-agnostic — any AI with a system prompt or custom-agen
 
 See **[exports/SETUP.md](exports/SETUP.md)**. One methodology, works across Claude / ChatGPT / Chinese models.
 
-## 📖 24 Skills
+## 📖 29 Skills
 
 > Most skills accept a "**platform + channel + genre**" argument, e.g. `/webnovel:outline 番茄 男频 都市战神`, auto-adapting pacing and tropes.
 
@@ -96,14 +96,17 @@ See **[exports/SETUP.md](exports/SETUP.md)**. One methodology, works across Clau
 | 💬 Dialogue | `/webnovel:dialogue` | Write/fix dialogue, punchlines, face-slap lines; de-AI dialogue; distinct character voices |
 | 🌱 Warmth | `/webnovel:warmth` | Warm, realistic short fiction: no melodrama/preaching/clichés — small conflict + life detail + warm aftertaste |
 | 🏷️ Annotate | `/webnovel:annotate` | Mark hooks/payoffs/climax/modifiers + a rhythm data table |
-| 🩺 Diagnose | `/webnovel:review` | Five-axis checkup: hooks/payoffs/foreshadowing/characters/pacing |
+| 🩺 Diagnose | `/webnovel:review` | Six-axis checkup: hooks/payoffs/foreshadowing/characters/pacing/human-texture (reader-retention lens) |
+| 🧭 Continuity | `/webnovel:continuity` | Long-form logic + timeline: behavior/causality/resources/identity/injury/power-level contradictions → caught & fixed (anti-amnesia) |
 | 🧹 De-slop | `/webnovel:deslop` | Remove AI-ese, gratuitous rhetoric, incongruous allusions → real feel |
+| 📊 AI-score | `/webnovel:aidetect` | Quantified AI-slop scan: metaphor density / repeated sentence patterns / length variance / paragraph spread / emotion-word repetition → index (0–10) + located deductions |
 | 😢 Emotion | `/webnovel:emotion` | Show emotion via action/detail instead of "I'm so heartbroken" (show don't tell) |
 | 📮 Submission | `/webnovel:submission` | Checks against platform signing standards + title/blurb/tags |
 | 📈 Trends | `/webnovel:trends` | Live web research of trending genres/tags/rankings per platform |
 | 🔥 Slang | `/webnovel:slang` | Live-search current Douyin/RedNote/Weibo memes + rules to use them without feeling forced/dated |
 | 🫀 Human texture | `/webnovel:human` | Deep de-AI: add irrational acts / unfinished emotion / loose ends so it reads like an "emotion log", not a "manual" |
 | 🌍 English | `/webnovel:english` | Write/adapt for English platforms (Wattpad/Royal Road/Webnovel) — reads like a local author, not translationese |
+| 🎬 Script | `/webnovel:script` | Vertical short-drama / film scripts & novel-to-script, proper screenplay format, only what the camera can capture, hard cliffhanger per episode |
 | 🎓 Coach | `/webnovel:coach` | Learn to write (opt-in, beginner-friendly, explains the "why") |
 | 🎭 Fan-fiction | `/webnovel:fanfic` | Fanfic writing + copyright compliance check (character count / quote ratio / platform policy) |
 | 🔬 Deconstruct | `/webnovel:deconstruct` | Reverse-engineer hit novels' structure into reusable templates (learn structure, don't copy text) |
@@ -151,7 +154,7 @@ See **[exports/SETUP.md](exports/SETUP.md)**. One methodology, works across Clau
 
 ## 📚 Knowledge base
 
-8 shared reference libraries (`references/`) — the web-novel know-how:
+29 shared reference libraries (`references/`) — the web-novel know-how:
 
 | File | Content |
 |---|---|
@@ -165,6 +168,12 @@ See **[exports/SETUP.md](exports/SETUP.md)**. One methodology, works across Clau
 | `xiushi-ci.md` | Modifier-word library for punchy fast-paced prose |
 | `dialogue-library.md` | Dialogue: de-AI speech + face-slap/flex/villain/angst-sweet lines + punchlines + character voices |
 | `anti-ai-checklist.md` | Deep de-AI checklist: gratuitous rhetoric + incongruous allusions + register consistency + show-don't-tell |
+| `human-texture.md` | Human texture (deep): 5 "feels like AI" symptoms + irrational acts / unfinished emotion / loose ends + manual vs emotion-log |
+| `ai-detector.md` | Quantified AI-slop: 8 metrics (metaphor density / repeated sentence patterns / length variance / paragraph spread / emotion-word repetition …) + thresholds + scoring formula + located output |
+| `sentence-rhythm.md` | Sentence rhythm: mix short/long, occasional long sentence, ellipsis/dash/line-breaks for breathing, unfinished emotion (cures "too smooth") |
+| `dark-style.md` | Dark/grayscale style + dual output (crowd-pleaser vs elevated-dark) |
+| `english-webfic.md` | English web-fic: Wattpad/RoyalRoad/Webnovel + EN-vs-CN logic + English hooks/formatting/emotion/AI tells |
+| `script-format.md` | Screenplay format: vertical short-drama/film, only what's filmable, scene headings/lines/cliffhangers + novel-to-script |
 | `show-emotion.md` | Show-emotion library: 11 emotions → expression/action/physiology/subtext, show don't tell |
 | `pov-guide.md` | POV: defaults to first person (immersive, like a personal account); switchable to third person |
 | `manuscript-format.md` | Manuscript/revision format: Word output / non-overwriting naming / TOC / left-aligned chapters / 【修改】 marks / word counts |
@@ -173,9 +182,11 @@ See **[exports/SETUP.md](exports/SETUP.md)**. One methodology, works across Clau
 | `case-studies.md` | Hit-novel breakdowns: structure/hooks/angst/payoff/technique (learn structure, don't copy) |
 | `submission-guide.md` | Submission/signing standards per platform |
 | `platform-profiles.md` | Fanqie/Jinjiang/Qidian/UC/Zhihu/Webnovel profiles + channel prefs + fanfic policy |
+| `length-standards.md` | Length standards: Fanqie-official / industry-wide / literary, signing & distribution thresholds + how to pick a length |
 | `channel-guide.md` | Male- vs female-channel split |
 | `writing-craft.md` | Web-novel fundamentals (for teaching) |
-| `project-memory.md` | Project memory spec: file layout + foreshadowing/progress/submission-log formats + git snapshots |
+| `project-memory.md` | Project memory spec: file layout + foreshadowing/progress/timeline/power-level/speech-fingerprint formats + git snapshots |
+| `continuity-check.md` | Continuity/logic: 6 logic chains (behavior/causality/resources/identity/injury/power) + timeline check + 3 long-form amnesia thresholds |
 
 ## 📂 Project structure
 
@@ -184,8 +195,8 @@ chinese-webnovel-skills/
 ├── .claude-plugin/
 │   ├── plugin.json          # plugin manifest
 │   └── marketplace.json     # marketplace manifest
-├── skills/                  # 26 skills (draft bundles build_docx.py for Word)
-├── references/              # 25 knowledge libraries
+├── skills/                  # 29 skills (draft bundles build_docx.py for Word)
+├── references/              # 29 knowledge libraries
 ├── templates/               # book bible / submission log / progress
 │   ├── book-bible-template.md
 │   ├── submission-log-template.md
@@ -210,6 +221,7 @@ chinese-webnovel-skills/
 
 See [CHANGELOG.md](CHANGELOG.md).
 
+- **v0.25.0** — long-form four-engine boost: continuity (logic + timeline: behavior/causality/resources/identity/injury/power) + aidetect (quantified AI-slop score 0–10 with located deductions) + length-standards library + memory upgrade (factions/power-levels/timeline/speech-fingerprint)
 - **v0.24.0** — script (script): vertical short-drama / film scripts & novel-to-script, proper screenplay format, only what the camera can capture, hard cliffhanger per episode
 - **v0.23.0** — standalone terminal CLI (any OpenAI-compatible API: DeepSeek/Kimi/Ollama…) + Chinese punctuation rules (…… ellipsis, fewer em-dashes, no 【】 in prose)
 - **v0.22.0** — English export (english): write/adapt for Wattpad/Royal Road/Webnovel like a local author, not translationese
