@@ -9,8 +9,8 @@ Idea → Spark → Outline → Killer opening → Golden-finger → Characters �
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-blueviolet)](https://code.claude.com)
-[![Skills](https://img.shields.io/badge/skills-32-brightgreen)](#-32-skills)
-[![Version](https://img.shields.io/badge/version-0.28.0-blue)](CHANGELOG.md)
+[![Skills](https://img.shields.io/badge/skills-33-brightgreen)](#-33-skills)
+[![Version](https://img.shields.io/badge/version-0.29.0-blue)](CHANGELOG.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-success)](#-contributing)
 
 [简体中文](README.md) | **English**
@@ -77,12 +77,13 @@ The methodology is model-agnostic — any AI with a system prompt or custom-agen
 
 See **[exports/SETUP.md](exports/SETUP.md)**. One methodology, works across Claude / ChatGPT / Chinese models.
 
-## 📖 32 Skills
+## 📖 33 Skills
 
 > Most skills accept a "**platform + channel + genre**" argument, e.g. `/webnovel:outline 番茄 男频 都市战神`, auto-adapting pacing and tropes.
 
 | Skill | Command | What it does |
 |---|---|---|
+| 🚪 Start / Router | `/webnovel:start` | Not sure which to use? Start here: four doors (new / continue / optimize / submit), auto-walks the flow and calls the right skills |
 | 💡 Spark → Draft | `/webnovel:spark` | Jot down inspirations; grow one spark into outline → draft with target word count & chapter split |
 | 🎯 Premise | `/webnovel:idea` | Pick channel/genre, hit premises + one-line selling point + golden three chapters |
 | 🏷️ Title | `/webnovel:title` | Book titles with keyword + payoff + hook; kills "too AI / too literary / generic" names |
@@ -200,7 +201,7 @@ chinese-webnovel-skills/
 ├── .claude-plugin/
 │   ├── plugin.json          # plugin manifest
 │   └── marketplace.json     # marketplace manifest
-├── skills/                  # 32 skills (draft bundles build_docx.py for Word)
+├── skills/                  # 33 skills (draft bundles build_docx.py for Word)
 ├── references/              # 31 knowledge libraries
 ├── templates/               # book bible / submission log / progress
 │   ├── book-bible-template.md
@@ -226,6 +227,7 @@ chinese-webnovel-skills/
 
 See [CHANGELOG.md](CHANGELOG.md).
 
+- **v0.29.0** — mode-based entry (start): 33 skills collapsed into 4 doors (new / continue / optimize / submit) that auto-walk the flow and call skills — no need to memorize commands; CLI adds `/mode /new /continue /optimize /submit` + a startup menu
 - **v0.28.0** — Co-Write mode (cowrite): write with the AI in three levels — Auto / Assist (you write a bit, AI continues + options) / Director (you set goal/conflict/emotion, AI drafts versions); multi-version "recommended★ + score + alternatives" format cures "what's the next line". CLI adds `/co` `/director` `/write`; README gets a "3-minute start" path.
 - **v0.27.1** — conventions fix: ① punctuation — simplified-Chinese web novels use only standard marks; dialogue uses curly quotes ""''，**no corner brackets「」『』**, em-dash —— used very rarely, no decorative symbols; ② Fanqie serialized long-form **best at 2000–2200 chars/chapter**; ③ added Fanqie's 5 publish rules (off-plot notes → "author's note", no pinyin-substitution/garbled/unsegmented text, no contact info / follow-baiting, no illegal content, no religion/superstition violations)
 - **v0.27.0** — novel QA-system upgrade: new **worldbuilding** (world: power/factions/politics/economy/geography/history + per-chapter world-state, prevents setting drift) + AI-slop detector expanded to **12 metrics** (added summary-sentence/show-tell, action-dialogue-thought ratio, scenery audit, reading friction) + **emotion continuity** tracking (no "just broke up, laughing next chapter"; stored in memory, checked by continuity) + chapter-outline "goal/obstacle/result/cost" (anti-treading-water) + review "continue-rate" prediction

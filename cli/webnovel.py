@@ -239,6 +239,24 @@ COWRITE_FMT = ("给：推荐版本★(评分0-100 + 推荐原因 + 风险)，再
                "正文和分析分区，每版用 ━━━ 分隔，正文放【正文】下。守网文手感：短句、show不tell、"
                "对话用弯双引号\"\"不用「」、破折号极少。末尾列：1用推荐 / 2用A / 3用B / r重写。")
 
+# 模式化入口：把 30+ 技能收进 4 个门，背后自动调技能（LLM 已加载全部技能工作流）
+MODE_MENU = """你现在在哪一步？(输下面命令进入；也可直接说人话)
+  /new        新建小说  选题→(强设定搭世界)→金手指→人设→大纲→开篇钩→第一章
+  /continue   继续写    读档回顾→写下一章/共写→查一致→更新档案
+  /optimize   优化修改  追读体检→去AI味/打分→情绪演出来→错别字敏感词校对
+  /submit     投稿分析  字数门槛→三章签约体检→过审校对→平台趋势→书名简介"""
+
+MODE_KICKOFF = {
+    "new": ("我要【新建一本小说】。按入口流程带我走：先问我 频道/题材/平台/篇幅，再一步步 "
+            "选题→(强设定就先搭世界)→金手指→人设→大纲→开篇钩→第一章。一次只推进一步，每步问我要的信息，别一股脑全做完。"),
+    "continue": ("我要【继续写之前的书】。先帮我回顾'写到哪了/上章结尾钩/待回收伏笔/主角与情绪状态'"
+                 "(我会贴档案或正文)，再写下一章(可用共写)；写完提醒我更新档案、查前后一致。一次一步。"),
+    "optimize": ("我要【优化/修改已有正文】。我把正文发你后，按 追读体检→去AI味/量化打分→情绪演出来→"
+                 "错别字敏感词校对 的顺序过，一项一项来，先做最影响读者留存的。"),
+    "submit": ("我要【投稿/分析】。帮我核对 篇幅字数门槛→三章签约体检→过审校对→平台趋势→书名简介标签。"
+               "先问我目标平台和现在的字数。"),
+}
+
 
 def cowrite_pick(cfg, client, messages, state, depth=0):
     """多版本生成后，让作者选 1/2/3 采用并存档，r 重写。"""
@@ -263,6 +281,8 @@ def cowrite_pick(cfg, client, messages, state, depth=0):
 
 HELP = """命令一览（直接输文字=继续写；命令以 / 开头）：
   /help              本帮助
+  /mode              四个入口菜单（不知道用啥先看这个）
+  /new /continue /optimize /submit   新建 / 继续写 / 优化 / 投稿（自动走流程调技能）
   /co [我写的一段]    共写·辅助：续写下一段，给 推荐+备选 选数字采用（卡在“下一句写啥”用这个）
   /director          共写·导演：填 目标/冲突/情绪/节奏，AI 出多版正文
   /write [需求]       自动写：按章纲/需求直接出整段正文
@@ -326,6 +346,10 @@ def handle_command(line, cfg, client, messages, state):
             print(f"✅ 已存：{path}")
     elif cmd == "/history":
         show_history(cfg)
+    elif cmd == "/mode":
+        print(MODE_MENU)
+    elif cmd in ("/new", "/continue", "/optimize", "/submit"):
+        _ask(client, cfg, messages, state, MODE_KICKOFF[cmd[1:]])
     elif cmd == "/co":
         ctx = arg or state.get("last_reply", "")
         base = ("【共写·辅助模式】接着前文续写下一段（约 200–400 字）。" + COWRITE_FMT +
@@ -428,7 +452,9 @@ def main():
 
     state = {"base_system": system, "coach": False, "last_reply": ""}
     print_config(cfg)
-    print("进入对话模式。直接说需求开写；输 /help 看命令（存稿/换格式/学习模式/校对/回溯），exit 退出。\n")
+    print()
+    print(MODE_MENU)
+    print("\n也可直接说人话开写。输 /help 看全部命令，exit 退出。\n")
     while True:
         try:
             user = input("你 > ").strip()

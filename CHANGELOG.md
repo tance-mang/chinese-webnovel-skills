@@ -5,6 +5,11 @@ All notable changes are documented here. This project adheres to [Semantic Versi
 
 ---
 
+## [0.29.0] - 2026-06-13
+- 模式化入口 `start`：33 技能收进 4 个门（新建/继续/优化/投稿），自动走流程调技能，不用记命令。终端版加 `/mode /new /continue /optimize /submit` + 开场菜单。技能 32 → 33。
+
+---
+
 ## [0.28.0] - 2026-06-13
 
 > 主题：从"功能堆叠"转向"用户体验"——降低入口复杂度 + 加共写模式（采纳社区方向，但只做架构上做得到的，不做"实时HUD/侧栏监听/router.py"这类噱头）。
