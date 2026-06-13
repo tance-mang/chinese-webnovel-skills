@@ -5,6 +5,11 @@ All notable changes are documented here. This project adheres to [Semantic Versi
 
 ---
 
+## [0.29.1] - 2026-06-13
+- 符号收尾：把全仓库示例/对话里的直角引号 `「」『』` 实际改成弯引号 `""''`（v0.27.1 只立了规则、示例还没改）。规则已禁用 `「」`，现在示例也统一了，模型照着学就不会输出 `「」`。
+
+---
+
 ## [0.29.0] - 2026-06-13
 - 模式化入口 `start`：33 技能收进 4 个门（新建/继续/优化/投稿），自动走流程调技能，不用记命令。终端版加 `/mode /new /continue /optimize /submit` + 开场菜单。技能 32 → 33。
 

@@ -73,7 +73,7 @@
 | 读者关注 | 世界观、爽感、文学性 | 人物、感情、情绪 |
 | 节奏 | 可铺垫 | 前 100 词必须有事发生 |
 | 解释 | 愿意看"为什么爽" | 讨厌解释，直接动作，自己理解 |
-| 开头 | 「血色残阳下，少女眸光冷冽。」 | `I never expected my life to change that night.` / `The dead man opened his eyes.` |
+| 开头 | “血色残阳下，少女眸光冷冽。” | `I never expected my life to change that night.` / `The dead man opened his eyes.` |
 
 > 一句话：**英文读者更喜欢被直接扔进故事里，让他自己感受**，而不是你告诉他该感受什么。
 

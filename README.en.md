@@ -10,7 +10,7 @@ Idea → Spark → Outline → Killer opening → Golden-finger → Characters �
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-blueviolet)](https://code.claude.com)
 [![Skills](https://img.shields.io/badge/skills-33-brightgreen)](#-33-skills)
-[![Version](https://img.shields.io/badge/version-0.29.0-blue)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.29.1-blue)](CHANGELOG.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-success)](#-contributing)
 
 [简体中文](README.md) | **English**

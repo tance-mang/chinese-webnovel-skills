@@ -9,7 +9,7 @@
 ## 🟢 零基础部署（不会写代码 / 没用过 Claude 也能跑）
 
 ### 第一步：装 Python（只需一次）
-到 <https://www.python.org/downloads/> 下载安装。**Windows 安装第一屏务必勾选「Add Python to PATH」**，否则后面找不到。（Mac 一般自带 python3，可跳过。）
+到 <https://www.python.org/downloads/> 下载安装。**Windows 安装第一屏务必勾选“Add Python to PATH”**，否则后面找不到。（Mac 一般自带 python3，可跳过。）
 
 ### 第二步：下载本工具
 - 会用 git：`git clone https://github.com/tance-mang/chinese-webnovel-skills.git`
