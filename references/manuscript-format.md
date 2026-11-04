@@ -10,6 +10,8 @@
 - **显式标出可改的地方**（让作者一眼找到、自己改），而不是默默写死。
 
 ## 二、Word 输出规范
+
+默认使用干净正文版：章标题为普通文字“第1章 章名”，不包含井号、装饰线、项目编号或 Markdown 星号。正文保留正常小说标点。修改建议独立成文件，按章号和段首短语定位；下表中的行内高亮仅在作者明确选择批注版时使用。同步提供纯文本复制稿，缩进不依靠空格或制表符。作者主导的协作与学习流程见 `author-led-workflow.md`。
 | 项 | 规则 |
 |---|---|
 | 格式 | Word `.docx` |
@@ -32,3 +34,4 @@
 - 生成脚本 → `skills/draft/build_docx.py`
 - 诊断/标注思路 → `skills/review`、`skills/annotate`、`skills/deslop`、`skills/emotion`
 - 版本快照 → `skills/memory`
+

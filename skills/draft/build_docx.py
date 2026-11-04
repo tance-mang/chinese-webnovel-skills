@@ -109,6 +109,7 @@ def main():
     ap.add_argument('input')
     ap.add_argument('--title', required=True)
     ap.add_argument('--outdir', default='.')
+    ap.add_argument('--inline-suggestions', action='store_true', help='保留正文中的修改标记；默认单独导出建议')
     args = ap.parse_args()
 
     with open(args.input, encoding='utf-8') as f:
@@ -122,32 +123,47 @@ def main():
     add_toc(doc)
 
     body_chars = 0
+    clean_lines = []
+    suggestions = []
+    chapter = '未分章'
     for line in lines:
+        if not line.strip():
+            continue
+        for suggestion in SUGGEST_RE.findall(line):
+            suggestions.append(f'{chapter} | {SUGGEST_RE.sub("", line)[:40]} | {suggestion}')
+        clean = SUGGEST_RE.sub('', line).strip()
+        if not args.inline_suggestions:
+            line = clean
         if not line.strip():
             continue
         cm = CHAPTER_RE.match(line)
         if cm:
-            add_chapter(doc, cm.group(1).strip())
+            chapter = cm.group(1).strip()
+            add_chapter(doc, chapter)
+            clean_lines.append(chapter)
         else:
             add_body(doc, line)
+            if clean:
+                clean_lines.append(clean)
             body_chars += len(SUGGEST_RE.sub('', line))
 
     os.makedirs(args.outdir, exist_ok=True)
     out = pick_filename(args.title, args.outdir)
     doc.save(out)
+    stem = os.path.splitext(out)[0]
+    with open(stem + '.txt', 'w', encoding='utf-8') as f:
+        f.write('\n\n'.join(clean_lines) + '\n')
+    if suggestions:
+        with open(stem + '_修改建议.txt', 'w', encoding='utf-8') as f:
+            f.write('\n'.join(suggestions) + '\n')
 
     # 字数提示（不含修改建议）
-    tip = ''
-    if body_chars < 8000:
-        tip = '  ⚠ 低于短篇下限(8000)，可扩写'
-    elif body_chars > 30000:
-        tip = '  ⚠ 超过短篇上限(30000)，可拆分'
-    elif not (10000 <= body_chars <= 20000):
-        tip = '  (短篇正文建议草稿 10000–20000，留删/扩余地)'
+    tip = ''  # 导出不根据短篇门槛要求单章扩写
     print(f'[OK] 已生成：{out}')
     print(f'     正文约 {body_chars} 字{tip}')
-    print(f'     目录已插入（Word 里右键目录→更新域 生成页码）；【修改：…】为红色高亮建议')
+    print(f'     目录已插入（Word 中更新域）；已附纯文本复制稿，建议默认独立保存')
 
 
 if __name__ == '__main__':
     main()
+
