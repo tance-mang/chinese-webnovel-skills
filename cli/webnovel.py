@@ -100,13 +100,13 @@ def build_system_prompt(full=False):
 COACH_DEPTHS = {
     "1": "用【速查清单】式：每次产出后只列 3-5 个要点（钩子/爽点/节奏/人设），最快。",
     "2": "用【详细讲解】：每次产出后讲清‘为什么这么写’的原理 + 1 个例子，通俗不堆术语。",
-    "3": "用【边写边教】：先正常写，再回过头拆解这段为什么这么处理、哪里还能更好。",
+    "3": "围绕作者当前片段选一个练习重点，给具体反馈、短示范和一个小练习。等作者回稿后对照目标复盘。",
 }
 
 
 def coach_addendum(depth):
     return ("\n\n【学习模式已开启】你现在兼任网文写作教练，面向新手：" + COACH_DEPTHS.get(depth, COACH_DEPTHS["2"]) +
-            " 指出可改进处并鼓励作者动手。作者输入 /coach off 即回到正常写作模式。")
+            " 教学与正文分开。本轮只要正文时省略教学。作者输入 /coach off 即关闭。")
 
 
 def list_skills():
@@ -250,7 +250,8 @@ MODE_KICKOFF = {
     "new": ("我要【新建一本小说】。按入口流程带我走：先问我 频道/题材/平台/篇幅，再一步步 "
             "选题→(强设定就先搭世界)→金手指→人设→大纲→开篇钩→第一章。一次只推进一步，每步问我要的信息，别一股脑全做完。"),
     "continue": ("我要【继续写之前的书】。先帮我回顾'写到哪了/上章结尾钩/待回收伏笔/主角与情绪状态'"
-                 "(我会贴档案或正文)，再写下一章(可用共写)；写完提醒我更新档案、查前后一致。一次一步。"),
+                 "（我会贴档案或正文）。只根据已有材料回顾，缺失信息标为未知。先提出当前片段的下一步，"
+                 "等我决定是否起草。只根据我确认的稿件提出档案更新。"),
     "optimize": ("我要【优化/修改已有正文】。我把正文发你后，按 追读体检→去AI味/量化打分→情绪演出来→"
                  "错别字敏感词校对 的顺序过，一项一项来，先做最影响读者留存的。"),
     "submit": ("我要【投稿/分析】。帮我核对 篇幅字数门槛→三章签约体检→过审校对→平台趋势→书名简介标签。"
@@ -283,7 +284,7 @@ HELP = """命令一览（直接输文字=继续写；命令以 / 开头）：
   /help              本帮助
   /mode              四个入口菜单（不知道用啥先看这个）
   /new /continue /optimize /submit   新建 / 继续写 / 优化 / 投稿（自动走流程调技能）
-  /co [我写的一段]    共写·辅助：续写下一段，给 推荐+备选 选数字采用（卡在“下一句写啥”用这个）
+  /co [我写的一段]    共写·辅助：给一个短示范或续写片段，留给作者修改
   /director          共写·导演：填 目标/冲突/情绪/节奏，AI 出多版正文
   /write [需求]       自动写：按章纲/需求直接出整段正文
   /save [章名]        把【上一条回复】存成正文文件（不覆盖、存完显示路径）
@@ -351,11 +352,12 @@ def handle_command(line, cfg, client, messages, state):
     elif cmd in ("/new", "/continue", "/optimize", "/submit"):
         _ask(client, cfg, messages, state, MODE_KICKOFF[cmd[1:]])
     elif cmd == "/co":
-        ctx = arg or state.get("last_reply", "")
-        base = ("【共写·辅助模式】接着前文续写下一段（约 200–400 字）。" + COWRITE_FMT +
-                "\n\n前文 / 我刚写的：\n" + (ctx if ctx else "(还没正文，请基于本书设定开个头)"))
-        if _ask(client, cfg, messages, state, base):
-            cowrite_pick(cfg, client, messages, state)
+        base = ("【共写·辅助模式】依据作者给出的前文与已确认设定，只给一个短示范或续写片段。"
+                "用普通章标题和干净正文，教学与建议另列。不要把上一条 AI 回复当成作者采用的正文。"
+                "缺少可承接的作者稿件时，请作者贴当前片段或说明卡点。")
+        if arg:
+            base += "\n\n作者提供的片段：\n" + arg
+        _ask(client, cfg, messages, state, base)
     elif cmd == "/director":
         print("导演模式：你定方向，AI 出多版正文。回车跳过某项。")
         try:
@@ -371,7 +373,7 @@ def handle_command(line, cfg, client, messages, state):
         if _ask(client, cfg, messages, state, base):
             cowrite_pick(cfg, client, messages, state)
     elif cmd == "/write":
-        base = ("【自动写】按本书章纲 / 进度直接写下一段可发布正文。" +
+        base = ("【自动起草】按本书已确认章纲和进度写一份供作者修改的草稿。" +
                 ("需求：" + arg if arg else "没给具体需求就按大纲推进下一章。") +
                 " 守网文手感：短句、show不tell、对话用弯双引号\"\"不用「」、章尾留钩。")
         _ask(client, cfg, messages, state, base)
@@ -483,3 +485,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
