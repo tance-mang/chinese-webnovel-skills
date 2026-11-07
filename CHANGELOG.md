@@ -5,6 +5,16 @@ All notable changes are documented here. This project adheres to [Semantic Versi
 
 ---
 
+## [Unreleased]
+
+### Added
+
+- 2026-11-07：补充历史 MIT 快照、许可范围与商业授权说明，加入 WSC-1.0 待审草案。当前公开版继续采用 MIT，草案的适用模块和生效版本待定。
+
+### Changed
+
+- 同步中英文 README 和跨模型导出说明，区分商业写作与 Skill 再分发，并提示单独分发导出文件时保留 MIT 声明。
+
 ## [0.29.1] - 2026-06-13
 - 符号收尾：把全仓库示例/对话里的直角引号 `「」『』` 实际改成弯引号 `""''`（v0.27.1 只立了规则、示例还没改）。规则已禁用 `「」`，现在示例也统一了，模型照着学就不会输出 `「」`。
 
@@ -413,3 +423,4 @@ All notable changes are documented here. This project adheres to [Semantic Versi
 [0.3.0]: https://github.com/tance-mang/chinese-webnovel-skills/releases/tag/v0.3.0
 [0.2.0]: https://github.com/tance-mang/chinese-webnovel-skills/releases/tag/v0.2.0
 [0.1.0]: https://github.com/tance-mang/chinese-webnovel-skills/releases/tag/v0.1.0
+

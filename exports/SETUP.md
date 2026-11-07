@@ -6,7 +6,7 @@
 > - `knowledge-skills.md` —— 21 个技能工作流（知识库）
 > - `knowledge-references.md` —— 18 个知识库（知识库）
 >
-> 所有文件由 `python tools/build_exports.py` 自动生成，**改了插件重跑一次就同步**。
+> 两个 `knowledge-*.md` 由 `python tools/build_exports.py` 生成，`instructions.md` 单独维护。再分发导出文件或其大部分内容时，请同时附上仓库的 [MIT 版权与许可声明](../LICENSE)。生成器不自动附带许可文件，导出范围见[许可范围](../LICENSE_SCOPE.md)。
 
 ---
 
@@ -69,3 +69,4 @@ Claude Code 里 `/plugin marketplace add tance-mang/chinese-webnovel-skills` + `
 
 ## 保持同步
 加了新技能后，跑 `python tools/build_exports.py` 重新生成，把新的两个 `knowledge-*.md` 重新上传到你的智能体即可。指令 `instructions.md` 一般不用动。
+

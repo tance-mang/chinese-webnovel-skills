@@ -269,7 +269,7 @@ chinese-webnovel-skills/
 - 构建于 [Claude Code](https://code.claude.com) 公开的插件机制之上。
 - 感谢开源社区与广大网文作者的创作智慧。
 
-> 本项目所有技能与知识库均为**原创自研**，未包含或复制任何第三方项目的代码或受版权保护内容。采用 MIT 许可证开源。
+> 网文工坊公开版采用 MIT。仓库自有内容、外部依赖和参考素材的许可边界见[许可范围](LICENSE_SCOPE.md)。
 
 ## 📝 更新日志
 
@@ -320,7 +320,9 @@ chinese-webnovel-skills/
 
 ## 📜 许可证
 
-[MIT](LICENSE) © 2026 tance-mang。技能内的写作方法论可自由使用、修改、二次分发。
+[MIT](LICENSE) © 2026 tance-mang。当前公开版可使用、修改、分发和销售，分发时须保留版权与许可声明。你可以用网文工坊写小说、投稿、出版或获得稿酬，项目方不会仅因使用工具而主张作品所有权或分成。
+
+[WSC-1.0](LICENSES/WSC-1.0.txt) 是拟用于未来明确标记的新模块的授权草案，当前未生效。历史 MIT 权利继续适用。各模块的许可边界见[许可范围](LICENSE_SCOPE.md)，商业写作、工具再分发与单独授权见[商业授权说明](COMMERCIAL_LICENSING.md)。
 
 <div align="center">
 
@@ -329,3 +331,4 @@ chinese-webnovel-skills/
 [⬆ 回到顶部](#网文工坊--webnovel-studio)
 
 </div>
+
