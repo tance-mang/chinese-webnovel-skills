@@ -221,7 +221,7 @@ chinese-webnovel-skills/
 - Built on [Claude Code](https://code.claude.com)'s public plugin mechanism.
 - Thanks to the open-source community and web-fiction authors everywhere.
 
-> All skills and knowledge bases are **original work**. No third-party code or copyrighted content is included or copied. Open-sourced under the MIT License.
+> The public toolkit is MIT licensed. See the [license scope](LICENSE_SCOPE.md) for project materials, external dependencies and referenced content.
 
 ## 📝 Changelog
 
@@ -272,7 +272,9 @@ Validate locally with `claude plugin validate .`. See [PUBLISHING.md](PUBLISHING
 
 ## 📜 License
 
-[MIT](LICENSE) © 2026 tance-mang. The writing methodology inside the skills is free to use, modify, and redistribute.
+[MIT](LICENSE) © 2026 tance-mang. You may use, modify, distribute and sell copies of the current public toolkit, subject to the copyright and permission notice requirements. You can write, publish and monetize original works with the toolkit. The project makes no ownership claim or royalty demand merely because you used it.
+
+[WSC-1.0](LICENSES/WSC-1.0.txt) is a draft for future, explicitly identified modules. It is not in effect. Existing MIT permissions continue to apply. See the [license scope](LICENSE_SCOPE.md) and [commercial licensing guide](COMMERCIAL_LICENSING.md) for details.
 
 <div align="center">
 
@@ -281,3 +283,4 @@ Validate locally with `claude plugin validate .`. See [PUBLISHING.md](PUBLISHING
 [⬆ Back to top](#webnovel-studio--网文工坊)
 
 </div>
+

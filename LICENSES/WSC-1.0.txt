@@ -1,0 +1,88 @@
+WebNovel Studio Creator License 1.0 (WSC-1.0)
+DRAFT FOR REVIEW — NOT IN EFFECT. No repository module currently uses this draft.
+
+Proposed copyright notice: Copyright (c) 2026 tance-mang.
+All rights reserved except as expressly licensed below.
+
+1. Scope
+
+This license applies only to software, skills, prompts, workflows, templates,
+documentation and related materials whose copyright holder expressly designates
+them as covered by this license in an identified distribution. Those materials
+are referred to below as the Licensed Materials. This document alone does not
+designate any material as covered.
+
+2. Permitted uses
+
+You may install and use the Licensed Materials for personal, educational and
+professional writing, and make modifications for your own internal use. You
+may create, edit, publish, distribute, license and monetize original literary
+and other creative works made with their assistance, including through writing
+platforms, competitions and publishers. You may provide paid writing or
+editorial services using them internally, as long as clients receive only the
+creative or editorial deliverables and do not receive or gain access to the
+Licensed Materials themselves. No royalty or revenue share is due to the
+licensor solely because you earn revenue from such creative works or services.
+
+3. Restrictions
+
+Unless separately authorized in writing by the applicable copyright holder,
+you may not:
+
+- Sell, resell, sublicense, rent, redistribute, or commercially repackage the
+  Licensed Materials or versions that incorporate protected expression from them.
+- Distribute such materials as a skill, agent, prompt pack, template, plugin,
+  or other tool product, including a renamed or modified copy.
+- Bundle or embed them in software, marketplaces, websites, or hosted agents
+  in a manner that makes the materials or the covered tool available for use by
+  third parties. This does not prevent the internal writing and editorial
+  services permitted in section 2.
+- Remove or falsify copyright or attribution notices, or misrepresent a
+  covered copy or adaptation as your own original tool.
+
+These restrictions do not reach independently developed material that does
+not copy protected expression from the Licensed Materials. They do not limit
+rights separately granted under another license or permitted by applicable law.
+
+4. Creative outputs
+
+The licensor does not claim ownership of a user's original novels, stories,
+scripts or other creative outputs merely because they were created with the
+assistance of the Licensed Materials. This clause does not license copies of
+the Licensed Materials disguised as output. Rights in creative outputs remain
+subject to applicable law, third-party rights and the terms of any AI services
+or publishing platforms used.
+
+5. Separate commercial licensing
+
+Request written authorization for redistribution, resale, marketplace listing,
+commercial integration or third-party access to the covered tool from the
+applicable copyright holder.
+
+6. Existing permissions
+
+Nothing in this license revokes, narrows or supersedes rights already granted
+under MIT or any other valid license. Material used under such permissions
+remains governed by those permissions. Third-party materials and dependencies
+retain their own applicable terms.
+
+7. Termination
+
+Permissions under this license terminate if you violate its terms and fail to
+remedy the violation within 30 days after receiving written notice. Termination
+does not affect rights independently held under another applicable license.
+
+8. Disclaimer
+
+The Licensed Materials are provided "AS IS", without warranties of any kind,
+to the maximum extent permitted by applicable law.
+
+9. Contact
+
+Proposed licensor: tance-mang
+Project: https://github.com/tance-mang/chinese-webnovel-skills
+Use the project's GitHub Issues to request an official contact for separate
+licensing. Do not post confidential commercial details in a public issue.
+
+This is a proposed custom source-available license with redistribution
+restrictions, not an OSI-approved open-source license.
