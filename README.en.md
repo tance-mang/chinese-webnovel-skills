@@ -10,7 +10,7 @@ Idea → Spark → Outline → Killer opening → Golden-finger → Characters �
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-blueviolet)](https://code.claude.com)
 [![Skills](https://img.shields.io/badge/skills-33-brightgreen)](#-33-skills)
-[![Version](https://img.shields.io/badge/version-0.29.1-blue)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.29.2-blue)](CHANGELOG.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-success)](#-contributing)
 
 [简体中文](README.md) | **English**
@@ -24,11 +24,15 @@ Idea → Spark → Outline → Killer opening → Golden-finger → Characters �
 
 > **Note:** This plugin helps you write **in Chinese**. The novels it produces are Chinese web fiction. These docs are bilingual so non-Chinese and non-English speakers can both navigate the project.
 
+> **Bilingual, cross-platform publishing for authors who write in Chinese.** The Chinese web-fiction workflow above stays intact: premise, outline, payoffs, retention, and submission still follow Qidian, Fanqie, Jinjiang, and the other domestic platforms. English work is a separate, configurable layer with three paths — `original` (write in English), `adapt` (keep causality, retell in English), and `translate` (keep facts and voice). Slogan: **Write in Your Language. Tell Stories Beyond Borders.**
+>
+> This repo currently ships **33 skills** (see the badge and the skill table). If the GitHub repository description still says the older “23 skills,” trust this README and `.claude-plugin/plugin.json` (v0.29.2). Verified overseas platform notes live in [`integrations/grokbot/overseas-research.md`](integrations/grokbot/overseas-research.md) — a Grok Bot research handoff, not a replacement for the Grok API. **Radish closed on 2025-12-31 and is not a platform to submit to.**
+
 ## 📑 Table of Contents
 
 - [Why use it](#-why-use-it)
 - [Install](#-install)
-- [24 Skills](#-24-skills)
+- [33 Skills](#-33-skills)
 - [Typical workflows](#-typical-workflows)
 - [Knowledge base](#-knowledge-base)
 - [Project structure](#-project-structure)
@@ -41,7 +45,7 @@ Idea → Spark → Outline → Killer opening → Golden-finger → Characters �
 
 - **Built for Chinese web fiction**: not a generic writing wrapper — it follows the "爽点" (payoff) logic, the four-beat face-slap, and the retention pacing of Qidian/Fanqie.
 - **Leverages Claude's long context**: 200K tokens hold a whole-book outline plus all character sheets, so settings and foreshadowing stay consistent across hundreds of thousands of words.
-- **End-to-end**: 14 skills from "a single spark" to "passing editorial review."
+- **End-to-end**: **33 skills** from "a single spark" to "passing editorial review."
 - **Data-minded**: visual annotation of hooks/payoffs/modifiers, retention diagnosis, live platform trends — see the data, not just type.
 - **Beginner-friendly**: an optional writing coach you can switch on to learn, off to just write.
 - **Bilingual docs**: Chinese for non-English speakers, English for international users.
@@ -109,7 +113,7 @@ See **[exports/SETUP.md](exports/SETUP.md)**. One methodology, works across Clau
 | 📈 Trends | `/webnovel:trends` | Live web research of trending genres/tags/rankings per platform |
 | 🔥 Slang | `/webnovel:slang` | Live-search current Douyin/RedNote/Weibo memes + rules to use them without feeling forced/dated |
 | 🫀 Human texture | `/webnovel:human` | Deep de-AI: add irrational acts / unfinished emotion / loose ends so it reads like an "emotion log", not a "manual" |
-| 🌍 English | `/webnovel:english` | Write/adapt for English platforms (Wattpad/Royal Road/Webnovel) — reads like a local author, not translationese |
+| 🌍 English | `/webnovel:english` | original / adapt / translate for Wattpad, Royal Road, Webnovel, and KDP. Radish is closed. Sentence length and hooks follow the genre, not one hard rule |
 | 🎬 Script | `/webnovel:script` | Vertical short-drama / film scripts & novel-to-script, proper screenplay format, only what the camera can capture, hard cliffhanger per episode |
 | 🎓 Coach | `/webnovel:coach` | Learn to write (opt-in, beginner-friendly, explains the "why") |
 | 🎭 Fan-fiction | `/webnovel:fanfic` | Fanfic writing + copyright compliance check (character count / quote ratio / platform policy) |
@@ -176,7 +180,7 @@ See **[exports/SETUP.md](exports/SETUP.md)**. One methodology, works across Clau
 | `ai-detector.md` | Quantified AI-slop: 12 metrics (metaphor density / repeated sentence patterns / length variance / paragraph spread / emotion-word repetition / summary-sentence (show-tell) / action-dialogue-thought ratio / scenery audit / reading friction …) + thresholds + scoring + located output |
 | `sentence-rhythm.md` | Sentence rhythm: mix short/long, occasional long sentence, ellipsis/dash/line-breaks for breathing, unfinished emotion (cures "too smooth") |
 | `dark-style.md` | Dark/grayscale style + dual output (crowd-pleaser vs elevated-dark) |
-| `english-webfic.md` | English web-fic: Wattpad/RoyalRoad/Webnovel + EN-vs-CN logic + English hooks/formatting/emotion/AI tells |
+| `english-webfic.md` | English web-fic: live platforms, Radish moved to history, Royal Road / KDP policy notes, genre-configurable sentence length and hooks. Detail: `integrations/grokbot/overseas-research.md` |
 | `script-format.md` | Screenplay format: vertical short-drama/film, only what's filmable, scene headings/lines/cliffhangers + novel-to-script |
 | `show-emotion.md` | Show-emotion library: 11 emotions → expression/action/physiology/subtext, show don't tell |
 | `pov-guide.md` | POV: defaults to first person (immersive, like a personal account); switchable to third person |
@@ -203,6 +207,7 @@ chinese-webnovel-skills/
 │   └── marketplace.json     # marketplace manifest
 ├── skills/                  # 33 skills (draft bundles build_docx.py for Word)
 ├── references/              # 31 knowledge libraries
+├── integrations/grokbot/    # overseas research handoff (does not replace the Grok API)
 ├── templates/               # book bible / submission log / progress
 │   ├── book-bible-template.md
 │   ├── submission-log-template.md
@@ -227,6 +232,7 @@ chinese-webnovel-skills/
 
 See [CHANGELOG.md](CHANGELOG.md).
 
+- **v0.29.2** — Docs pass with Grok Bot: Radish moved to historical platforms (closed 2025-12-31, do not recommend new submissions); Royal Road sexual-content and AI-label rules plus KDP AI-generated disclosure added to the English knowledge base; “short sentences + hard hooks for all English” softened into genre preferences; `english` gains original / adapt / translate. Research: `integrations/grokbot/overseas-research.md`
 - **v0.29.0** — mode-based entry (start): 33 skills collapsed into 4 doors (new / continue / optimize / submit) that auto-walk the flow and call skills — no need to memorize commands; CLI adds `/mode /new /continue /optimize /submit` + a startup menu
 - **v0.28.0** — Co-Write mode (cowrite): write with the AI in three levels — Auto / Assist (you write a bit, AI continues + options) / Director (you set goal/conflict/emotion, AI drafts versions); multi-version "recommended★ + score + alternatives" format cures "what's the next line". CLI adds `/co` `/director` `/write`; README gets a "3-minute start" path.
 - **v0.27.1** — conventions fix: ① punctuation — simplified-Chinese web novels use only standard marks; dialogue uses curly quotes ""''，**no corner brackets「」『』**, em-dash —— used very rarely, no decorative symbols; ② Fanqie serialized long-form **best at 2000–2200 chars/chapter**; ③ added Fanqie's 5 publish rules (off-plot notes → "author's note", no pinyin-substitution/garbled/unsegmented text, no contact info / follow-baiting, no illegal content, no religion/superstition violations)
