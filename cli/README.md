@@ -137,3 +137,34 @@ output/《书名》/
 
 > 注意：`config.json`（含你的 key）已被 `.gitignore` 排除，不会上传。
 
+## 多模型配置与对照
+
+### Grok 快速开始
+
+从仓库根目录运行。把 xAI API Key 放入当前终端的 `XAI_API_KEY` 环境变量。请勿把密钥写进稿件或提交到 GitHub。Grok 聊天会员和 Grok Bot 会话不等同于 xAI API 凭据。
+
+```sh
+python -m pip install -U openai
+python cli/webnovel.py --grok --models
+python cli/webnovel.py --grok --model YOUR_MODEL_ID --workflow original --output draft.txt "用中文写一段都市悬疑，约300字，只给正文"
+```
+
+换成列表中账号有权使用的文本模型 ID，也可把 ID 存入 `XAI_MODEL`。后续可直接运行 `python cli/webnovel.py --grok` 进入对话模式。长篇按章节用文件交接，示例中的 `brief.txt` 写清本章目标、字数和语言，`previous.txt` 只放允许发送的已确认资料。
+
+```sh
+python cli/webnovel.py --grok --model YOUR_MODEL_ID --workflow continue --prompt-file brief.txt --source-file previous.txt --output chapter-02-draft.txt
+```
+
+`--workflow` 还支持 `adapt`、`translate` 和 `revise`。`--output` 写入完整回复，文件名必须是新的 `.txt` 或 `.md`；若只想要干净正文，在写作要求里明确。只有作者确认采用后才更新正式稿和设定。可用 `--max-output-tokens` 控制输出上限，它也计入推理 token，过低可能使回复未完成。直接模式使用官方 Responses 接口，超时 900 秒。查询模型列表不生成正文，生成请求可能产生 API 费用。[xAI 文本生成](https://docs.x.ai/developers/model-capabilities/text/generate-text)
+
+已有的 `base_url`、`api_key`、`model` 或 `WN_*` 环境变量继续走 `legacy`。新配置把模型设在 `providers` 下，密钥只通过 `api_key_env` 指定的环境变量读取。复制 `config.example.json` 后，把模型占位符换成账号或 Ollama 中实际可用的模型 ID。xAI 使用 OpenAI Python SDK 的 Responses 接口，需要支持 `client.responses` 的版本，可用 `python -m pip install -U openai` 更新。兼容旧接口时在该配置里加 `"api_mode": "chat"`。
+
+从 `cli/` 启动英文写作或本地化，可用 `python webnovel.py --full --provider xai` 或 `python webnovel.py --full --provider local`。把密钥先放入本机环境变量。xAI 默认读 `XAI_API_KEY`，本机 Ollama 无需真实密钥。[xAI 流式文档](https://docs.x.ai/developers/model-capabilities/text/streaming) · [Ollama 兼容接口](https://docs.ollama.com/api/openai-compatibility)
+
+- `/provider` 列出配置。用 `/provider xai` 切换，确认后后续请求会发送当前会话。
+- `/model 模型ID` 确认后覆盖当前模型。用 `/health xai` 检查配置模型是否出现在服务列表，此操作不生成内容。
+- `/route edit 请润色这段英文……` 按 `routes` 的任务映射发出单次请求。
+- `/compare xai,local 用这份设定写一段英文……` 把同一系统指令和这次输入分别交给两种模型。发送前需确认，不附会话正文，也不自动保存或采用结果。
+- 服务回传用量时终端显示输入与输出 token。Chat 配置可选择 `"report_usage": true`；确认所用服务支持后开启。可填 `usd_input_per_million` 与 `usd_output_per_million` 得到估算，以实际账单为准。请求默认 90 秒，可按配置设 `timeout`，失败后手动重试或明确选用其他模型。
+
+Grok Bot 的研究或评审请用[手动交接](../integrations/grokbot/README.md)。

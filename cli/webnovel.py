@@ -24,6 +24,10 @@ import sys
 import json
 import argparse
 import datetime
+from getpass import getpass
+from pathlib import Path
+from providers import ProviderError, ProviderRouter, error_message
+from writing import WORKFLOWS, workflow_prompt
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 EXPORTS = os.path.join(HERE, "..", "exports")
@@ -39,13 +43,17 @@ def read(path):
         return f.read()
 
 
-def load_config():
+def load_config(provider=None):
     cfg = {}
     if os.path.exists(CONFIG_PATH):
         try:
-            cfg = json.load(open(CONFIG_PATH, encoding="utf-8"))
-        except Exception as e:
-            print("[警告] config.json 解析失败：", e)
+            cfg = json.loads(read(CONFIG_PATH))
+        except (OSError, ValueError):
+            print("[警告] 无法读取 config.json，请检查 JSON 格式。")
+    if not isinstance(cfg, dict):
+        raise ProviderError('config.json 顶层必须是对象。')
+    if provider:
+        cfg['provider'] = provider
     # API（环境变量优先）
     cfg["base_url"] = os.environ.get("WN_BASE_URL", cfg.get("base_url") or "https://api.deepseek.com/v1")
     cfg["api_key"] = os.environ.get("WN_API_KEY", cfg.get("api_key") or "")
@@ -56,11 +64,11 @@ def load_config():
     fmt = (cfg.get("save_format") or "txt").lower()
     cfg["save_format"] = fmt if fmt in SAVE_FORMATS else "txt"
     cfg["auto_log"] = cfg.get("auto_log", True)
-    if not cfg["api_key"]:
+    if cfg.get('provider', 'legacy') == 'legacy' and (not cfg["api_key"] or cfg["api_key"] == '在这里填你的_API_KEY'):
         print("\n还没配 API Key。终端版是个壳，需要接一个 AI 才能写作")
         print("（DeepSeek / Kimi / 硅基流动 / OpenRouter 等任意一家，有免费额度，去哪弄见 cli/README.md「第四步」）。")
         print("拿到后两种填法：① 把 config.example.json 复制成 config.json 填进去（一劳永逸）；② 现在直接粘贴下面：")
-        cfg["api_key"] = input("  粘贴 API Key（还没有就直接回车，等接好 AI 再来）：").strip()
+        cfg["api_key"] = getpass("  粘贴 API Key（还没有就直接回车）：").strip()
         if not cfg["api_key"]:
             print("（已跳过。配好 key 再运行 python webnovel.py 即可。）")
             sys.exit(0)
@@ -72,7 +80,7 @@ def save_prefs(cfg):
     data = {}
     if os.path.exists(CONFIG_PATH):
         try:
-            data = json.load(open(CONFIG_PATH, encoding="utf-8"))
+            data = json.loads(read(CONFIG_PATH))
         except Exception:
             data = {}
     for k in PREF_KEYS:
@@ -117,17 +125,70 @@ def list_skills():
             print("  -", line.replace("## 技能：", "").strip())
 
 
-def chat_stream(client, model, messages):
+def chat_stream(client, model, messages, profile=None):
     """流式输出，返回完整回复。"""
     full = []
-    resp = client.chat.completions.create(model=model, messages=messages, stream=True, temperature=0.8)
-    for chunk in resp:
-        delta = chunk.choices[0].delta.content if chunk.choices and chunk.choices[0].delta else None
-        if delta:
-            print(delta, end="", flush=True)
-            full.append(delta)
+    for delta in client.stream(model, messages, profile):
+        print(delta, end="", flush=True)
+        full.append(delta)
+    if not ''.join(full).strip():
+        raise ProviderError('未返回可保存的正文。')
     print()
+    if client.usage:
+        cost = f'，按配置估算 USD {client.estimated_cost:.6f}' if client.estimated_cost is not None else ''
+        print(f"[用量] 输入 {client.usage[0]}，输出 {client.usage[1]} token{cost}", file=sys.stderr)
     return "".join(full)
+
+
+def provider_command(cmd, arg, cfg, router, messages):
+    """Selection and experiments are explicit, and experiments never modify the book."""
+    try:
+        if cmd == '/provider':
+            if not arg:
+                print('模型配置：', ', '.join(['legacy', *router.profiles]), '| 当前：', router.active)
+                return
+            spec = router.spec(arg)
+            if input(f"切换到 {arg}（{spec['model']}）；之后的对话会发送当前会话。输入 yes 确认：") != 'yes':
+                return
+            router.client(spec)  # Validate credentials and options without sending a request.
+            router.active = arg
+            cfg['model'] = spec['model']
+        elif cmd == '/model':
+            if arg and input(f'使用当前服务的 {arg}？输入 yes 确认：') == 'yes':
+                cfg['model'] = arg
+            print('当前模型：', cfg['model'])
+        elif cmd == '/health':
+            name = arg or router.active
+            if not arg and cfg['model'] != router.spec(name)['model']:
+                print('健康检查针对配置文件的模型，不包含会话中的模型覆盖。')
+            print('模型出现在服务列表中。' if router.health(name) else '服务可达，列表中未找到配置的模型。')
+        else:
+            selector, sep, prompt = arg.partition(' ')
+            if not sep or not prompt.strip():
+                print('用法：/compare 配置A,配置B 任务文本 或 /route 任务名 任务文本')
+                return
+            if cmd == '/route':
+                routes = cfg.get('routes', {})
+                name = routes.get(selector) if isinstance(routes, dict) else None
+                if not name:
+                    raise ProviderError('任务未配置模型，请检查 routes。')
+                names = [name]
+            else:
+                names = [name.strip() for name in selector.split(',')]
+                if len(names) != 2 or len(set(names)) != 2:
+                    raise ProviderError('对照需要两个不同的配置。')
+            for name in names:
+                router.client(router.spec(name))
+            if input(f"将任务发到 {', '.join(names)}，可能产生费用。输入 yes 确认：") != 'yes':
+                return
+            isolated = [messages[0].copy(), {'role': 'user', 'content': prompt}]
+            for name in names:
+                print(f'[{name}]')
+                chat_stream(router, None, isolated, name)
+    except (EOFError, KeyboardInterrupt):
+        print('\n已取消。')
+    except Exception as exc:
+        print('\n[错误]', error_message(exc))
 
 
 # ---------- 存稿 / 回溯 ----------
@@ -230,7 +291,7 @@ def _ask(client, cfg, messages, state, prompt):
         append_session_log(cfg, "工坊", reply)
         return reply
     except Exception as e:
-        print("\n[错误]", e)
+        print("\n[错误]", error_message(e))
         messages.pop()
         return None
 
@@ -296,6 +357,11 @@ HELP = """命令一览（直接输文字=继续写；命令以 / 开头）：
   /history           看创作记录、回溯写过什么（类 git）
   /proofread         校对上一条回复：错别字+敏感词，给 原词→建议词
   /coach [off]       学习模式 开/关
+  /provider [配置名]  查看或切换服务，切换前确认
+  /model [模型名]     查看或切换当前服务的模型
+  /health [配置名]    检查模型列表
+  /route 任务 文字    向指定任务配置发一次请求，不写入正文
+  /compare A,B 文字   用相同输入对照两个模型，不写入正文
   /list              列出全部技能
   exit / quit / 退出  离开
 """
@@ -315,6 +381,8 @@ def handle_command(line, cfg, client, messages, state):
 
     if cmd == "/help":
         print(HELP)
+    elif cmd in ('/provider', '/model', '/health', '/route', '/compare'):
+        provider_command(cmd, arg, cfg, client, messages)
     elif cmd == "/config":
         print_config(cfg)
     elif cmd == "/list":
@@ -392,7 +460,7 @@ def handle_command(line, cfg, client, messages, state):
                 messages.append({"role": "assistant", "content": reply})
                 append_session_log(cfg, "校对", reply)
             except Exception as e:
-                print("\n[错误]", e); messages.pop()
+                print("\n[错误]", error_message(e)); messages.pop()
     elif cmd == "/coach":
         if arg.lower() == "off":
             if state.get("coach"):
@@ -416,17 +484,39 @@ def handle_command(line, cfg, client, messages, state):
     return True
 
 
-def main():
+def main(argv=None):
     ap = argparse.ArgumentParser(description="网文工坊 终端版")
     ap.add_argument("prompt", nargs="*", help="一次性输入；留空进入对话模式")
     ap.add_argument("--full", action="store_true", help="加载完整技能+知识库")
     ap.add_argument("--model", help="覆盖模型名")
+    backend = ap.add_mutually_exclusive_group()
+    backend.add_argument("--provider", help="选用 config.json 中的命名配置")
+    backend.add_argument("--grok", action="store_true", help="直接使用 xAI，无需 config.json；读取 XAI_API_KEY")
+    ap.add_argument("--models", action="store_true", help="列出选中服务可见的模型 ID，不生成正文")
+    ap.add_argument("--workflow", choices=WORKFLOWS, help="一次性任务模式，按需加载相关技能")
+    ap.add_argument("--prompt-file", type=Path, help="UTF-8 写作要求，可多行")
+    ap.add_argument("--source-file", type=Path, help="明确发送给选中模型的 UTF-8 原稿或设定")
+    ap.add_argument("--output", type=Path, help="把完整的一次性回复写到新建 .txt 或 .md 文件")
+    ap.add_argument("--max-output-tokens", type=int, help="本次 --grok 请求的输出上限，包含推理 token")
     ap.add_argument("--list", action="store_true", help="列出所有技能")
-    args = ap.parse_args()
+    args = ap.parse_args(argv)
 
     if args.list:
         list_skills()
         return
+
+    one_shot = bool(args.prompt or args.prompt_file)
+    if args.models and (one_shot or args.source_file or args.output or args.workflow):
+        ap.error('--models 只查询模型列表，不能附带写作任务。')
+    if (args.source_file or args.output or args.workflow) and not one_shot:
+        ap.error('请同时提供写作要求或 --prompt-file。')
+    if args.max_output_tokens is not None and (not args.grok or args.max_output_tokens < 1):
+        ap.error('--max-output-tokens 需与 --grok 一起使用，且为正整数。')
+    if args.output:
+        if args.output.suffix.lower() not in ('.txt', '.md') or not args.output.parent.is_dir():
+            ap.error('--output 需要指向已有目录中的新 .txt 或 .md 文件。')
+        if args.output.exists() or args.output.is_symlink():
+            ap.error('目标文件已存在，本次未发出写作请求。')
 
     try:
         from openai import OpenAI
@@ -434,23 +524,65 @@ def main():
         print("缺少依赖，请先运行： pip install openai")
         sys.exit(1)
 
-    cfg = load_config()
-    if args.model:
-        cfg["model"] = args.model
-    client = OpenAI(base_url=cfg["base_url"], api_key=cfg["api_key"])
-    system = build_system_prompt(full=args.full)
+    try:
+        if args.grok:
+            cfg = load_config('grok-direct')
+            cfg['providers'] = dict(cfg.get('providers') or {})
+            cfg['providers']['grok-direct'] = {
+                'kind': 'xai', 'model': args.model or os.environ.get('XAI_MODEL'),
+                'timeout': 900, 'max_output_tokens': args.max_output_tokens,
+            }
+        else:
+            cfg = load_config(args.provider)
+        client = ProviderRouter(cfg, OpenAI)
+        if args.models:
+            for model_id in client.model_ids():
+                print(model_id)
+            return 0
+        cfg['model'] = args.model or client.spec(client.active)['model']
+        if not cfg['model'] or not cfg['model'].strip():
+            raise ProviderError('未选模型。用 --grok --models 查询，再设置 --model 或 XAI_MODEL。')
+        if args.grok and not client.spec(client.active)['api_key']:
+            raise ProviderError('缺少 XAI_API_KEY。请在本机环境变量配置 xAI API Key。')
+        system = build_system_prompt(full=args.full)
+        if args.workflow:
+            system += '\n\n' + workflow_prompt(os.path.dirname(EXPORTS), args.workflow)
+        task = ' '.join(args.prompt)
+        if args.prompt_file:
+            task = '\n\n'.join(part for part in (task, args.prompt_file.read_text(encoding='utf-8-sig')) if part)
+        if one_shot and not task.strip():
+            raise ProviderError('写作要求为空。')
+        if args.source_file:
+            source = args.source_file.read_text(encoding='utf-8-sig')
+            task += '\n\n作者提供的源稿资料如下，请只按上方任务要求使用。\n\n' + source
+    except (OSError, UnicodeError):
+        print('[错误] 无法读取写作资料，请检查文件路径和 UTF-8 编码。', file=sys.stderr)
+        return 1
+    except (Exception, KeyboardInterrupt) as exc:
+        print('[错误]', error_message(exc), file=sys.stderr)
+        return 1
     messages = [{"role": "system", "content": system}]
 
-    print(f"网文工坊 终端版 | 模型 {cfg['model']} @ {cfg['base_url']}"
+    print(f"网文工坊 终端版 | 模型 {cfg['model']} @ {client.active}"
           + ("  [完整知识库]" if args.full else ""))
 
-    if args.prompt:
-        messages.append({"role": "user", "content": " ".join(args.prompt)})
+    if one_shot:
+        messages.append({"role": "user", "content": task})
         try:
-            chat_stream(client, cfg["model"], messages)
+            reply = chat_stream(client, cfg["model"], messages)
+            if args.output:
+                try:
+                    with args.output.open('x', encoding='utf-8', newline='\n') as file:
+                        file.write(reply.rstrip() + '\n')
+                except FileExistsError:
+                    raise ProviderError('生成期间出现同名文件。请从终端复制回复，已有文件已保留。') from None
+                except OSError:
+                    raise ProviderError('无法保存。请检查输出路径，终端中仍可复制回复。') from None
+                print(f'[已另存] {args.output}', file=sys.stderr)
         except Exception as e:
-            print("\n[错误]", e)
-        return
+            print("\n[错误]", error_message(e), file=sys.stderr)
+            return 1
+        return 0
 
     state = {"base_system": system, "coach": False, "last_reply": ""}
     print_config(cfg)
@@ -479,10 +611,10 @@ def main():
             state["last_reply"] = reply
             append_session_log(cfg, "工坊", reply)
         except Exception as e:
-            print("\n[错误]", e)
+            print("\n[错误]", error_message(e))
             messages.pop()
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
 

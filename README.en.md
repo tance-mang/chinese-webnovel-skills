@@ -9,7 +9,7 @@ Idea → Spark → Outline → Killer opening → Golden-finger → Characters �
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-blueviolet)](https://code.claude.com)
-[![Skills](https://img.shields.io/badge/skills-33-brightgreen)](#-33-skills)
+[![Skills](https://img.shields.io/badge/skills-39-brightgreen)](#-39-skills)
 [![Version](https://img.shields.io/badge/version-0.29.1-blue)](CHANGELOG.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-success)](#-contributing)
 
@@ -28,7 +28,7 @@ Idea → Spark → Outline → Killer opening → Golden-finger → Characters �
 
 - [Why use it](#-why-use-it)
 - [Install](#-install)
-- [24 Skills](#-24-skills)
+- [39 Skills](#-39-skills)
 - [Typical workflows](#-typical-workflows)
 - [Knowledge base](#-knowledge-base)
 - [Project structure](#-project-structure)
@@ -77,7 +77,9 @@ The methodology is model-agnostic — any AI with a system prompt or custom-agen
 
 See **[exports/SETUP.md](exports/SETUP.md)**. One methodology, works across Claude / ChatGPT / Chinese models.
 
-## 📖 33 Skills
+## 📖 39 Skills
+
+Start with `/webnovel:english` and choose `original`, `adapt`, or `translate`. Use `genre-style`, `globalize`, `native-edit`, and `intimacy` for focused tasks. See the [writing examples](references/english-genre-profiles.md), [adaptation example](references/bilingual-adaptation.md), [CLI model profiles](cli/README.md), and [Grok Bot handoff](integrations/grokbot/README.md). [Write a chapter with Grok](cli/README.md#grok-快速开始).
 
 > Most skills accept a "**platform + channel + genre**" argument, e.g. `/webnovel:outline 番茄 男频 都市战神`, auto-adapting pacing and tropes.
 
@@ -109,7 +111,13 @@ See **[exports/SETUP.md](exports/SETUP.md)**. One methodology, works across Clau
 | 📈 Trends | `/webnovel:trends` | Live web research of trending genres/tags/rankings per platform |
 | 🔥 Slang | `/webnovel:slang` | Live-search current Douyin/RedNote/Weibo memes + rules to use them without feeling forced/dated |
 | 🫀 Human texture | `/webnovel:human` | Deep de-AI: add irrational acts / unfinished emotion / loose ends so it reads like an "emotion log", not a "manual" |
-| 🌍 English | `/webnovel:english` | Write/adapt for English platforms (Wattpad/Royal Road/Webnovel) — reads like a local author, not translationese |
+| 🌍 English | `/webnovel:english` | Original English fiction, localization, or faithful translation |
+| Genre | `/webnovel:genre-style` | Choose genre, narrative distance, pace and voice |
+| Localization | `/webnovel:globalize` | Record bilingual decisions and preserve story facts |
+| Intimacy | `/webnovel:intimacy` | Adult relationships, tension, boundaries and aftermath |
+| English editing | `/webnovel:native-edit` | Translationese, character voice, tense and viewpoint |
+| Model routing | `/webnovel:model-router` | Explicit model selection, comparison and handoff |
+| Grok writing | `/webnovel:grok-write` | Discover account models, write from a brief, and save a new draft |
 | 🎬 Script | `/webnovel:script` | Vertical short-drama / film scripts & novel-to-script, proper screenplay format, only what the camera can capture, hard cliffhanger per episode |
 | 🎓 Coach | `/webnovel:coach` | Learn to write (opt-in, beginner-friendly, explains the "why") |
 | 🎭 Fan-fiction | `/webnovel:fanfic` | Fanfic writing + copyright compliance check (character count / quote ratio / platform policy) |
@@ -158,7 +166,7 @@ See **[exports/SETUP.md](exports/SETUP.md)**. One methodology, works across Clau
 
 ## 📚 Knowledge base
 
-31 shared reference libraries (`references/`) — the web-novel know-how:
+35 shared reference libraries (`references/`) — the web-novel know-how:
 
 | File | Content |
 |---|---|
@@ -201,8 +209,8 @@ chinese-webnovel-skills/
 ├── .claude-plugin/
 │   ├── plugin.json          # plugin manifest
 │   └── marketplace.json     # marketplace manifest
-├── skills/                  # 33 skills (draft bundles build_docx.py for Word)
-├── references/              # 31 knowledge libraries
+├── skills/                  # 39 skills (draft bundles build_docx.py for Word)
+├── references/              # 35 knowledge libraries
 ├── templates/               # book bible / submission log / progress
 │   ├── book-bible-template.md
 │   ├── submission-log-template.md
@@ -216,6 +224,8 @@ chinese-webnovel-skills/
 ```
 
 ## 🙏 Credits
+
+**tance-mang** maintains WebNovel Studio. **Claude** contributed to earlier skills and workflows. **OpenAI Codex** contributed to author-led drafting, long-form consistency checks, the English writing and localization workflows, and the multi-model CLI and tests. **Grok Bot** contributed the overseas research used to guide the platform and genre review.
 
 - **Methodology seed**: the core hook examples and payoff tropes come from the author's own writing notes, *Novel Writing Logic*.
 - Built on [Claude Code](https://code.claude.com)'s public plugin mechanism.

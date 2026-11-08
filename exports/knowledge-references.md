@@ -347,6 +347,29 @@ Word 章标题使用段落样式而不是手打特殊符号；首行缩进通过
 
 
 ============================================================
+# 双语改编决策与长篇档案
+
+一书一份双语附录。按稳定 ID 管理，正文可用任一语言引用 ID。每次只应用作者已采纳的改动；保留旧译名、源章和受影响章供撤销。
+
+| ID | 原文及定位 | 英文表达／背景设定 | 动作 | 影响／核对 | 作者状态 |
+|---|---|---|---|---|---|
+| T01 | 第1章“嫂子替我接了电话” | my older brother’s wife | 保留关系，首次说明 | 她不是叙事者的姐姐。接电话的人和知情顺序保持 | 已采纳（示例） |
+| W01 | 第1章“两万元彩礼交给女方父母” | a 20,000-yuan betrothal gift to her parents | 保留中国背景和金额 | 后续归还对象仍是同一户人。避免误译成由女方支付的 dowry | 待作者确认（示例） |
+
+角色卡记录：ID、中英文姓名、对外姓名、称谓映射、人称代词、地域／语域、说话禁忌、关键关系、知情范围。文化设定卡记录：地点与年代、货币及购买力、机构制度、证据来源、保留／解释／替换状态。复核时对照源稿与译稿的事件、顺序、信息差、代价和关系。
+
+## 微型改编示例
+
+原稿：订婚宴开席前，许宁把两万元彩礼放回男方母亲手里。她没说退婚，只问她哥借了一把伞。她哥已经知道钱要还，未婚夫还在楼上迎客。
+
+作者选择保留中国背景。要保留归还者、收款者、金额、未公开退婚、哥哥知情而未婚夫不知情。译稿可用现场细节帮助读者理解礼金，无须改成另一套婚俗。
+
+Before the engagement dinner, Xu Ning pressed the envelope back into her fiancé’s mother’s hands. All twenty thousand yuan of the betrothal gift was still inside. She said nothing about calling off the wedding. She just asked her brother for an umbrella. He had known she was going to give the money back. Upstairs, her fiancé was still greeting guests.
+
+
+
+
+============================================================
 # 爆款拆解案例库（Case Studies）
 
 > 真实爆款的结构拆解，供 `deconstruct`（对标学结构）和 `coach`（教学）调用。
@@ -406,9 +429,9 @@ Word 章标题使用段落样式而不是手打特殊符号；首行缩进通过
 - **始终原创**：套用的是结构和手法，不是文字和剧情。
 
 ## 相关
-- 钩子（含五类钩子、番茄开头）→ [hook-library.md](hook-library.md)
-- 虐点设计 → [trope-library.md](trope-library.md)
-- 去 AI 味（克制、真人质感）→ [anti-ai-checklist.md](anti-ai-checklist.md)
+- 钩子（含五类钩子、番茄开头）→ [hook-library.md](../references/hook-library.md)
+- 虐点设计 → [trope-library.md](../references/trope-library.md)
+- 去 AI 味（克制、真人质感）→ [anti-ai-checklist.md](../references/anti-ai-checklist.md)
 
 
 
@@ -472,15 +495,15 @@ Word 章标题使用段落样式而不是手打特殊符号；首行缩进通过
 ## 五、写作前必答三问
 
 1. **男频还是女频？** → 决定爽感逻辑。
-2. **哪个细分类型？** → 决定套路池（调 [trope-library.md](trope-library.md)）。
-3. **投哪个平台？** → 决定节奏密度（调 [platform-profiles.md](platform-profiles.md)）。
+2. **哪个细分类型？** → 决定套路池（调 [trope-library.md](../references/trope-library.md)）。
+3. **投哪个平台？** → 决定节奏密度（调 [platform-profiles.md](../references/platform-profiles.md)）。
 
 ---
 
 ## 相关
-- 套路元素 [trope-library.md](trope-library.md)
-- 金手指设计 [goldfinger-types.md](goldfinger-types.md)
-- 钩子结构 [hook-library.md](hook-library.md)
+- 套路元素 [trope-library.md](../references/trope-library.md)
+- 金手指设计 [goldfinger-types.md](../references/goldfinger-types.md)
+- 钩子结构 [hook-library.md](../references/hook-library.md)
 
 
 
@@ -763,166 +786,60 @@ AI 写"三天后""五分钟后""两个月后""第二天"全凭手感，写到后
 
 
 ============================================================
-# 英文网文出海库（English Web Fiction）
+# 英文类型档案
 
-> 出海写英文不是把中文翻译过去——**中文网文卖"剧情爽点"，英文网文卖"情绪钩子"**。
-> 中文读者愿意看你解释为什么爽；英文读者要被**直接扔进故事**，自己感受。
-> 目标：让 AI 写的英文读起来像当地作者，而不是"中国网文翻译腔"。供 `english` 调用。
+以下是可调的创作档案。平台栏只给可核查的发行方向，不判断市场份额或合规。括号中的英语例句为原创。场景可组合两档，按作者的样稿调整。
 
----
+本档案属于编辑经验，作者可覆盖。参考 Grok Bot 海外创作研究的可观察线索：把修炼规则放进选择与代价，让称谓表达亲疏和权力，章尾用本类型所需的关系变化、证据或能力瓶颈推进。翻译稿保持揭示顺序；只有改编模式才考虑把长段制度说明移到后续场景。
 
-## 〇、总开关：Native English Webnovel Mode（默认）
+| 类型 | 读者期待与视角 | 节奏、情绪与对白 | 章节推进 | 语境与常见模板问题 | 可选发行方向 | 示例与反例 |
+|---|---|---|---|---|---|---|
+| Contemporary Romance | 在可辨认的日常中相信两个人的选择；近距单视角或双视角 | 日常细节、轻松接话、间接试探，允许安静段落 | 一次相处改变期待或责任 | 保留阶层与工作语域，别给所有角色同一种俏皮话 | Wattpad、Inkitt、KDP | “I saved you a seat.” 胜过突然宣告命中注定 |
+| Dark Romance | 危险与吸引并存，有角色能动性；可用带偏见的近距视角 | 张力可慢升，控制与脆弱在动作中出现；对白可以互相误读 | 让选择改变权力或信任代价 | 区分人物借口与叙事评价；别用恐惧替代同意 | 内容尺度以目标平台为准 | “The door stays open,” she said. 胜过用“she wanted it”代替选择 |
+| Slow Burn Romance | 情感回报靠累积；近距视角让读者看到误读与改变 | 重复场景要有差异；小动作和半句回应胜过同一段心跳 | 每章改变关系中一个可观察变量 | 不机械拖延；能一句话化解的误会须有可信的沉默成本 | Wattpad、Inkitt、KDP | He started buying two tickets. 胜过每章复述两人没表白 |
+| Romantic Suspense | 危险与关系互相改变；可双视角但明确知情边界 | 张弛交替；危险时对白务实，余波时给脆弱留空间 | 线索改变信任，信任影响下一步行动 | 核查职业术语和制度；别把感情当探案奖励 | 连载或完本，按平台核查 | “Take my keys. I’ll keep the phone.” 胜过让调查在告白时无故暂停 |
+| Psychological Thriller | 公平线索和认知错位；近距不可靠视角可用 | 平静可持续，动机从矛盾行为露出；对白避免讲解反转 | 让旧信息获得新解释 | 别用心理诊断充当动机，也别在揭晓时才新增决定性事实 | 完本或悬疑连载 | The kettle was still warm. I had unplugged it on Tuesday. 胜过段尾反复预告不祥 |
+| Fantasy Romance | 关系弧和奇幻选择互相制约；单／双近距 | 世界规则嵌入行动；正式与私下的语气要有落差 | 一次感情选择引出规则代价，或反过来 | 不用泛古英语代替制度；勿临时发明解除代价的魔法 | 连载或 KDP，按完本计划 | “If I name you here, the oath holds in both courts.” 胜过先讲两页背景 |
+| LitRPG | 数值有可见收益与取舍；近距视角让信息服务决策 | 系统提示可短，战后复盘放慢；队员声音各异 | 一次资源投入换一个变化，数值与伤势持续 | 术语统一；避免每段播报状态、升级无成本 | Royal Road；也可计划完本发行 | He spent his last point on balance, not damage. 胜过抄整页面板 |
+| Progression Fantasy | 能力经学习或试错增长；近距可呈现错误与理解 | 练习、检验和失败交错；对白围绕问题与反馈 | 本章展示一次看得见的进步或新瓶颈 | 训练有门槛，避免师父凭空给万能解 | Royal Road；也可计划完本发行 | She could hold the flame, but only while standing still. 胜过无条件突破 |
+| Urban Fantasy | 熟悉城市与隐秘规则碰撞；跟着角色的行动路径 | 白天语域与秘密场所的语域不同；留出生活摩擦 | 超自然规则改变具体的城市行动 | 核对交通、地理与机构，避免旅游指南式布景 | 连载或完本，按平台核查 | The ghost could board only at stops the city had removed. 胜过只把城市换成大都会 |
+| Mystery / Suspense | 让读者能复盘证据；按侦查者可知范围叙述 | 物证与口供交替；让证人有自己的理由，不做说明书 | 本章回答一个问题或使原假设失效 | 时刻、位置、证物链需可核对；不靠藏关键视角作弊 | Royal Road、Tapas 或完本发行，投稿前核查 | The duplicate receipt used tomorrow’s date. 胜过“凶手就在我们中间”反复空转 |
 
-> 写英文时**默认开启**这一条——它改的是**叙事思维**，比几十条零散规则都重要：
->
-> - **默认按欧美母语网文风格输出，不是中文翻译过去。**
-> - **优先动作、对话、冲突、悬念；降低解释、降低抒情、降低文学化描写。**
-> - **提高人物真实感和口语化表达。**
-> - **让读者沉浸在事件中，而不是旁观作者讲故事。**
->
-> 区别：不是"中文思维→翻译成英文"，而是"英文读者本来就会这样表达"。
+## 两段英文原创示例
 
-### 十条核心规则（Native English）
-1. **禁止翻译腔**：情绪用动作/身体反应，不直译中式比喻。
-   ❌ `Her heart felt like it was cut by knives.` / `Flames of anger burned in his chest.`
-   ✅ `My chest tightened.` / `He clenched his jaw.` / `She looked away.`
-2. **Show > Tell**：不解释情绪。❌ `She was sad/nervous/angry.` ✅ `Her hands shook.` `She stared at the floor.` `He slammed the door.`
-3. **句长 70/20/10**：70% 短句、20% 中句、10% 长句，避免连续长句。
-   > `I stopped. / The room was empty. / Too empty. / Then I heard breathing behind me.`
-4. **禁止文学堆砌**：避免 `moonlight danced`、`crystal tears`、`breathtaking beauty`、`cold smile` —— 直接写动作。
-5. **每 200 字必须推进**：新信息/新冲突/新秘密/新反转/新危险，禁止无意义描写。
-6. **钩子优先**：章节开头不要环境描写，开头给 危险/秘密/死亡/身份反转/禁忌关系/倒计时/悬念。
-7. **对话像真人**：❌ `I am extremely disappointed in your behavior.` ✅ `What the hell was that?` —— 口语 > 书面。
-8. **母语短句节奏**：多用 `Maybe.` `Fine.` `Seriously?` `No way.` `Wait.` `Damn.` 增加真实感。
-9. **减少副词**：避免 `slowly / carefully / suddenly / angrily`，用动作表达。
-10. **每章结尾留钩**：读完让读者想"再看一章"。
-    > `The message appeared. / WELCOME BACK, PLAYER. / Level 1 begins.`
+**Slow Burn Romance，双视角作品里的单视角片段**
 
----
+Mara found a second mug beside the boiler. The chipped one was hers. The other had a pencilled line at the height she usually poured the milk.
 
-## ⓪+ 中国爽文 vs 英文爽文（结构差异，最易忽略）
+“You don’t drink tea,” she said.
 
-| | 中文爽文 | 英文爽文 |
-|---|---|---|
-| 结构 | **情绪 → 爽点**（直接给爽） | **谜团 → 情绪 → 爽点**（先制造疑问再给爽） |
-| 例 | "前男友后悔了" → 直接爽 | 前男友**为什么**后悔？他隐瞒了什么？那晚发生了什么？→ 先疑问，再爽 |
+“No.” Dev went back to tightening the hinge. “But you do, on Thursdays.”
 
-> 英文读者要先被"为什么"勾住，再给情绪和爽点。**先埋谜，后给糖。**
+She could have told him Thursday was the only night her daughter slept at her ex’s. She picked up the mug instead. Next Thursday, she thought, she would bring biscuits.
 
-### 爽感包装：身份碾压 vs 个人成长
-- **中文爱"身份碾压"**：首富、战神、龙王、神医（一出场就高位）。
-- **英文爱"个人成长"**：**Survivor（幸存者）/ Underdog（弱者逆袭）/ Outcast（被排挤者）/ Chosen One（被选中者）**（从低到高、自己挣来）。
-- 同样是爽，**包装方式不同**：英文要让读者陪主角"挣"，而不是开局就赢。
+这里用一次被记住的习惯推进关系，留白让读者自行判断其分量。
 
----
+**Progression Fantasy，近距单视角**
 
-## 一、英文平台速览
+The bell rang at the end of the bridge. Nessa let go of the heat. Her left boot landed on stone; the right went through the ice up to her ankle.
 
-| 平台 | 受众/频道 | 爆款题材 | 变现 | 上手 |
-|---|---|---|---|---|
-| **Wattpad** | 女性为主，13–30，情绪阅读 | Romance、Bad Boy、Billionaire、Mafia、Werewolf、Fake Dating | 签约/付费(门槛不低) | ⭐最易上手：免费注册、不要银行卡、直接发 |
-| **Royal Road** | 男性为主 | LitRPG、系统、升级、Progression、无限流、奇幻、穿越、DnD/RPG | 引流 Patreon 赚钱 | 男频强，英文网文圈很有名 |
-| **Webnovel** | 阅文国际版，中国作者多 | 系统、神豪、重生、签到、校园、都市（=英文版番茄）| 签约体系成熟 | 爽文/升级流/系统流接受度高 |
-| **Radish** | 偏女性付费 | 言情、总裁、狼人；短篇/连载 | 付费阅读 | 短平快 |
-| **Amazon KDP** | 电子书读者 | 完结作品 | 版税最高 70% | 适合完结、**不适合日更模式** |
+“You got farther,” Iven called.
 
-> 新人最快上手：**Wattpad**（女性向言情/Romance）和 **Webnovel**（系统/升级，最像番茄）。
+She had. She’d also wasted half the charge making the flame big enough for him to see. She pulled off the wet boot, set it beside the first marker, and tried the bridge barefoot. This time the flame fit inside her fist.
 
----
+这里用失败、原因和可复验的下一次尝试推进能力，没跳过练习代价。
 
-## 二、英文 vs 中文 底层逻辑（最重要）
 
-| | 中文网文 | 英文网文 |
-|---|---|---|
-| 卖点 | 剧情**爽点** | 情绪**钩子** |
-| 读者关注 | 世界观、爽感、文学性 | 人物、感情、情绪 |
-| 节奏 | 可铺垫 | 前 100 词必须有事发生 |
-| 解释 | 愿意看"为什么爽" | 讨厌解释，直接动作，自己理解 |
-| 开头 | “血色残阳下，少女眸光冷冽。” | `I never expected my life to change that night.` / `The dead man opened his eyes.` |
 
-> 一句话：**英文读者更喜欢被直接扔进故事里，让他自己感受**，而不是你告诉他该感受什么。
 
----
+============================================================
+# 英文小说写作准则
 
-## 三、英文读者讨厌的 3 件事（AI 最容易翻车）
+先读作者目标、主类型、视角、英语变体与作品样段，再选择 [类型档案](../references/english-genre-profiles.md)。句长和段落随叙述距离、节奏及人物声线变化；章尾可以靠决定、关系变化、承诺或未解决的问题推进。移动端分段是可读性选择。
 
-### 1. 长段落
-英文一大段就弃书。要**短，非常短**。
-- ❌ 一大段叙述 + 回忆 + 心理。
-- ✅ `I looked outside. / Rain hit the window. / The memory came back.`
+中文作者可以用中文定剧情和情绪，英文正文用角色会说的表达。具体检查生硬搭配、重复称呼、长串抽象情绪、自我解释和语域漂移。场景里的信息用能承载它的动作、对白或内心来给；背景转接或时间跨度也可直接概述。
 
-### 2. 解释
-不要写"她之所以这么做是因为……"，直接动作。
-- ❌ `She was angry because...`
-- ✅ `She slammed the door.` （让读者自己理解）
-
-### 3. 堆形容词
-- ❌ `Her beautiful, gorgeous, stunning eyes...`
-- ✅ `Her eyes stayed on me.` （简单）
-
----
-
-## 四、英文排版（必须遵守）
-
-- 章标题：`Chapter 1`（不是"第一章"）。
-- 段落短、段间空行。
-- **对话必须换行，一句一行**：
-```
-"Who are you?"
-
-I froze.
-
-"Answer me."
-```
-- ❌ 绝不把对话和动作挤在一行：`"Who are you?" I froze. "Answer me."`（阅读体验差）。
-
----
-
-## 五、英文节奏：前 100 词有事发生
-- ❌（中文式铺垫）女主起床→洗脸→吃饭→出门→撞见男主。
-- ✅ 第一句直接开始：`The dead man opened his eyes.`
-
----
-
-## 六、英文最爱的钩子（开篇第一句）
-
-- **身份反转**：`My husband murdered me. Then I woke up three years earlier.`
-- **危机/倒计时**：`The timer on my arm showed 00:59.`
-- **秘密**：`Everyone in town knew the truth except me.`
-- **禁忌关系**：`I accidentally married my enemy.`
-
----
-
-## 七、英文情绪表达：用身体反应，不喊抽象
-- ❌ `Her heart was breaking.`（≈ 心如刀割，英文很少这样写）
-- ✅ `I couldn't breathe.` / `My hands shook.` / `My throat went tight.`
-> 和中文的 show-don't-tell 一脉（见 `show-emotion.md`），但英文更偏**生理反应**、更克制。
-
----
-
-## 八、AI 写英文最容易暴露的 3 个破绽
-
-1. **太正式**：`Therefore... / However... / Furthermore...` → 像论文/学术。改口语连接或删。
-2. **太工整/机械**：`He smiled. She smiled. He walked. She walked.` → 句式镜像、节奏机械。打破对称（见 `sentence-rhythm.md`）。
-3. **过度文学**：`Moonlight danced gracefully upon the crystal lake...` → 网文读者直接跳。要直白、要快。
-
----
-
-## 九、平台 × 题材速配
-- **Wattpad**：Romance / Billionaire / Mafia / Werewolf / Enemies-to-Lovers / Fake Dating（女性向情绪流）。
-- **Royal Road**：LitRPG / Progression / System / Dungeon / Cultivation（男频升级，可借中文套路）。
-- **Webnovel**：System / Reborn / Urban / Sign-in / Campus（英文版番茄，中文套路直接迁）。
-- **短篇/广告流（TikTok/Reels）**：强钩子、强反转、超短段落。
-
----
-
-## 十、给中国作者的一句话
-你的**反转意识、钩子意识、快节奏**很适合 Wattpad 短篇 / Webnovel / 短视频小说流。把"解释爽点"改成"直接扔进情绪"，就立刻接近当地作者，而不是翻译腔。
-
-## 相关
-- 英文写作/改写技能 → `skills/english`
-- 去 AI 味（中英通用思路）→ `deslop`、`human`、`sentence-rhythm.md`、`show-emotion.md`
-- 钩子结构（中英通用）→ `hook-library.md`
+英文原创、文化改编与忠实翻译分别走 `original`、`adapt`、`translate`。保留中国背景时可以保留名字、称谓和文化习惯，按读者需求在叙事里补足含义。使用 [改编表和双语档案](../references/bilingual-adaptation.md) 跟踪已确认决定。英文校订用 `native-edit`。查投稿去 [海外平台档案](../references/overseas-platforms.md)，政策和类型经验分开。
 
 
 
@@ -1146,8 +1063,8 @@ I froze.
 3. **当下还火不火**？→ 用 `trends` 联网核对，别追到尾部红海
 
 ## 相关
-- 套路元素 [trope-library.md](trope-library.md)　金手指 [goldfinger-types.md](goldfinger-types.md)
-- 同人合规 [fanfic-guide.md](fanfic-guide.md)
+- 套路元素 [trope-library.md](../references/trope-library.md)　金手指 [goldfinger-types.md](../references/goldfinger-types.md)
+- 同人合规 [fanfic-guide.md](../references/fanfic-guide.md)
 
 
 
@@ -1206,8 +1123,8 @@ I froze.
 ---
 
 ## 相关
-- 女频较少用硬金手指，多用"身份/系统/重生"软外挂，见 [channel-guide.md](channel-guide.md)
-- 金手指带来的爽点元素见 [trope-library.md](trope-library.md)
+- 女频较少用硬金手指，多用"身份/系统/重生"软外挂，见 [channel-guide.md](../references/channel-guide.md)
+- 金手指带来的爽点元素见 [trope-library.md](../references/trope-library.md)
 
 
 
@@ -1294,7 +1211,7 @@ I froze.
    > “我睁眼时，正躺在自己的葬礼上，而棺材盖正在合拢。”
    - 钩点：活人参加自己葬礼，生死危机 + 重生/穿越谜团。
 
-> 男频套路池（升级/打脸/越级/系统/扮猪）见 [trope-library.md](trope-library.md)；金手指流派见 [goldfinger-types.md](goldfinger-types.md)；男频用词偏"猛/爽/燃"的强化词与围观反应，见 [xiushi-ci.md](xiushi-ci.md)。
+> 男频套路池（升级/打脸/越级/系统/扮猪）见 [trope-library.md](../references/trope-library.md)；金手指流派见 [goldfinger-types.md](../references/goldfinger-types.md)；男频用词偏"猛/爽/燃"的强化词与围观反应，见 [xiushi-ci.md](../references/xiushi-ci.md)。
 
 ---
 
@@ -1371,9 +1288,9 @@ I froze.
 ---
 
 ## 相关
-- 套路元素见 [trope-library.md](trope-library.md)
-- 金手指上线节奏见 [goldfinger-types.md](goldfinger-types.md)
-- 不同平台的钩子密度要求见 [platform-profiles.md](platform-profiles.md)
+- 套路元素见 [trope-library.md](../references/trope-library.md)
+- 金手指上线节奏见 [goldfinger-types.md](../references/goldfinger-types.md)
+- 不同平台的钩子密度要求见 [platform-profiles.md](../references/platform-profiles.md)
 
 
 
@@ -1684,6 +1601,28 @@ AI 尽量中立；人写作有偏见、情绪判断、不公平的评价。
 
 
 ============================================================
+# 海外平台核验档案
+
+查阅日期：2026-11-08。下表是当前公开页面能支持的事实。待核实不表示允许或禁止。投稿前重开官网核对内容分级、AI 生成／辅助／翻译、作者资格和授权条款，记录页面及日期。遇到登录门槛或说法冲突，标待核实，不补猜稿酬、签约门槛和读者画像。
+
+| 平台 | 投稿入口与内容核对 | AI 记录 | 官方来源 |
+|---|---|---|---|
+| Wattpad | 核对作品发布界面、成熟标签和内容规则。此轮未能读到完整规则页，具体限制及入口流程待核实 | 待核实 | [内容规则](https://www.wattpad.com/terms/content) |
+| Royal Road | Author Dashboard 提交小说。官方禁止情色小说和以性内容为核心的作品；成熟内容限已标记的章节，标题与简介不得含成熟内容。官方未给篇幅比例 | 平台有 AI 文本分类说明，按实际参与程度核对标签 | [提交与内容指南](https://www.royalroad.com/support/knowledgebase/114)、[AI 文本政策](https://www.royalroad.com/blog/57/royal-road-ai-text-policy) |
+| Webnovel | Inkstone 是作者入口，登录后具体合同、标签和题材要求待核实 | 待核实 | [Inkstone](https://inkstone.webnovel.com/) |
+| Inkitt | 按官方指南提交并核对章节、标签和内容警示。竞赛规则单独查 | 生成对白或实质重写等按官方 AI 标签规则标记；拼写检查和少量润色有例外 | [写作指南](https://www.inkitt.com/guidelines)、[AI 标签](https://inkitt.zendesk.com/hc/en-us/articles/22937930724754-AI-Assisted-Content-Label) |
+| Tapas | 按小说单集教程发布，按社区内容指南核查年龄分级及可展示范围 | 官方公告禁止上传 AI 生成内容，范围包含小说单集及封面。生成草稿不可判为可投稿。未覆盖的辅助场景提交前核实 | [小说发布](https://help.tapas.io/hc/en-us/articles/1260802043849-Series-Basics-How-to-publish-a-novel-episode-on-Tapas)、[AI 公告](https://tapas.io/newsfeed/224) |
+| Amazon KDP | 走图书发布流程，核对封面、版权、正文与元数据 | 披露 AI 生成的文字、图像和译文，即使生成后进行了大量编辑。仅辅助的内容依官方区分处理 | [内容及 AI 指南](https://kdp.amazon.com/en_US/help/topic/G200672390) |
+| Radish | 历史平台。官方宣布应用已于 2025-12-31 关闭，从投稿候选中排除 | 不适用 | [停运公告](https://radish.groovehq.com/help/radish-app-sunset) |
+
+投稿包独立交付：英文书名候选、短简介和长简介、类型／关键词候选、内容提示、作者确认过的 AI 使用说明、已核实与待核实字段。作者自己决定是否提交。
+
+资料线索来自作者提供的 Grok Bot 海外创作研究。平台条款逐条对照上表官方页面，市场口味和类型经验只作为可覆盖的编辑建议。Wattpad 全站 AI 政策、Webnovel 后台 AI 规则及平台合同条款仍待核实。
+
+
+
+
+============================================================
 # 平台调性库（Platform Profiles）
 
 > 同一个故事，投番茄和投晋江要写成两个样子。平台决定**节奏、字数、爽点密度、男女频偏好、付费结构、同人政策**。
@@ -1812,9 +1751,9 @@ AI 尽量中立；人写作有偏见、情绪判断、不公平的评价。
 ---
 
 ## 相关
-- 男女频底层逻辑 → [channel-guide.md](channel-guide.md)
-- 全品类题材 → [genre-library.md](genre-library.md)
-- 同人合规 → [fanfic-guide.md](fanfic-guide.md)
+- 男女频底层逻辑 → [channel-guide.md](../references/channel-guide.md)
+- 全品类题材 → [genre-library.md](../references/genre-library.md)
+- 同人合规 → [fanfic-guide.md](../references/fanfic-guide.md)
 - 实时榜单热题 → `skills/trends`
 
 
@@ -2669,7 +2608,7 @@ AI 尽量中立；人写作有偏见、情绪判断、不公平的评价。
 ### 2.2 爽点密度（按平台）
 - **番茄/短剧向**：几乎每章一个小爽点，3–5 章一个中爽点。
 - **起点/精品向**：可以铺垫，但每 3 章必给一次明确情绪释放。
-- 详见 [platform-profiles.md](platform-profiles.md)。
+- 详见 [platform-profiles.md](../references/platform-profiles.md)。
 
 ### 2.3 爽点升级链（避免读者疲劳）
 同一种爽点（如打脸）不能原地重复，必须**升级对象/规模/方式**：
@@ -2715,9 +2654,9 @@ AI 尽量中立；人写作有偏见、情绪判断、不公平的评价。
 ---
 
 ## 相关
-- 钩子结构见 [hook-library.md](hook-library.md)
-- 金手指（系统/重生等）的设计见 [goldfinger-types.md](goldfinger-types.md)
-- 男频/女频爽点差异见 [channel-guide.md](channel-guide.md)
+- 钩子结构见 [hook-library.md](../references/hook-library.md)
+- 金手指（系统/重生等）的设计见 [goldfinger-types.md](../references/goldfinger-types.md)
+- 男频/女频爽点差异见 [channel-guide.md](../references/channel-guide.md)
 
 
 
