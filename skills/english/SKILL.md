@@ -15,5 +15,7 @@ description: 英文小说原创、中文小说海外改编和忠实翻译。适�
 
 已写英文稿的修订走 `native-edit`；类型对比用 `genre-style`；成年角色关系张力用 `intimacy`；投稿用 `submission` 和 [海外平台档案](../../references/overseas-platforms.md)。
 
+作者明确选择 Grok 时，用 [grok-write](../grok-write/SKILL.md) 将当前模式和允许外发的资料交给 xAI，先保留结果为草稿。
+
 先读 [英文写作准则](../../references/english-webfic.md)，按需加载类型档案。没有固定句长比例或转折间隔。正文使用普通章标题与自然段，留在作者选定范围内；说明、译注、待核项和备选分区。用中文沟通决策，用指定英语变体写正文。长篇把已确认的术语、称谓和文化改动写入 [双语档案](../../references/bilingual-adaptation.md)。
 

@@ -21,4 +21,10 @@
 
 测试覆盖旧配置与 `WN_MODEL`、xAI Responses 与兼容 Chat 的模拟流、用量及费用估算、拒绝与未完成流、脱敏错误、切换确认、Ollama 模型列表、双模型相同输入、交接导入与拒绝覆盖、技能元数据和导出链接。详细断言见 [测试代码](../tests/test_international.py)。
 
-[两个英文原创示例](../references/english-genre-profiles.md)和[中文改编示例](../references/bilingual-adaptation.md)用于人工复测。改编示例保留返还金额、收款人、退婚未公开、哥哥知情而未婚夫不知情。创作质量与模型实际遵循档案的程度仍需真人盲评。本轮未调用真实 xAI、Claude 或 Ollama 服务，未验证账户模型、账单、Claude Code 安装或平台账号后台。Grok Bot 的真实研究结果待单独交接。
+[两个英文原创示例](../references/english-genre-profiles.md)和[中文改编示例](../references/bilingual-adaptation.md)用于人工复测。改编示例保留返还金额、收款人、退婚未公开、哥哥知情而未婚夫不知情。创作质量与模型实际遵循档案的程度仍需真人盲评。本轮未调用真实 xAI、Claude 或 Ollama 服务，未验证账户模型、账单、Claude Code 安装或平台账号后台。
+
+## Grok 写作入口复测
+
+基于 PR #3 的 `d8be8eba5d6f371d081907981c6b7e716d6c51e6`。用 OpenAI Python SDK 1.106.1 与 `httpx.MockTransport` 跑 `python -X utf8 -m unittest discover -s tests -v`，退出码 0，共 18 项通过。新增 5 项覆盖 `GET /v1/models`、`POST /v1/responses` 的实际请求格式、SSE 完成事件、UTF-8 读写、缺密钥时不请求、存在同名稿时不请求、流式中断时不落盘。两条接口均由本机模拟，未发送真实稿件或 API Key。
+
+已读取 Grok Bot 的海外研究报告。PR #2 提供研究材料和文档，本次将经官方核对的规则纳入[平台档案](../references/overseas-platforms.md)，将类型与文化观察纳入[类型档案](../references/english-genre-profiles.md)。未把市场经验写成硬规则。最新导出包含 39 个技能、35 份参考库。当前环境没有 `XAI_API_KEY`，真实账号模型、计费和生成质量仍待实测。

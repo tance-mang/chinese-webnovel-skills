@@ -25,7 +25,9 @@ import json
 import argparse
 import datetime
 from getpass import getpass
+from pathlib import Path
 from providers import ProviderError, ProviderRouter, error_message
+from writing import WORKFLOWS, workflow_prompt
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 EXPORTS = os.path.join(HERE, "..", "exports")
@@ -482,18 +484,39 @@ def handle_command(line, cfg, client, messages, state):
     return True
 
 
-def main():
+def main(argv=None):
     ap = argparse.ArgumentParser(description="网文工坊 终端版")
     ap.add_argument("prompt", nargs="*", help="一次性输入；留空进入对话模式")
     ap.add_argument("--full", action="store_true", help="加载完整技能+知识库")
     ap.add_argument("--model", help="覆盖模型名")
-    ap.add_argument("--provider", help="选用 config.json 中的命名配置")
+    backend = ap.add_mutually_exclusive_group()
+    backend.add_argument("--provider", help="选用 config.json 中的命名配置")
+    backend.add_argument("--grok", action="store_true", help="直接使用 xAI，无需 config.json；读取 XAI_API_KEY")
+    ap.add_argument("--models", action="store_true", help="列出选中服务可见的模型 ID，不生成正文")
+    ap.add_argument("--workflow", choices=WORKFLOWS, help="一次性任务模式，按需加载相关技能")
+    ap.add_argument("--prompt-file", type=Path, help="UTF-8 写作要求，可多行")
+    ap.add_argument("--source-file", type=Path, help="明确发送给选中模型的 UTF-8 原稿或设定")
+    ap.add_argument("--output", type=Path, help="把完整的一次性回复写到新建 .txt 或 .md 文件")
+    ap.add_argument("--max-output-tokens", type=int, help="本次 --grok 请求的输出上限，包含推理 token")
     ap.add_argument("--list", action="store_true", help="列出所有技能")
-    args = ap.parse_args()
+    args = ap.parse_args(argv)
 
     if args.list:
         list_skills()
         return
+
+    one_shot = bool(args.prompt or args.prompt_file)
+    if args.models and (one_shot or args.source_file or args.output or args.workflow):
+        ap.error('--models 只查询模型列表，不能附带写作任务。')
+    if (args.source_file or args.output or args.workflow) and not one_shot:
+        ap.error('请同时提供写作要求或 --prompt-file。')
+    if args.max_output_tokens is not None and (not args.grok or args.max_output_tokens < 1):
+        ap.error('--max-output-tokens 需与 --grok 一起使用，且为正整数。')
+    if args.output:
+        if args.output.suffix.lower() not in ('.txt', '.md') or not args.output.parent.is_dir():
+            ap.error('--output 需要指向已有目录中的新 .txt 或 .md 文件。')
+        if args.output.exists() or args.output.is_symlink():
+            ap.error('目标文件已存在，本次未发出写作请求。')
 
     try:
         from openai import OpenAI
@@ -502,24 +525,62 @@ def main():
         sys.exit(1)
 
     try:
-        cfg = load_config(args.provider)
+        if args.grok:
+            cfg = load_config('grok-direct')
+            cfg['providers'] = dict(cfg.get('providers') or {})
+            cfg['providers']['grok-direct'] = {
+                'kind': 'xai', 'model': args.model or os.environ.get('XAI_MODEL'),
+                'timeout': 900, 'max_output_tokens': args.max_output_tokens,
+            }
+        else:
+            cfg = load_config(args.provider)
         client = ProviderRouter(cfg, OpenAI)
+        if args.models:
+            for model_id in client.model_ids():
+                print(model_id)
+            return 0
         cfg['model'] = args.model or client.spec(client.active)['model']
-    except (ProviderError, EOFError, KeyboardInterrupt) as exc:
-        print('\n[错误]', error_message(exc))
+        if not cfg['model'] or not cfg['model'].strip():
+            raise ProviderError('未选模型。用 --grok --models 查询，再设置 --model 或 XAI_MODEL。')
+        if args.grok and not client.spec(client.active)['api_key']:
+            raise ProviderError('缺少 XAI_API_KEY。请在本机环境变量配置 xAI API Key。')
+        system = build_system_prompt(full=args.full)
+        if args.workflow:
+            system += '\n\n' + workflow_prompt(os.path.dirname(EXPORTS), args.workflow)
+        task = ' '.join(args.prompt)
+        if args.prompt_file:
+            task = '\n\n'.join(part for part in (task, args.prompt_file.read_text(encoding='utf-8-sig')) if part)
+        if one_shot and not task.strip():
+            raise ProviderError('写作要求为空。')
+        if args.source_file:
+            source = args.source_file.read_text(encoding='utf-8-sig')
+            task += '\n\n作者提供的源稿资料如下，请只按上方任务要求使用。\n\n' + source
+    except (OSError, UnicodeError):
+        print('[错误] 无法读取写作资料，请检查文件路径和 UTF-8 编码。', file=sys.stderr)
         return 1
-    system = build_system_prompt(full=args.full)
+    except (Exception, KeyboardInterrupt) as exc:
+        print('[错误]', error_message(exc), file=sys.stderr)
+        return 1
     messages = [{"role": "system", "content": system}]
 
     print(f"网文工坊 终端版 | 模型 {cfg['model']} @ {client.active}"
           + ("  [完整知识库]" if args.full else ""))
 
-    if args.prompt:
-        messages.append({"role": "user", "content": " ".join(args.prompt)})
+    if one_shot:
+        messages.append({"role": "user", "content": task})
         try:
-            chat_stream(client, cfg["model"], messages)
+            reply = chat_stream(client, cfg["model"], messages)
+            if args.output:
+                try:
+                    with args.output.open('x', encoding='utf-8', newline='\n') as file:
+                        file.write(reply.rstrip() + '\n')
+                except FileExistsError:
+                    raise ProviderError('生成期间出现同名文件。请从终端复制回复，已有文件已保留。') from None
+                except OSError:
+                    raise ProviderError('无法保存。请检查输出路径，终端中仍可复制回复。') from None
+                print(f'[已另存] {args.output}', file=sys.stderr)
         except Exception as e:
-            print("\n[错误]", error_message(e))
+            print("\n[错误]", error_message(e), file=sys.stderr)
             return 1
         return 0
 

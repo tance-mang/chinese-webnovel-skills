@@ -58,7 +58,7 @@ class ProviderRouter:
         mode = profile.get('api_mode', mode)
         env = profile.get('api_key_env') or ('XAI_API_KEY' if kind == 'xai' else None)
         model = profile.get('model')
-        if not isinstance(model, str) or not model.strip() or mode not in ('chat', 'responses') or not isinstance(url, str):
+        if (model is not None and not isinstance(model, str)) or mode not in ('chat', 'responses') or not isinstance(url, str):
             raise ProviderError('模型配置需要有效的 model、base_url 和 api_mode。')
         try:
             parsed = urlsplit(url)
@@ -78,25 +78,44 @@ class ProviderRouter:
         if not spec.get('api_key'):
             raise ProviderError('未配置 API Key，请设置服务对应的环境变量。')
         timeout = spec.get('timeout', 90)
-        if not isinstance(timeout, (int, float)) or not 0 < timeout <= 600:
-            raise ProviderError('timeout 需在 0 到 600 秒之间。')
+        if not isinstance(timeout, (int, float)) or not 0 < timeout <= 1800:
+            raise ProviderError('timeout 需大于 0 且不超过 1800 秒。')
         return self.client_factory(base_url=spec['base_url'], api_key=spec['api_key'],
                                    timeout=timeout, max_retries=0)
 
+    def model_ids(self, name=None):
+        client = self.client(self.spec(name or self.active))
+        try:
+            return sorted({model.id for model in client.models.list()})
+        finally:
+            if hasattr(client, 'close'):
+                client.close()
+
     def health(self, name):
-        spec = self.spec(name)
-        models = self.client(spec).models.list()
-        return any(model.id == spec['model'] for model in models)
+        return self.spec(name)['model'] in self.model_ids(name)
 
     def stream(self, model, messages, profile=None):
         self.usage = None
         self.estimated_cost = None
         spec = self.spec(profile or self.active)
-        client = self.client(spec)
         model = model or spec['model']
+        if not model or not model.strip():
+            raise ProviderError('未选模型。先用 --grok --models 查询，再用 --model 或 XAI_MODEL 选择。')
+        limit = spec.get('max_output_tokens')
+        if limit is not None and (type(limit) is not int or limit < 1 or spec['api_mode'] != 'responses'):
+            raise ProviderError('max_output_tokens 仅用于 Responses，必须是正整数。')
+        client = self.client(spec)
+        try:
+            yield from self._stream(client, spec, model, messages, limit)
+        finally:
+            if hasattr(client, 'close'):
+                client.close()
+
+    def _stream(self, client, spec, model, messages, limit):
         usage = None
         if spec['api_mode'] == 'responses':
-            stream = client.responses.create(model=model, input=messages, stream=True, store=False)
+            options = {'max_output_tokens': limit} if limit is not None else {}
+            stream = client.responses.create(model=model, input=messages, stream=True, store=False, **options)
             with stream as events:
                 complete = False
                 for event in events:

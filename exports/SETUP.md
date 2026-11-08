@@ -74,4 +74,4 @@ Claude Code 里 `/plugin marketplace add tance-mang/chinese-webnovel-skills` + `
 
 在 Codex 中打开仓库，告诉它先读目标技能的 `SKILL.md`，再按文中引用加载相关参考库。例如：“使用 `skills/english/SKILL.md` 的 adapt，保留中国背景，先给改编决策表。”默认把正文、说明和作者待确认项分别交付。
 
-Grok 聊天可手动提供本目录的指令和知识库。程序调用 xAI 请用[终端多模型配置](../cli/README.md)，用 Grok Bot 做研究或独立审稿请看[任务文件交接](../integrations/grokbot/README.md)。
+Grok 聊天可手动提供本目录的指令和知识库。程序调用 xAI 可用 [Grok 快速开始](../cli/README.md#grok-快速开始)；用 Grok Bot 做研究或独立审稿请看[任务文件交接](../integrations/grokbot/README.md)。
