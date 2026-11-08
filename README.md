@@ -10,7 +10,7 @@ Claude Code 插件 · 也可用于 ChatGPT / DeepSeek / Gemini / Kimi 等任意�
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-blueviolet)](https://code.claude.com)
 [![Skills](https://img.shields.io/badge/skills-33-brightgreen)](#-33-个技能)
-[![Version](https://img.shields.io/badge/version-0.29.1-blue)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.29.2-blue)](CHANGELOG.md)
 [![Models](https://img.shields.io/badge/AI-Claude·ChatGPT·DeepSeek·Gemini·Kimi-orange)](#-支持哪些-ai不止-claude)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-success)](#-参与贡献)
 
@@ -23,11 +23,15 @@ Claude Code 插件 · 也可用于 ChatGPT / DeepSeek / Gemini / Kimi 等任意�
 > 一句话：让用 Claude 写中文网文的作者，从"零散复制 Prompt"升级到"一套懂网文商业逻辑的专业工具"。
 > 男频女频双线全覆盖，适配 起点 / 番茄 / 晋江 / UC / 知乎盐选 / Webnovel(起点国际)，含同人合规与全品类题材库。
 
+> **面向中国作者的双语 / 跨平台出海。** 上面的中文网文能力保持完整：选题、大纲、爽点、追读、投稿仍按起点、番茄、晋江等平台来。与此同时，英文写作收成三条可配置路径——`original`（直接写英文）、`adapt`（保住因果，用英文重讲）、`translate`（保住事实和声音）。口号：**Write in Your Language. Tell Stories Beyond Borders.**
+>
+> 本仓库当前是 **33 个技能**（见下方技能表与版本徽章）。若 GitHub 仓库简介仍写着旧的 “23 skills”，以本 README 和 `.claude-plugin/plugin.json`（v0.29.2）为准。海外平台的已核验结论在 [`integrations/grokbot/overseas-research.md`](integrations/grokbot/overseas-research.md)（Grok Bot 的研究交接，不替代 Grok API）。**Radish 已于 2025-12-31 关闭，不再作为可投平台。**
+
 ## 📑 目录
 
 - [为什么用它](#-为什么用它)
 - [安装](#-安装)
-- [27 个技能](#-27-个技能)
+- [33 个技能](#-33-个技能)
 - [典型流程](#-典型流程)
 - [知识库](#-知识库)
 - [项目结构](#-项目结构)
@@ -40,12 +44,12 @@ Claude Code 插件 · 也可用于 ChatGPT / DeepSeek / Gemini / Kimi 等任意�
 
 - **专为中文网文调校**：不是通用写作工具套壳，是按起点/番茄的爽点逻辑、打脸四拍、追读节奏写的。
 - **吃 Claude 超长上下文**：200K token 装得下整本大纲 + 全书人设，写到几十万字不忘设定、不断伏笔。
-- **全流程覆盖**：从"一个灵感"到"投稿过稿"，14 个技能各管一段。
+- **全流程覆盖**：从"一个灵感"到"投稿过稿"，当前 **33 个技能**各管一段。
 - **数据化思维**：钩子/爽点/修饰词可视化标注、追读诊断、平台趋势——帮作者看见数据，不只是码字。
 - **新手友好**：内置可选的写作教学陪练，想学就开，专心写就关。
 - **中英双语文档**：英文不好的看中文，海外用户看英文。
 - **不止 Claude**：一套方法论，可用于 ChatGPT / DeepSeek / Gemini / Kimi / 豆包 / 通义 / 智谱 / 文心 等任意大模型，见 [exports/SETUP.md](exports/SETUP.md)。
-- **不止中文**：内置英文出海模块（Wattpad / Royal Road / Webnovel），写得像本地作者不像翻译腔 → `english` 技能。
+- **不止中文**：内置英文出海模块（Wattpad / Royal Road / Webnovel / Amazon KDP；`original` / `adapt` / `translate`）。句长和钩子按类型配置，不像翻译腔 → `english` 技能。Radish 已停运，不再推荐。
 - **不止插件**：可独立**终端运行**（不会写代码、没用过 Claude 也能跑）——Windows 双击 `cli/启动.bat`、Mac 跑 `cli/start.sh`，接你自己的任意 API（DeepSeek / Kimi / 硅基 / OpenRouter / 本地 Ollama）。零基础部署四步走见 **[cli/README.md](cli/README.md)**。
 
 > 适合：海外华人网文作者、国内出海作者、用 Claude Code / VSCode 码字的写手、想学写网文的新人。
@@ -136,7 +140,7 @@ python webnovel.py          # Windows 也可直接双击 cli/启动.bat
 | 📊 AI味评分 | `/webnovel:aidetect` | AI味量化检测：比喻密度/连续同句式/句长波动/段落分布/情绪词重复 → 指数(0–10)+扣分定位 |
 | 😢 情绪描写 | `/webnovel:emotion` | 把"我很心疼/我好痛苦"演出来，让读者自己感受（show don't tell）|
 | 🫀 人味/失控感 | `/webnovel:human` | 治深层AI味：加非理性行为/情绪不完整/不闭环，让稿子像"情绪记录"不像"说明书" |
-| 🌍 英文出海 | `/webnovel:english` | 写/改英文网文(Wattpad/Royal Road/Webnovel)，像本地作者不像翻译腔 |
+| 🌍 英文出海 | `/webnovel:english` | original / adapt / translate；Wattpad、Royal Road、Webnovel、KDP。Radish 已停运。句长与钩子按类型配置 |
 | 🎬 剧本 | `/webnovel:script` | 写竖屏短剧/影视剧本、小说改剧本，正规格式，只写能拍的，每集强卡点 |
 | ✅ 校对过审 | `/webnovel:proofread` | 错别字(的地得/在再)+敏感违禁词检查，像番茄后台标红+给"原词→建议词"一键替换 |
 | 📮 投稿过稿 | `/webnovel:submission` | 按平台签约标准体检三章 + 书名简介标签 |
@@ -216,7 +220,7 @@ python webnovel.py          # Windows 也可直接双击 cli/启动.bat
 | `ai-detector.md` | AI味量化 12 项：比喻密度/连续同句式/句长波动/段落分布/情绪词重复/总结句(show-tell)/动作对白心理配比/环境审计/阅读摩擦… +阈值+评分公式+定位 |
 | `sentence-rhythm.md` | 句式节奏：长短句交错/偶尔长句/省略号破折号换行做呼吸/情绪话说一半（治"太顺"）|
 | `dark-style.md` | 暗黑/灰度风格 + 爽文版vs高级暗黑版双版本输出 |
-| `english-webfic.md` | 英文出海：Wattpad/RoyalRoad/Webnovel + 英文vs中文逻辑 + 英文钩子/排版/情绪/AI破绽 |
+| `english-webfic.md` | 英文出海：现行平台 + Radish 历史化 + RR/KDP 政策要点 + 按类型的句长与钩子；细节见 `integrations/grokbot/overseas-research.md` |
 | `script-format.md` | 剧本格式：竖屏短剧/影视，只写能拍的，场景标题/台词/卡点 + 小说改剧本 |
 | `show-emotion.md` | 情绪外显库：11 种情绪→神态/动作/生理/潜台词对照，演出来别喊 |
 | `pov-guide.md` | 人称视角：默认第一人称(沉浸/像亲历) + 第三人称切换 + 知乎沉浸式 |
@@ -243,6 +247,7 @@ chinese-webnovel-skills/
 │   └── marketplace.json     # 插件市场清单
 ├── skills/                  # 33 个技能（draft 含 build_docx.py 生成 Word）
 ├── references/              # 31 个知识库
+├── integrations/grokbot/    # 海外研究交接（不替代 Grok API）
 ├── templates/               # 设定总纲 / 投稿记录 / 进度 模板
 │   ├── book-bible-template.md
 │   ├── submission-log-template.md
@@ -275,6 +280,7 @@ chinese-webnovel-skills/
 
 完整记录见 [CHANGELOG.md](CHANGELOG.md)。
 
+- **v0.29.2** — Grok Bot 参与的文档勘误：Radish 移入历史平台（2025-12-31 关闭，不再推荐新投）；Royal Road 性内容与 AI 标注、KDP 的 AI-generated 披露写入英文知识库；短句+强钩改为按类型配置；english 增加 original / adapt / translate 入口。研究报告：`integrations/grokbot/overseas-research.md`
 - **v0.29.0** — 模式化入口(start)：把 33 技能收进4个门(新建/继续/优化/投稿)，自动走流程调技能，不用记命令；终端版加 `/mode /new /continue /optimize /submit` + 开场菜单
 - **v0.28.0** — 共写模式(cowrite)：人机一起写，三档 Auto自动/Assist我写一点AI补一点/Director我定方向AI出多版，多版本"推荐★+评分+备选"格式专治"下一句写啥"；终端版加 `/co` `/director` `/write` 命令；主页加"3分钟跑起来"最短路径入口
 - **v0.27.1** — 规范修订：①符号——简体网文正文只用常规标点，对话用弯引号 ""''、**禁用直角引号「」『』**、破折号——极少用、不撒装饰符号；②番茄长篇连载**单章 2000–2200 字最佳**；③补全番茄"发布"5条平台禁令（情节无关内容→作者有话说、拼音替代/乱码/不分段、引导关注联系方式、违法违规、宗教迷信）

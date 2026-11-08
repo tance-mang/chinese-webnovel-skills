@@ -5,6 +5,21 @@ All notable changes are documented here. This project adheres to [Semantic Versi
 
 ---
 
+## [0.29.2] - 2026-11-08
+
+> 文档与知识库勘误。**Grok Bot 参与创作**：可溯源海外研究交接，不替代 Grok API，不自动投稿，不发布 release。
+>
+> Co-Authored-By: Grok Bot <cursoragent@cursor.com>
+
+### 变更 Changed
+- 🌍 **Radish 历史化**：从现行可投平台移入「历史平台 / 已停运」。官方于 **2025-12-31** 关闭 Radish app，**不再推荐新投**。公告说明 Tapas 并未因此关闭，但阅读历史和作品不能自动迁移；知识库不承诺迁移、不自动改投。
+- 📚 **海外平台政策核验**（查阅日 2026-11-08，写入 `references/english-webfic.md` 与 `skills/english`）：Royal Road 性内容不得作为核心或卖点，erotica 禁止，AI 须按平台规则标注；Amazon KDP 对 AI-generated 文本、图像、翻译必须披露，大幅编辑后仍须披露，AI-assisted 不必。Webnovel 公开 AI 总政策仍标待核实。
+- 📄 **研究报告**：`integrations/grokbot/overseas-research.md`。目录说明见 `integrations/grokbot/README.md`。
+- ✍️ **英文硬规则弱化**：句长 70/20/10、「每 200 字必须推进」、全英文短句 + 强钩，改为按类型可配置偏好（Wattpad Romance / Royal Road LitRPG / KDP Romance）。`english` 增加 **original / adapt / translate** 三条路径入口。`globalize` / `intimacy` 本轮未新建技能。
+- README（中/英）补充面向中国作者的双语、跨平台出海方向。口号：Write in Your Language. Tell Stories Beyond Borders. 现有中文网文能力描述保留。技能数仍为 **33**。`plugin.json` 版本 0.29.1 → 0.29.2，author 仍为 tance-mang。
+
+---
+
 ## [0.29.1] - 2026-06-13
 - 符号收尾：把全仓库示例/对话里的直角引号 `「」『』` 实际改成弯引号 `""''`（v0.27.1 只立了规则、示例还没改）。规则已禁用 `「」`，现在示例也统一了，模型照着学就不会输出 `「」`。
 
@@ -137,7 +152,7 @@ All notable changes are documented here. This project adheres to [Semantic Versi
 ## [0.22.0] - 2026-06-09
 
 ### 新增 Added（英文出海，不再局限中文）
-- 🌍 **english（英文网文出海）**：写/改 Wattpad / Royal Road / Webnovel / Radish / KDP 的英文，像本地作者不像翻译腔。四种用法：写英文原生稿、中转英改写、去英文 AI 腔/翻译腔、选平台。
+- 🌍 **english（英文网文出海）**：当时写入 Wattpad / Royal Road / Webnovel / KDP，以及后来已停运的 Radish。Radish 官方于 2025-12-31 关闭，**不再作为可投平台**，见 **0.29.2**。四种用法：写英文原生稿、中转英改写、去英文 AI 腔/翻译腔、选平台。
 - 📚 **english-webfic.md**：英文网文库。平台速览 + **英文 vs 中文底层逻辑（中文卖剧情爽点，英文卖情绪钩子）** + 英文读者讨厌的（长段落/解释/堆形容词）+ 英文排版（Chapter X/对话换行/短段落）+ 英文节奏（前 100 词有事）+ 英文钩子 + 身体反应写情绪 + 英文 AI 破绽（too formal/too symmetric/over-literary）。
 
 ### 变更 Changed
