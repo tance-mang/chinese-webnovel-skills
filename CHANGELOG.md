@@ -5,6 +5,18 @@ All notable changes are documented here. This project adheres to [Semantic Versi
 
 ---
 
+## [Unreleased]
+
+### Added
+
+- 新增海外类型配置、本地化改编、成年角色关系写作、英文母语化编辑和模型分工 5 个技能，共 38 个技能、35 份参考库。
+- CLI 增加命名模型配置、xAI Responses、兼容 Chat Completions、本地 Ollama、健康检查、显式切换及任务对照。
+- 新增 Grok Bot 文件交接和离线测试，导入结果仅进入待审文件。
+
+### Changed
+
+- 英文写作拆分为 original、adapt、translate，采用按类型调整的节奏与双语档案。海外投稿标注官方来源和核验状态，将 Radish 移入历史平台。
+
 ## [0.29.1] - 2026-06-13
 - 符号收尾：把全仓库示例/对话里的直角引号 `「」『』` 实际改成弯引号 `""''`（v0.27.1 只立了规则、示例还没改）。规则已禁用 `「」`，现在示例也统一了，模型照着学就不会输出 `「」`。
 

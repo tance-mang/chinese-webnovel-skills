@@ -16,6 +16,21 @@ def read(p):
     with open(p, encoding='utf-8') as f:
         return f.read()
 
+def export_links(text, source):
+    """Keep local Markdown file links working after moving text into exports/."""
+    def replace(match):
+        label, target = match.groups()
+        path, marker, fragment = target.partition('#')
+        if not path or ':' in path or path.startswith('/'):
+            return match.group(0)
+        resolved = os.path.normpath(os.path.join(os.path.dirname(source), path))
+        if not os.path.isfile(resolved):
+            return match.group(0)
+        relative = os.path.relpath(resolved, os.path.join(ROOT, 'exports')).replace(os.sep, '/')
+        return f'[{label}]({relative}{marker}{fragment})'
+
+    return re.sub(r'\[([^\]\n]+)\]\(([^)\s]+)\)', replace, text)
+
 def strip_frontmatter(text):
     m = re.match(r'^---\s*\n(.*?)\n---\s*\n(.*)$', text, re.S)
     if not m:
@@ -34,7 +49,7 @@ def build_skills():
     files = sorted(glob.glob(os.path.join(ROOT, 'skills', '*', 'SKILL.md')))
     for f in files:
         name, desc, body = strip_frontmatter(read(f))
-        out.append(f"\n\n{'='*60}\n## 技能：{name}\n**触发场景**：{desc}\n\n{body}")
+        out.append(f"\n\n{'='*60}\n## 技能：{name}\n**触发场景**：{desc}\n\n{export_links(body, f)}")
     return '\n'.join(out), len(files)
 
 def build_references():
@@ -42,7 +57,7 @@ def build_references():
            "> 本文件由 tools/build_exports.py 自动生成。供各技能调用的网文 know-how。\n"]
     files = sorted(glob.glob(os.path.join(ROOT, 'references', '*.md')))
     for f in files:
-        out.append(f"\n\n{'='*60}\n{read(f)}")
+        out.append(f"\n\n{'='*60}\n{export_links(read(f), f)}")
     return '\n'.join(out), len(files)
 
 def main():
@@ -66,3 +81,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

@@ -24,6 +24,8 @@ import sys
 import json
 import argparse
 import datetime
+from getpass import getpass
+from providers import ProviderError, ProviderRouter, error_message
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 EXPORTS = os.path.join(HERE, "..", "exports")
@@ -39,13 +41,17 @@ def read(path):
         return f.read()
 
 
-def load_config():
+def load_config(provider=None):
     cfg = {}
     if os.path.exists(CONFIG_PATH):
         try:
-            cfg = json.load(open(CONFIG_PATH, encoding="utf-8"))
-        except Exception as e:
-            print("[警告] config.json 解析失败：", e)
+            cfg = json.loads(read(CONFIG_PATH))
+        except (OSError, ValueError):
+            print("[警告] 无法读取 config.json，请检查 JSON 格式。")
+    if not isinstance(cfg, dict):
+        raise ProviderError('config.json 顶层必须是对象。')
+    if provider:
+        cfg['provider'] = provider
     # API（环境变量优先）
     cfg["base_url"] = os.environ.get("WN_BASE_URL", cfg.get("base_url") or "https://api.deepseek.com/v1")
     cfg["api_key"] = os.environ.get("WN_API_KEY", cfg.get("api_key") or "")
@@ -56,11 +62,11 @@ def load_config():
     fmt = (cfg.get("save_format") or "txt").lower()
     cfg["save_format"] = fmt if fmt in SAVE_FORMATS else "txt"
     cfg["auto_log"] = cfg.get("auto_log", True)
-    if not cfg["api_key"]:
+    if cfg.get('provider', 'legacy') == 'legacy' and (not cfg["api_key"] or cfg["api_key"] == '在这里填你的_API_KEY'):
         print("\n还没配 API Key。终端版是个壳，需要接一个 AI 才能写作")
         print("（DeepSeek / Kimi / 硅基流动 / OpenRouter 等任意一家，有免费额度，去哪弄见 cli/README.md「第四步」）。")
         print("拿到后两种填法：① 把 config.example.json 复制成 config.json 填进去（一劳永逸）；② 现在直接粘贴下面：")
-        cfg["api_key"] = input("  粘贴 API Key（还没有就直接回车，等接好 AI 再来）：").strip()
+        cfg["api_key"] = getpass("  粘贴 API Key（还没有就直接回车）：").strip()
         if not cfg["api_key"]:
             print("（已跳过。配好 key 再运行 python webnovel.py 即可。）")
             sys.exit(0)
@@ -72,7 +78,7 @@ def save_prefs(cfg):
     data = {}
     if os.path.exists(CONFIG_PATH):
         try:
-            data = json.load(open(CONFIG_PATH, encoding="utf-8"))
+            data = json.loads(read(CONFIG_PATH))
         except Exception:
             data = {}
     for k in PREF_KEYS:
@@ -117,17 +123,70 @@ def list_skills():
             print("  -", line.replace("## 技能：", "").strip())
 
 
-def chat_stream(client, model, messages):
+def chat_stream(client, model, messages, profile=None):
     """流式输出，返回完整回复。"""
     full = []
-    resp = client.chat.completions.create(model=model, messages=messages, stream=True, temperature=0.8)
-    for chunk in resp:
-        delta = chunk.choices[0].delta.content if chunk.choices and chunk.choices[0].delta else None
-        if delta:
-            print(delta, end="", flush=True)
-            full.append(delta)
+    for delta in client.stream(model, messages, profile):
+        print(delta, end="", flush=True)
+        full.append(delta)
+    if not ''.join(full).strip():
+        raise ProviderError('未返回可保存的正文。')
     print()
+    if client.usage:
+        cost = f'，按配置估算 USD {client.estimated_cost:.6f}' if client.estimated_cost is not None else ''
+        print(f"[用量] 输入 {client.usage[0]}，输出 {client.usage[1]} token{cost}", file=sys.stderr)
     return "".join(full)
+
+
+def provider_command(cmd, arg, cfg, router, messages):
+    """Selection and experiments are explicit, and experiments never modify the book."""
+    try:
+        if cmd == '/provider':
+            if not arg:
+                print('模型配置：', ', '.join(['legacy', *router.profiles]), '| 当前：', router.active)
+                return
+            spec = router.spec(arg)
+            if input(f"切换到 {arg}（{spec['model']}）；之后的对话会发送当前会话。输入 yes 确认：") != 'yes':
+                return
+            router.client(spec)  # Validate credentials and options without sending a request.
+            router.active = arg
+            cfg['model'] = spec['model']
+        elif cmd == '/model':
+            if arg and input(f'使用当前服务的 {arg}？输入 yes 确认：') == 'yes':
+                cfg['model'] = arg
+            print('当前模型：', cfg['model'])
+        elif cmd == '/health':
+            name = arg or router.active
+            if not arg and cfg['model'] != router.spec(name)['model']:
+                print('健康检查针对配置文件的模型，不包含会话中的模型覆盖。')
+            print('模型出现在服务列表中。' if router.health(name) else '服务可达，列表中未找到配置的模型。')
+        else:
+            selector, sep, prompt = arg.partition(' ')
+            if not sep or not prompt.strip():
+                print('用法：/compare 配置A,配置B 任务文本 或 /route 任务名 任务文本')
+                return
+            if cmd == '/route':
+                routes = cfg.get('routes', {})
+                name = routes.get(selector) if isinstance(routes, dict) else None
+                if not name:
+                    raise ProviderError('任务未配置模型，请检查 routes。')
+                names = [name]
+            else:
+                names = [name.strip() for name in selector.split(',')]
+                if len(names) != 2 or len(set(names)) != 2:
+                    raise ProviderError('对照需要两个不同的配置。')
+            for name in names:
+                router.client(router.spec(name))
+            if input(f"将任务发到 {', '.join(names)}，可能产生费用。输入 yes 确认：") != 'yes':
+                return
+            isolated = [messages[0].copy(), {'role': 'user', 'content': prompt}]
+            for name in names:
+                print(f'[{name}]')
+                chat_stream(router, None, isolated, name)
+    except (EOFError, KeyboardInterrupt):
+        print('\n已取消。')
+    except Exception as exc:
+        print('\n[错误]', error_message(exc))
 
 
 # ---------- 存稿 / 回溯 ----------
@@ -230,7 +289,7 @@ def _ask(client, cfg, messages, state, prompt):
         append_session_log(cfg, "工坊", reply)
         return reply
     except Exception as e:
-        print("\n[错误]", e)
+        print("\n[错误]", error_message(e))
         messages.pop()
         return None
 
@@ -296,6 +355,11 @@ HELP = """命令一览（直接输文字=继续写；命令以 / 开头）：
   /history           看创作记录、回溯写过什么（类 git）
   /proofread         校对上一条回复：错别字+敏感词，给 原词→建议词
   /coach [off]       学习模式 开/关
+  /provider [配置名]  查看或切换服务，切换前确认
+  /model [模型名]     查看或切换当前服务的模型
+  /health [配置名]    检查模型列表
+  /route 任务 文字    向指定任务配置发一次请求，不写入正文
+  /compare A,B 文字   用相同输入对照两个模型，不写入正文
   /list              列出全部技能
   exit / quit / 退出  离开
 """
@@ -315,6 +379,8 @@ def handle_command(line, cfg, client, messages, state):
 
     if cmd == "/help":
         print(HELP)
+    elif cmd in ('/provider', '/model', '/health', '/route', '/compare'):
+        provider_command(cmd, arg, cfg, client, messages)
     elif cmd == "/config":
         print_config(cfg)
     elif cmd == "/list":
@@ -392,7 +458,7 @@ def handle_command(line, cfg, client, messages, state):
                 messages.append({"role": "assistant", "content": reply})
                 append_session_log(cfg, "校对", reply)
             except Exception as e:
-                print("\n[错误]", e); messages.pop()
+                print("\n[错误]", error_message(e)); messages.pop()
     elif cmd == "/coach":
         if arg.lower() == "off":
             if state.get("coach"):
@@ -421,6 +487,7 @@ def main():
     ap.add_argument("prompt", nargs="*", help="一次性输入；留空进入对话模式")
     ap.add_argument("--full", action="store_true", help="加载完整技能+知识库")
     ap.add_argument("--model", help="覆盖模型名")
+    ap.add_argument("--provider", help="选用 config.json 中的命名配置")
     ap.add_argument("--list", action="store_true", help="列出所有技能")
     args = ap.parse_args()
 
@@ -434,14 +501,17 @@ def main():
         print("缺少依赖，请先运行： pip install openai")
         sys.exit(1)
 
-    cfg = load_config()
-    if args.model:
-        cfg["model"] = args.model
-    client = OpenAI(base_url=cfg["base_url"], api_key=cfg["api_key"])
+    try:
+        cfg = load_config(args.provider)
+        client = ProviderRouter(cfg, OpenAI)
+        cfg['model'] = args.model or client.spec(client.active)['model']
+    except (ProviderError, EOFError, KeyboardInterrupt) as exc:
+        print('\n[错误]', error_message(exc))
+        return 1
     system = build_system_prompt(full=args.full)
     messages = [{"role": "system", "content": system}]
 
-    print(f"网文工坊 终端版 | 模型 {cfg['model']} @ {cfg['base_url']}"
+    print(f"网文工坊 终端版 | 模型 {cfg['model']} @ {client.active}"
           + ("  [完整知识库]" if args.full else ""))
 
     if args.prompt:
@@ -449,8 +519,9 @@ def main():
         try:
             chat_stream(client, cfg["model"], messages)
         except Exception as e:
-            print("\n[错误]", e)
-        return
+            print("\n[错误]", error_message(e))
+            return 1
+        return 0
 
     state = {"base_system": system, "coach": False, "last_reply": ""}
     print_config(cfg)
@@ -479,10 +550,10 @@ def main():
             state["last_reply"] = reply
             append_session_log(cfg, "工坊", reply)
         except Exception as e:
-            print("\n[错误]", e)
+            print("\n[错误]", error_message(e))
             messages.pop()
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
 
