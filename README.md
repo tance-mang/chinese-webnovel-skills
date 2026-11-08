@@ -9,7 +9,7 @@ Claude Code 插件 · 也可用于 ChatGPT / DeepSeek / Gemini / Kimi 等任意�
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-blueviolet)](https://code.claude.com)
-[![Skills](https://img.shields.io/badge/skills-38-brightgreen)](#-38-个技能)
+[![Skills](https://img.shields.io/badge/skills-39-brightgreen)](#-39-个技能)
 [![Version](https://img.shields.io/badge/version-0.29.1-blue)](CHANGELOG.md)
 [![Models](https://img.shields.io/badge/AI-Claude·ChatGPT·DeepSeek·Gemini·Kimi-orange)](#-支持哪些-ai不止-claude)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-success)](#-参与贡献)
@@ -27,7 +27,7 @@ Claude Code 插件 · 也可用于 ChatGPT / DeepSeek / Gemini / Kimi 等任意�
 
 - [为什么用它](#-为什么用它)
 - [安装](#-安装)
-- [38 个技能](#-38-个技能)
+- [39 个技能](#-39-个技能)
 - [典型流程](#-典型流程)
 - [知识库](#-知识库)
 - [项目结构](#-项目结构)
@@ -107,9 +107,9 @@ python webnovel.py          # Windows 也可直接双击 cli/启动.bat
 详细分步（每家怎么配）见 **[exports/SETUP.md](exports/SETUP.md)**。
 > 海外用 Claude/ChatGPT/Gemini，国内用 DeepSeek/Kimi/豆包——**一套方法论，哪个顺手用哪个**。加了新技能后跑 `python tools/build_exports.py` 重新生成导出即可同步。
 
-## 📖 38 个技能
+## 📖 39 个技能
 
-从 `/webnovel:english` 选择 `original` 英文原创、`adapt` 海外本地化或 `translate` 忠实翻译。可单独调用 `genre-style`、`globalize`、`native-edit` 和 `intimacy`。见[英文创作示例](references/english-genre-profiles.md)、[中文小说改编示例](references/bilingual-adaptation.md)、[终端多模型配置](cli/README.md)和 [Grok Bot 交接](integrations/grokbot/README.md)。
+从 `/webnovel:english` 选择 `original` 英文原创、`adapt` 海外本地化或 `translate` 忠实翻译。可单独调用 `genre-style`、`globalize`、`native-edit` 和 `intimacy`。见[英文创作示例](references/english-genre-profiles.md)、[中文小说改编示例](references/bilingual-adaptation.md)、[终端多模型配置](cli/README.md)和 [Grok Bot 交接](integrations/grokbot/README.md)。 [直接用 Grok 写一章](cli/README.md#grok-快速开始)。
 
 > 多数技能支持"**平台 + 频道 + 题材**"参数，如 `/webnovel:outline 番茄 男频 都市战神`、`/webnovel:idea 晋江 女频 古言宅斗`，自动适配平台节奏和题材套路。
 > 写作**默认第一人称“我”**（更沉浸、像写亲身经历，尤其知乎/女频/短篇），动笔前会说明，需要第三人称随时切。
@@ -144,6 +144,7 @@ python webnovel.py          # Windows 也可直接双击 cli/启动.bat
 | 亲密关系 | `/webnovel:intimacy` | 成年角色的暧昧、同意边界和关系转折 |
 | 英文精修 | `/webnovel:native-edit` | 翻译腔、角色语域、时态与视角 |
 | 模型分工 | `/webnovel:model-router` | 选模型、人工对照及任务交接 |
+| Grok 写作 | `/webnovel:grok-write` | 查询账号模型，按本地写作要求另存草稿 |
 | 🎬 剧本 | `/webnovel:script` | 写竖屏短剧/影视剧本、小说改剧本，正规格式，只写能拍的，每集强卡点 |
 | ✅ 校对过审 | `/webnovel:proofread` | 错别字(的地得/在再)+敏感违禁词检查，像番茄后台标红+给"原词→建议词"一键替换 |
 | 📮 投稿过稿 | `/webnovel:submission` | 按平台签约标准体检三章 + 书名简介标签 |
@@ -248,7 +249,7 @@ chinese-webnovel-skills/
 ├── .claude-plugin/
 │   ├── plugin.json          # 插件清单
 │   └── marketplace.json     # 插件市场清单
-├── skills/                  # 38 个技能（draft 含 build_docx.py 生成 Word）
+├── skills/                  # 39 个技能（draft 含 build_docx.py 生成 Word）
 ├── references/              # 35 个知识库
 ├── templates/               # 设定总纲 / 投稿记录 / 进度 模板
 │   ├── book-bible-template.md
@@ -272,7 +273,7 @@ chinese-webnovel-skills/
 
 ## 🙏 致谢
 
-**tance-mang** 维护网文工坊。**Claude** 参与早期技能与工作流开发。**OpenAI Codex** 参与作者主导的共写、长篇一致性、英文创作与本地化流程，以及多模型 CLI 和测试。
+**tance-mang** 维护网文工坊。**Claude** 参与早期技能与工作流开发。**OpenAI Codex** 参与作者主导的共写、长篇一致性、英文创作与本地化流程，以及多模型 CLI 和测试。**Grok Bot** 提供海外写作研究，作为平台规则和类型档案的核验线索。
 
 - **方法论种子**：核心钩子范例与爽点套路来自作者本人的写作素材《小说写作逻辑》。
 - 构建于 [Claude Code](https://code.claude.com) 公开的插件机制之上。

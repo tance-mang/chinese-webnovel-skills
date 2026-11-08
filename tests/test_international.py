@@ -171,11 +171,11 @@ class ExportTests(unittest.TestCase):
         spec.loader.exec_module(builder)
         skills, count = builder.build_skills()
         refs, ref_count = builder.build_references()
-        self.assertGreaterEqual(count, 38)
+        self.assertGreaterEqual(count, 39)
         self.assertGreaterEqual(ref_count, 35)
         for name, content in [('knowledge-skills.md', skills), ('knowledge-references.md', refs)]:
             self.assertEqual((ROOT / 'exports' / name).read_text(encoding='utf-8'), content)
-        for name in ('start', 'expand', 'cowrite', 'english', 'genre-style', 'globalize', 'intimacy', 'native-edit', 'model-router'):
+        for name in ('start', 'expand', 'cowrite', 'english', 'genre-style', 'globalize', 'intimacy', 'native-edit', 'model-router', 'grok-write'):
             self.assertIn(f'## 技能：{name}\n', skills)
         for path in (ROOT / 'skills').glob('*/SKILL.md'):
             skill, description, _ = builder.strip_frontmatter(path.read_text(encoding='utf-8'))
