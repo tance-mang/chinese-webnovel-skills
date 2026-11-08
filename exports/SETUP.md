@@ -69,3 +69,9 @@ Claude Code 里 `/plugin marketplace add tance-mang/chinese-webnovel-skills` + `
 
 ## 保持同步
 加了新技能后，跑 `python tools/build_exports.py` 重新生成，把新的两个 `knowledge-*.md` 重新上传到你的智能体即可。指令 `instructions.md` 一般不用动。
+
+## Codex 与 Grok 使用
+
+在 Codex 中打开仓库，告诉它先读目标技能的 `SKILL.md`，再按文中引用加载相关参考库。例如：“使用 `skills/english/SKILL.md` 的 adapt，保留中国背景，先给改编决策表。”默认把正文、说明和作者待确认项分别交付。
+
+Grok 聊天可手动提供本目录的指令和知识库。程序调用 xAI 请用[终端多模型配置](../cli/README.md)，用 Grok Bot 做研究或独立审稿请看[任务文件交接](../integrations/grokbot/README.md)。
